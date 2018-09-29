@@ -25,7 +25,7 @@ import org.dragonet.common.maths.ChunkPos;
 import org.dragonet.protocol.type.chunk.ChunkData;
 import org.dragonet.protocol.type.chunk.Section;
 import org.dragonet.proxy.network.UpstreamSession;
-import org.dragonet.proxy.network.translator.ItemBlockTranslator;
+import org.dragonet.proxy.network.translator.BlockTranslator;
 import java.io.IOException;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
@@ -165,7 +165,7 @@ public class ChunkCache {
                 Chunk chunk = column.getChunks()[position.getY() >> 4];
                 if (chunk != null) {
                     BlockState block = chunk.getBlocks().get(blockPos.x, blockPos.y, blockPos.z);
-                    return ItemBlockTranslator.translateToPE(block.getId());
+                    return BlockTranslator.translateToPE(block.getId());
                 }
             } catch (java.lang.ArrayIndexOutOfBoundsException ex) {
                 this.session.getProxy().getLogger().info("getBlock(" + position.toString() + ")) fail to get chunk "
@@ -253,7 +253,7 @@ public class ChunkCache {
                 for (int x = 0; x < 16; x++)
                     for (int z = 0; z < 16; z++) {
                         BlockState block = blocks.get(x, y & 0xF, z);
-                        ItemEntry entry = ItemBlockTranslator.translateToPE(block.getId());
+                        ItemEntry entry = BlockTranslator.translateToPE(block.getId());
 
                         Section section = chunk.sections[cy];
                         // Block id
@@ -276,7 +276,7 @@ public class ChunkCache {
             try {
                 List<CompoundTag> blockEntities = new ArrayList<>();
                 for (int i = 0; i < column.getTileEntities().length; i++) {
-                    CompoundTag peTag = ItemBlockTranslator.translateBlockEntityToPE(column.getTileEntities()[i]);
+                    CompoundTag peTag = BlockTranslator.translateBlockEntityToPE(column.getTileEntities()[i]);
                     if (peTag != null) // filter non handled blocks entities
                         blockEntities.add(peTag);
                     // else // debug

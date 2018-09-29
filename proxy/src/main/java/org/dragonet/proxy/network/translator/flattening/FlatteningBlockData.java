@@ -12,12 +12,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-public class FlatteningData {
+public class FlatteningBlockData {
 	private static final HashMap<Integer, FlattedBlockState> flattedBlockStates = new HashMap<Integer, FlattedBlockState>();
 	private static final HashMap<String, FlattedBlock> stringFlattedBlocks = new HashMap<String, FlattedBlock>();
 	
 	static {
-        Reader reader = new InputStreamReader(FlatteningData.class.getResourceAsStream("/flattening/blocks.json"), StandardCharsets.UTF_8);
+        Reader reader = new InputStreamReader(FlatteningBlockData.class.getResourceAsStream("/flattening/blocks.json"), StandardCharsets.UTF_8);
         JsonElement jelement = new JsonParser().parse(reader);
         JsonObject jobject = jelement.getAsJsonObject();
         for(Map.Entry<String, JsonElement> entry : jobject.entrySet()) {
@@ -56,7 +56,7 @@ public class FlatteningData {
 		return stringFlattedBlocks.get(name).defaultState;
 	}
 	
-	public static FlattedBlockState fromNameProperties(String name, HashMap<String, String> properties) {
+	public static FlattedBlockState fromNameProperties(String name, Map<String, String> properties) {
 		List<FlattedBlockState> list = stringFlattedBlocks.get(name).states;
 		for (FlattedBlockState state : list) {
 			if (state.properties != null) {

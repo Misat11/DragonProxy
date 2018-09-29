@@ -27,11 +27,11 @@ import java.util.List;
 import org.dragonet.common.data.itemsblocks.ItemEntry;
 import org.dragonet.common.data.nbt.tag.ListTag;
 import org.dragonet.proxy.network.translator.flattening.FlattedBlockState;
-import org.dragonet.proxy.network.translator.flattening.FlatteningData;
+import org.dragonet.proxy.network.translator.flattening.FlatteningBlockData;
 import org.dragonet.common.data.blocks.GlobalBlockPalette;
 import org.dragonet.common.data.inventory.Slot;
 
-public class ItemBlockTranslator {
+public class BlockTranslator {
 
 	public static final int UNSUPPORTED_BLOCK_ID = 248;
 	public static final String DRAGONET_COMPOUND = "DragonetNBT";
@@ -48,18 +48,236 @@ public class ItemBlockTranslator {
 
 		override("coarse_dirt", "dirt", 1);
 
-		override("oak_planks", "planks", 0);
+		override("oak_planks", "planks");
 		override("spruce_planks", "planks", 1);
 		override("birch_planks", "planks", 2);
 		override("jungle_planks", "planks", 3);
 		override("acacia_planks", "planks", 4);
 		override("dark_oak_planks", "planks", 5);
+
+		override("oak_sapling", "sapling");
+		override("oak_sapling", properties("stage", "1"), "sapling");
+		override("spruce_sapling", "sapling", 1);
+		override("spruce_sapling", properties("stage", "1"), "sapling", 1);
+		override("birch_sapling", "sapling", 2);
+		override("birch_sapling", properties("stage", "1"), "sapling", 2);
+		override("jungle_sapling", "sapling", 3);
+		override("jungle_sapling", properties("stage", "1"), "sapling", 3);
+		override("acacia_sapling", "sapling", 4);
+		override("acacia_sapling", properties("stage", "1"), "sapling", 4);
+		override("dark_oak_sapling", "sapling", 5);
+		override("dark_oak_sapling", properties("stage", "1"), "sapling", 5);
+
+		overrideAgeable("water", "level", 15);
+		overrideAgeable("lava", "level", 15);
+
+		override("red_sand", "sand", 1);
+
+		// Are logs correct? TODO
+		override("oak_log", properties("axis", "x"), "log");
+		override("oak_log", properties("axis", "y"), "log", 4);
+		override("oak_log", properties("axis", "z"), "log", 8);
+
+		override("spruce_log", properties("axis", "x"), "log", 1);
+		override("spruce_log", properties("axis", "y"), "log", 5);
+		override("spruce_log", properties("axis", "z"), "log", 9);
+
+		override("birch_log", properties("axis", "x"), "log", 2);
+		override("birch_log", properties("axis", "y"), "log", 6);
+		override("birch_log", properties("axis", "z"), "log", 10);
+
+		override("jungle_log", properties("axis", "x"), "log", 3);
+		override("jungle_log", properties("axis", "y"), "log", 7);
+		override("jungle_log", properties("axis", "z"), "log", 11);
+
+		override("acacia_log", properties("axis", "x"), "log2");
+		override("acacia_log", properties("axis", "y"), "log2", 2);
+		override("acacia_log", properties("axis", "z"), "log2", 4);
+
+		override("dark_oak_log", properties("axis", "x"), "log2", 1);
+		override("dark_oak_log", properties("axis", "y"), "log2", 3);
+		override("dark_oak_log", properties("axis", "z"), "log2", 5);
+
+		// TODO add stripped logs and wood, stripped woods
+
+		// TODO leaves
+
+		override("wet_sponge", "sponge", 1);
+
+		// TODO dispenser
+
+		override("chiseled_sandstone", "sandstone", 1);
+		override("cut_sandstone", "sandstone", 2);
+
+		// TODO noteblock
+
+		// TODO beds
+
+		// TODO powered rail
+
+		// TODO detector_rail
+
+		// TODO sticky_piston
+
+		override("cobweb", "web");
+		override("tallgrass", "grass");
+		override("fern", "grass", 1);
+
+		override("dead_bush", "deadbush");
+
+		override("tall_seagrass", properties("half", "upper"), "seagrass", 1);
+		override("tall_seagrass", properties("half", "lower"), "seagrass", 2);
+
+		// TODO Piston
+
+		// TODO Piston Head
+
+		override("white_wool", "wool");
+		override("orange_wool", "wool", 1);
+		override("magenta_wool", "wool", 2);
+		override("light_blue_wool", "wool", 3);
+		override("yellow_wool", "wool", 4);
+		override("lime_wool", "wool", 5);
+		override("pink_wool", "wool", 6);
+		override("gray_wool", "wool", 7);
+		override("light_gray_wool", "wool", 8);
+		override("cyan_wool", "wool", 9);
+		override("purple_wool", "wool", 10);
+		override("blue_wool", "wool", 11);
+		override("brown_wool", "wool", 12);
+		override("green_wool", "wool", 13);
+		override("red_wool", "wool", 14);
+		override("black_wool", "wool", 15);
+
+		// TODO Moving piston
+
+		override("dandelion", "yellow_flower");
+		override("poppy", "red_flower");
+		override("blue_orchid", "red_flower", 1);
+		override("allium", "red_flower", 2);
+		override("azure_bluet", "red_flower", 3);
+		override("red_tulip", "red_flower", 4);
+		override("orange_tulip", "red_flower", 5);
+		override("white_tulip", "red_flower", 6);
+		override("pink_tulip", "red_flower", 7);
+		override("oxeye_daisy", "red_flower", 8);
+
+		override("bricks", "brick_block");
+
+		override("torch", "torch", 5);
+		override("wall_torch", properties("facing", "north"), "torch", 4);
+		override("wall_torch", properties("facing", "south"), "torch", 3);
+		override("wall_torch", properties("facing", "west"), "torch", 2);
+		override("wall_torch", properties("facing", "east"), "torch", 1);
+
+		// TODO fire
+
+		override("spawner", "mob_spawner");
+
+		overrideStairs("oak_stairs");
+
+		// TODO chest
+
+		// TODO redstone_wire
+
+		overrideAgeable("wheat", "age", 7);
+
+		overrideAgeable("farmland", "moisture", 7);
+
+		// TODO furnace
+
+		// TODO sign
+
+		overrideDoor("oak_door");
+
+		// TODO ladder
+
+		// TODO rail
+
+		overrideStairs("cobblestone_stairs", "stone_stairs");
+
+		// TODO wall sign
+
+		// TODO lever
+
+		override("stone_pressure_plate", properties("powered", "true"), 1);
+
+		overrideDoor("iron_door");
+
+		override("oak_pressure_plate", properties("powered", "true"), 1);
+		override("spruce_pressure_plate", properties("powered", "true"), 1);
+		override("birch_pressure_plate", properties("powered", "true"), 1);
+		override("jungle_pressure_plate", properties("powered", "true"), 1);
+		override("acacia_pressure_plate", properties("powered", "true"), 1);
+		override("dark_oak_pressure_plate", properties("powered", "true"), 1);
+
+		override("redstone_ore", properties("lit", "true"), "lit_redstone_ore");
+
+		override("redstone_torch", properties("lit", "true"), "redstone_torch", 5);
+		override("redstone_torch", properties("lit", "false"), "unlit_redstone_torch", 5);
+		override("redstone_wall_torch", properties("lit", "true", "facing", "north"), "redstone_torch", 4);
+		override("redstone_wall_torch", properties("lit", "false", "facing", "north"), "unlit_redstone_torch", 4);
+		override("redstone_wall_torch", properties("lit", "true", "facing", "east"), "redstone_torch", 1);
+		override("redstone_wall_torch", properties("lit", "false", "facing", "east"), "unlit_redstone_torch", 1);
+		override("redstone_wall_torch", properties("lit", "true", "facing", "south"), "redstone_torch", 3);
+		override("redstone_wall_torch", properties("lit", "false", "facing", "south"), "unlit_redstone_torch", 3);
+		override("redstone_wall_torch", properties("lit", "true", "facing", "west"), "redstone_torch", 2);
+		override("redstone_wall_torch", properties("lit", "false", "facing", "west"), "unlit_redstone_torch", 2);
+
+		overrideButton("stone_button");
+
+		overrideAgeable("snow", "layers", 1, 8, "snow_layer", -1);
+
+		override("snow_block", "snow");
+
+		overrideAgeable("cactus", "age", 15);
+
+		overrideAgeable("sugar_cane", "age", 15, "reeds");
+
+		override("jukebox", properties("has_record", "true"), 1);
+
+		// TODO is fence overrides correct?
+		override("oak_fence", "fence");
+		override("spruce_fence", "fence", 1);
+		override("birch_fence", "fence", 2);
+		override("jungle_fence", "fence", 3);
+		override("acacia_fence", "fence", 4);
+		override("dark_oak_fence", "fence", 5);
+
+		override("pumpkin", properties("facing", "south"), 0);
+		override("pumpkin", properties("facing", "west"), 1);
+		override("pumpkin", properties("facing", "north"), 2);
+		override("pumpkin", properties("facing", "east"), 3);
+
+		override("nether_portal", "portal");
+
+		override("carved_pumpkin", properties("facing", "south"), 0);
+		override("carved_pumpkin", properties("facing", "west"), 1);
+		override("carved_pumpkin", properties("facing", "north"), 2);
+		override("carved_pumpkin", properties("facing", "east"), 3);
+
+		override("jack_o_lantern", properties("facing", "south"), "lit_pumpkin", 0);
+		override("jack_o_lantern", properties("facing", "west"), "lit_pumpkin", 1);
+		override("jack_o_lantern", properties("facing", "north"), "lit_pumpkin", 2);
+		override("jack_o_lantern", properties("facing", "east"), "lit_pumpkin", 3);
+		
+		overrideAgeable("cake", "bites", 6);
+		
+		// TODO repeater
+		
+		// TODO stained glass
+		
+		// TODO
 	}
 
 	public static ItemEntry translateToPE(int stateID) {
-		FlattedBlockState blockState = FlatteningData.fromStateID(stateID);
+		FlattedBlockState blockState = FlatteningBlockData.fromStateID(stateID);
 		if (!PC_TO_PE_OVERRIDE.containsKey(blockState)) {
-			return new ItemEntry(GlobalBlockPalette.getIDFromName(blockState.block.name), 0);
+			FlattedBlockState defaultState = blockState.block.defaultState;
+			if (!PC_TO_PE_OVERRIDE.containsKey(defaultState)) {
+				return new ItemEntry(GlobalBlockPalette.getIDFromName(blockState.block.name), 0);
+			}
+			return PC_TO_PE_OVERRIDE.get(defaultState);
 		}
 		return PC_TO_PE_OVERRIDE.get(blockState);
 	}
@@ -67,7 +285,7 @@ public class ItemBlockTranslator {
 	public static FlattedBlockState translateToPC(int peId, int damage) {
 		if (!PE_TO_PC_OVERRIDE.containsKey(peId)) {
 			String name = GlobalBlockPalette.getNameFromID(peId);
-			return FlatteningData.fromNameDefault(name);
+			return FlatteningBlockData.fromNameDefault(name);
 		}
 		return PE_TO_PC_OVERRIDE.get(peId).get(damage);
 	}
@@ -317,33 +535,123 @@ public class ItemBlockTranslator {
 	}
 
 	private static void override(String pcName, String peName, int peData) {
-		FlattedBlockState blockState = FlatteningData.fromNameDefault("minecraft:" + pcName);
+		FlattedBlockState blockState = FlatteningBlockData.fromNameDefault("minecraft:" + pcName);
 		int peId = GlobalBlockPalette.getIDFromName("minecraft:" + peName);
 		override(blockState, new ItemEntry(peId, peData));
 	}
 
-	private static void override(String pcName, HashMap<String, String> properties, String peName) {
+	private static void override(String pcName, Map<String, String> properties, String peName) {
 		override(pcName, properties, peName, 0);
 	}
 
-	private static void override(String pcName, HashMap<String, String> properties, String peName, int peData) {
-		FlattedBlockState blockState = FlatteningData.fromNameProperties("minecraft:" + pcName, properties);
+	private static void override(String pcName, Map<String, String> properties, String peName, int peData) {
+		FlattedBlockState blockState = FlatteningBlockData.fromNameProperties("minecraft:" + pcName, properties);
 		int peId = GlobalBlockPalette.getIDFromName("minecraft:" + peName);
 		override(blockState, new ItemEntry(peId, peData));
 	}
 
-	private static void override(String pcName, HashMap<String, String> properties, int peData) {
-		FlattedBlockState blockState = FlatteningData.fromNameProperties("minecraft:" + pcName, properties);
+	private static void override(String pcName, Map<String, String> properties, int peData) {
+		FlattedBlockState blockState = FlatteningBlockData.fromNameProperties("minecraft:" + pcName, properties);
 		int peId = GlobalBlockPalette.getIDFromName("minecraft:" + pcName);
 		override(blockState, new ItemEntry(peId, peData));
 	}
 
 	private static void override(FlattedBlockState blockState, ItemEntry entry) {
-		PC_TO_PE_OVERRIDE.put(blockState, entry);
+		if (!PC_TO_PE_OVERRIDE.containsKey(blockState)) {
+			PC_TO_PE_OVERRIDE.put(blockState, entry);
+		}
 		if (!PE_TO_PC_OVERRIDE.containsKey(entry.getId())) {
 			PE_TO_PC_OVERRIDE.put(entry.getId(), new HashMap<>());
 		}
-		PE_TO_PC_OVERRIDE.get(entry.getId()).put(entry.getPEDamage(), blockState);
+		if (!PE_TO_PC_OVERRIDE.get(entry.getId()).containsKey(entry.getPEDamage())) {
+			PE_TO_PC_OVERRIDE.get(entry.getId()).put(entry.getPEDamage(), blockState);
+		}
+	}
+
+	private static void overrideStairs(String pcName) {
+		overrideStairs(pcName, pcName);
+	}
+
+	private static void overrideStairs(String pcName, String peName) {
+		// TODO
+	}
+
+	private static void overrideDoor(String pcName) {
+		overrideDoor(pcName, pcName);
+	}
+
+	private static void overrideDoor(String pcName, String peName) {
+		// TODO
+	}
+
+	private static void overrideButton(String pcName) {
+		overrideButton(pcName, pcName);
+	}
+
+	private static void overrideButton(String pcName, String peName) {
+		// TODO
+	}
+
+	private static void overrideAgeable(String pcName, String property, int end) {
+		overrideAgeable(pcName, null, property, 0, end, pcName, 0);
+	}
+
+	private static void overrideAgeable(String pcName, String property, int end, String peName) {
+		overrideAgeable(pcName, null, property, 0, end, peName, 0);
+	}
+
+	private static void overrideAgeable(String pcName, String property, int end, String peName, int peOffset) {
+		overrideAgeable(pcName, null, property, 0, end, peName, 0);
+	}
+
+	private static void overrideAgeable(String pcName, Map<String, String> properties, String property, int end,
+			String peName) {
+		overrideAgeable(pcName, properties, property, 0, end, peName, 0);
+	}
+
+	private static void overrideAgeable(String pcName, Map<String, String> properties, String property, int end,
+			String peName, int peOffset) {
+		overrideAgeable(pcName, properties, property, 0, end, peName, 0);
+	}
+
+	private static void overrideAgeable(String pcName, String property, int start, int end, String peName) {
+		overrideAgeable(pcName, null, property, start, end, peName, 0);
+	}
+
+	private static void overrideAgeable(String pcName, Map<String, String> properties, String property, int start,
+			int end, String peName) {
+		overrideAgeable(pcName, properties, property, start, end, peName, 0);
+	}
+
+	private static void overrideAgeable(String pcName, String property, int start, int end, String peName,
+			int peOffset) {
+		overrideAgeable(pcName, null, property, start, end, peName, 0);
+	}
+
+	private static void overrideAgeable(String pcName, Map<String, String> properties, String property, int start,
+			int end, String peName, int peOffset) {
+		if (properties == null) {
+			properties = new HashMap<>();
+		}
+		for (int k = start; k <= end; k++) {
+			Map<String, String> itemProperties = new HashMap<>(properties);
+			itemProperties.put(property, Integer.toString(k));
+			override(pcName, itemProperties, peName, peOffset + k);
+		}
+	}
+
+	private static Map<String, String> properties(String... args) {
+		Map<String, String> map = new HashMap<>();
+		String last = null;
+		for (String string : args) {
+			if (last == null) {
+				last = string;
+			} else {
+				map.put(last, string);
+				last = null;
+			}
+		}
+		return map;
 	}
 
 	public static CompoundTag newTileTag(String id, int x, int y, int z) {

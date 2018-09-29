@@ -14,7 +14,7 @@ package org.dragonet.proxy.network.translator.pc;
 
 import com.github.steveice10.mc.protocol.packet.ingame.server.world.ServerUpdateTileEntityPacket;
 import org.dragonet.proxy.network.UpstreamSession;
-import org.dragonet.proxy.network.translator.ItemBlockTranslator;
+import org.dragonet.proxy.network.translator.BlockTranslator;
 import org.dragonet.proxy.network.translator.IPCPacketTranslator;
 import org.dragonet.protocol.PEPacket;
 import org.dragonet.protocol.packets.BlockEntityDataPacket;
@@ -26,7 +26,7 @@ public class PCUpdateTileEntityPacketTranslator implements IPCPacketTranslator<S
 
         BlockEntityDataPacket data = new BlockEntityDataPacket();
         data.blockPosition = new BlockPosition(packet.getPosition());
-        data.tag = ItemBlockTranslator.translateBlockEntityToPE(packet.getNBT());
+        data.tag = BlockTranslator.translateBlockEntityToPE(packet.getNBT());
         return new PEPacket[]{data};
     }
 }

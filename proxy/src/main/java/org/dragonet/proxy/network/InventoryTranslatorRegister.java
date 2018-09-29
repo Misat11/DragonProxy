@@ -28,7 +28,7 @@ import org.dragonet.protocol.PEPacket;
 import org.dragonet.protocol.packets.ContainerClosePacket;
 import org.dragonet.protocol.packets.InventoryContentPacket;
 import org.dragonet.proxy.network.cache.CachedWindow;
-import org.dragonet.proxy.network.translator.ItemBlockTranslator;
+import org.dragonet.proxy.network.translator.BlockTranslator;
 import org.dragonet.proxy.network.translator.inv.*;
 import org.dragonet.proxy.network.translator.IInventoryTranslator;
 import org.dragonet.proxy.DragonProxy;
@@ -54,14 +54,14 @@ public final class InventoryTranslatorRegister {
         ret.items = new Slot[40];
         // hotbar
         for (int i = 36; i < 45; i++)
-            ret.items[i - 36] = ItemBlockTranslator.translateSlotToPE(win.slots[i]);
+            ret.items[i - 36] = BlockTranslator.translateSlotToPE(win.slots[i]);
         // inventory
         for (int i = 9; i < 36; i++)
             // TODO: Add NBT support
-            ret.items[i] = ItemBlockTranslator.translateSlotToPE(win.slots[i]);
+            ret.items[i] = BlockTranslator.translateSlotToPE(win.slots[i]);
         // armors
         for (int i = 5; i < 9; i++)
-            ret.items[i + 31] = ItemBlockTranslator.translateSlotToPE(win.slots[i]);
+            ret.items[i + 31] = BlockTranslator.translateSlotToPE(win.slots[i]);
         // TODO: Add armor support
         return new PEPacket[]{ret};
     }
@@ -107,12 +107,12 @@ public final class InventoryTranslatorRegister {
                     // Already a block was replaced to Chest, reset it
                     // Set to stone since we don't know what it was, server will correct it once client interacts it
                     ItemStack PCBlock = session.getChunkCache().getBlock(pos.asPosition());
-                    ItemEntry block = ItemBlockTranslator.translateToPE(PCBlock.getId());
+                    ItemEntry block = BlockTranslator.translateToPE(PCBlock.getId());
                     session.sendFakeBlock(pos.x, pos.y, pos.z, block.getId(), block.getPEDamage());
                 } else if (session.getDataCache().get(CacheKey.CURRENT_WINDOW_POSITION) instanceof ArrayList)
                     for (BlockPosition pos : (List<BlockPosition>) session.getDataCache().get(CacheKey.CURRENT_WINDOW_POSITION)) {
                         ItemStack PCBlock = session.getChunkCache().getBlock(pos.asPosition());
-                        ItemEntry block = ItemBlockTranslator.translateToPE(PCBlock.getId());
+                        ItemEntry block = BlockTranslator.translateToPE(PCBlock.getId());
                         session.sendFakeBlock(pos.x, pos.y, pos.z, block.getId(), block.getPEDamage());
                     }
         }

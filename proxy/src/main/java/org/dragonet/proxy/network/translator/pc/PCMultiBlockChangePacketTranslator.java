@@ -18,7 +18,7 @@ import com.github.steveice10.mc.protocol.packet.ingame.server.world.ServerMultiB
 
 import org.dragonet.proxy.network.UpstreamSession;
 import org.dragonet.proxy.network.translator.IPCPacketTranslator;
-import org.dragonet.proxy.network.translator.ItemBlockTranslator;
+import org.dragonet.proxy.network.translator.BlockTranslator;
 import org.dragonet.common.data.itemsblocks.ItemEntry;
 import org.dragonet.protocol.PEPacket;
 import org.dragonet.protocol.packets.UpdateBlockPacket;
@@ -41,7 +41,7 @@ public class PCMultiBlockChangePacketTranslator implements IPCPacketTranslator<S
                 ItemEntry entry = session.getChunkCache().translateBlock(pos);
 
                 if (entry == null) {
-                    entry = ItemBlockTranslator.translateToPE(block.getId());
+                    entry = BlockTranslator.translateToPE(block.getId());
                 }
                 packets[i] = new UpdateBlockPacket();
                 packets[i].blockPosition = new BlockPosition(pos.getX(), pos.getY(), pos.getZ());
