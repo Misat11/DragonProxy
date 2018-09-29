@@ -107,12 +107,12 @@ public final class InventoryTranslatorRegister {
                     // Already a block was replaced to Chest, reset it
                     // Set to stone since we don't know what it was, server will correct it once client interacts it
                     ItemStack PCBlock = session.getChunkCache().getBlock(pos.asPosition());
-                    ItemEntry block = ItemBlockTranslator.translateToPE(PCBlock.getId(), PCBlock.getData());
+                    ItemEntry block = ItemBlockTranslator.translateToPE(PCBlock.getId());
                     session.sendFakeBlock(pos.x, pos.y, pos.z, block.getId(), block.getPEDamage());
                 } else if (session.getDataCache().get(CacheKey.CURRENT_WINDOW_POSITION) instanceof ArrayList)
                     for (BlockPosition pos : (List<BlockPosition>) session.getDataCache().get(CacheKey.CURRENT_WINDOW_POSITION)) {
                         ItemStack PCBlock = session.getChunkCache().getBlock(pos.asPosition());
-                        ItemEntry block = ItemBlockTranslator.translateToPE(PCBlock.getId(), PCBlock.getData());
+                        ItemEntry block = ItemBlockTranslator.translateToPE(PCBlock.getId());
                         session.sendFakeBlock(pos.x, pos.y, pos.z, block.getId(), block.getPEDamage());
                     }
         }

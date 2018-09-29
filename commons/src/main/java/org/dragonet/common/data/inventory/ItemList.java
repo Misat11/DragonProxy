@@ -37,7 +37,7 @@ public class ItemList {
         this.items = Arrays.asList(items);
     }
 
-    // public
+    /*// public
     public boolean tryToRemove(ItemStack item) {
         ArrayList<ItemStack> original = this.cloneList();
         if (item == null || item.getId() == 0) {
@@ -73,7 +73,7 @@ public class ItemList {
             this.items = original;
             return false;
         }
-    }
+    }*/
 
     public List<ItemStack> getItems() {
         return items;
@@ -86,7 +86,7 @@ public class ItemList {
     private ArrayList<ItemStack> cloneList() {
         ArrayList<ItemStack> cloned = new ArrayList<>();
         for (ItemStack item : this.items) {
-            cloned.add(new ItemStack(item.getId(), item.getAmount(), item.getData(), item.getNBT()));
+            cloned.add(new ItemStack(item.getId(), item.getAmount(), item.getNBT()));
         }
         return cloned;
     }

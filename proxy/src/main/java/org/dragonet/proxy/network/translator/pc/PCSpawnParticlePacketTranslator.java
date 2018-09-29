@@ -14,7 +14,7 @@ import org.dragonet.proxy.network.translator.ItemBlockTranslator;
 import org.dragonet.proxy.network.translator.ParticleTranslator;
 
 import com.github.steveice10.mc.protocol.data.game.entity.metadata.Position;
-import com.github.steveice10.mc.protocol.data.game.world.Particle;
+/*import com.github.steveice10.mc.protocol.data.game.world.Particle;*/
 import com.github.steveice10.mc.protocol.packet.ingame.server.world.ServerSpawnParticlePacket;
 
 public class PCSpawnParticlePacketTranslator implements IPCPacketTranslator<ServerSpawnParticlePacket> {
@@ -22,7 +22,7 @@ public class PCSpawnParticlePacketTranslator implements IPCPacketTranslator<Serv
     @Override
     public PEPacket[] translate(UpstreamSession session, ServerSpawnParticlePacket packet) {
         ArrayList<PEPacket> packets = new ArrayList<PEPacket>();
-        if (packet.getParticle() == Particle.BLOCK_CRACK || packet.getParticle() == Particle.BLOCK_DUST) {
+        /*if (packet.getParticle() == Particle.BLOCK_CRACK || packet.getParticle() == Particle.BLOCK_DUST) {
             LevelEventPacket pk = new LevelEventPacket();
             pk.eventId = LevelEventPacket.EVENT_PARTICLE_DESTROY;
             pk.position = new Vector3F(packet.getX(), packet.getY(), packet.getZ());
@@ -34,7 +34,7 @@ public class PCSpawnParticlePacketTranslator implements IPCPacketTranslator<Serv
             else
                 pk.data = GlobalBlockPalette.getOrCreateRuntimeId(1);
             packets.add(pk);
-        } else {
+        } else {*/
             int num = ParticleTranslator.getInstance().translate(packet.getParticle());
             if (num != -1) {
                 Random random = new Random(System.currentTimeMillis());
@@ -44,7 +44,7 @@ public class PCSpawnParticlePacketTranslator implements IPCPacketTranslator<Serv
                             packet.getZ() + (random.nextFloat() * 2 - 1) * packet.getOffsetZ(), num, 0));
                 }
             }
-        }
+        /*}*/
         if (!packets.isEmpty()) {
             return packets.toArray(new PEPacket[packets.size()]);
         } else {

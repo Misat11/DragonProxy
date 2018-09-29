@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import org.dragonet.common.data.ParticleEffects;
 
-import com.github.steveice10.mc.protocol.data.game.world.Particle;
+import com.github.steveice10.mc.protocol.data.game.world.particle.Particle;
 
 public class ParticleTranslator {
     private static ParticleTranslator instance;
@@ -19,7 +19,7 @@ public class ParticleTranslator {
     }
 
     public ParticleTranslator() {
-        register(Particle.EXPLOSION_NORMAL, ParticleEffects.TYPE_EXPLODE);
+        /*register(Particle.EXPLOSION_NORMAL, ParticleEffects.TYPE_EXPLODE);
         // register(Particle.EXPLOSION_LARGE,);
         register(Particle.EXPLOSION_HUGE, ParticleEffects.TYPE_HUGE_EXPLODE);
         // register(Particle.FIREWORKS_SPARK,);
@@ -68,7 +68,7 @@ public class ParticleTranslator {
         //register(Particle.SWEEP_ATTACK,); // Not in MCBE but maybe exists equivalent in another packet
         register(Particle.FALLING_DUST, ParticleEffects.TYPE_FALLING_DUST);
         //register(Particle.SPIT,); // Not in MCBE but maybe exists equivalent in another packet
-        //register(Particle.TOTEM,);  // Not in MCBE but maybe exists equivalent in another packet
+        //register(Particle.TOTEM,);  // Not in MCBE but maybe exists equivalent in another packet*/
         
     }
 

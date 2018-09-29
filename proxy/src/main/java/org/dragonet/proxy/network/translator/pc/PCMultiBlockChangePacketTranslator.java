@@ -41,7 +41,7 @@ public class PCMultiBlockChangePacketTranslator implements IPCPacketTranslator<S
                 ItemEntry entry = session.getChunkCache().translateBlock(pos);
 
                 if (entry == null) {
-                    entry = ItemBlockTranslator.translateToPC(block.getId(), block.getData());
+                    entry = ItemBlockTranslator.translateToPE(block.getId());
                 }
                 packets[i] = new UpdateBlockPacket();
                 packets[i].blockPosition = new BlockPosition(pos.getX(), pos.getY(), pos.getZ());
