@@ -6,7 +6,7 @@ import org.dragonet.proxy.network.CacheKey;
 import org.dragonet.proxy.network.UpstreamSession;
 import org.dragonet.proxy.network.cache.CachedEntity;
 import org.dragonet.proxy.network.translator.IPCPacketTranslator;
-import org.dragonet.proxy.network.translator.ItemBlockTranslator;
+import org.dragonet.proxy.network.translator.BlockTranslator;
 import org.dragonet.protocol.PEPacket;
 import org.dragonet.protocol.packets.MobEquipmentPacket;
 
@@ -28,19 +28,19 @@ public class PCEntityEquipmentPacketTranslator implements IPCPacketTranslator<Se
 
         switch (packet.getSlot()) {
             case HELMET:
-                entity.helmet = ItemBlockTranslator.translateSlotToPE(items);
+                entity.helmet = BlockTranslator.translateSlotToPE(items);
                 break;
             case CHESTPLATE:
-                entity.chestplate = ItemBlockTranslator.translateSlotToPE(items);
+                entity.chestplate = BlockTranslator.translateSlotToPE(items);
                 break;
             case LEGGINGS:
-                entity.leggings = ItemBlockTranslator.translateSlotToPE(items);
+                entity.leggings = BlockTranslator.translateSlotToPE(items);
                 break;
             case BOOTS:
-                entity.boots = ItemBlockTranslator.translateSlotToPE(items);
+                entity.boots = BlockTranslator.translateSlotToPE(items);
                 break;
             case MAIN_HAND:
-                entity.mainHand = ItemBlockTranslator.translateSlotToPE(items);
+                entity.mainHand = BlockTranslator.translateSlotToPE(items);
             case OFF_HAND:
                 handModified = true;
                 break;

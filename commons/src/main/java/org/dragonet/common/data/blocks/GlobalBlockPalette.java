@@ -18,6 +18,8 @@ public class GlobalBlockPalette {
     private static final IntIntHashMap runtimeIdToLegacy = new IntIntHashMap();
     private static final AtomicInteger runtimeIdAllocator = new AtomicInteger(0);
     private static final byte[] compiledMappings;
+    private static final HashMap<String, Integer> stringToID = new HashMap<String, Integer>();
+    private static final HashMap<Integer, String> idToString = new HashMap<Integer, String>();
 
     static {
         legacyToRuntimeId.setDefaultReturnValue(-1);
@@ -28,15 +30,25 @@ public class GlobalBlockPalette {
         Type collectionType = new TypeToken<Collection<TableEntry>>(){}.getType();
         Collection<TableEntry> entries = gson.fromJson(reader, collectionType);
         BinaryStream stream = new BinaryStream();
-
+      
         stream.putUnsignedVarInt(entries.size());
         for (TableEntry entry : entries) {
             registerMapping((entry.id << 4) | entry.data);
             stream.putString(entry.name);
             stream.putLShort(entry.data);
+            stringToID.put(entry.name, entry.id);
+            idToString.put(entry.id, entry.name);
         }
 
         compiledMappings = stream.getBuffer();
+    }
+    
+    public static int getIDFromName(String name) {
+    	return stringToID.containsKey(name) ? stringToID.get(name) : 0;
+    }
+    
+    public static String getNameFromID(int id) {
+    	return idToString.containsKey(id) ? idToString.get(id) : null;
     }
 
     public static int getOrCreateRuntimeId(int id, int meta) {

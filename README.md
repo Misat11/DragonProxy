@@ -19,13 +19,13 @@ See live stats on BStats[![Bstats](https://bstats.org/signatures/server-implemen
  - If you want your server featured here, please ask on our Discord !
 
 ## Features
-- Currently supporting Bedrock 1.5.3 and Java 1.12.2
+- Currently supporting Bedrock 1.6 and Java 1.13.1
 - Chat supported
 - Chunks supported
 - Movement supported
 - Block break / place supported
 - Entities spawn move and equipment
-- BocksEntities spawn
+- BlocksEntities spawn
 - Chests
 
 ## TODO List

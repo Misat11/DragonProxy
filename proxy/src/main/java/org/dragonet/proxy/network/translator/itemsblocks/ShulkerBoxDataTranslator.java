@@ -6,7 +6,7 @@
 package org.dragonet.proxy.network.translator.itemsblocks;
 
 import org.dragonet.common.data.itemsblocks.IItemDataTranslator;
-import org.dragonet.proxy.network.translator.ItemBlockTranslator;
+import org.dragonet.proxy.network.translator.BlockTranslator;
 
 /**
  * @author Epic

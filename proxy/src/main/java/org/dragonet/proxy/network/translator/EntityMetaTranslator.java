@@ -99,7 +99,7 @@ public final class EntityMetaTranslator {
                                     peMeta.set(EntityMetaData.Constants.DATA_FUSE_LENGTH, new IntegerMeta((int) m.getValue()));
                                     break;
                                 case POTION: //Slot : Potion which is thrown
-                                    peMeta.set(EntityMetaData.Constants.DATA_TYPE_SLOT, new SlotMeta(ItemBlockTranslator.translateSlotToPE((ItemStack) m.getValue())));
+                                    peMeta.set(EntityMetaData.Constants.DATA_TYPE_SLOT, new SlotMeta(BlockTranslator.translateSlotToPE((ItemStack) m.getValue())));
                                     break;
                                 case FALLING_BLOCK: //Position : spawn position
                                     peMeta.set(EntityMetaData.Constants.DATA_BLOCK_TARGET, new BlockPositionMeta(new BlockPosition((Position) m.getValue())));
@@ -125,11 +125,11 @@ public final class EntityMetaTranslator {
                                     peMeta.set(EntityMetaData.Constants.DATA_WITHER_INVULNERABLE_TICKS, new IntegerMeta((int) m.getValue()));
                                     break;
                                 case FIREWORKS_ROCKET: //Slot : Firework info
-                                    peMeta.set(EntityMetaData.Constants.DATA_TYPE_SLOT, new SlotMeta(ItemBlockTranslator.translateSlotToPE((ItemStack) m.getValue())));
+                                    peMeta.set(EntityMetaData.Constants.DATA_TYPE_SLOT, new SlotMeta(BlockTranslator.translateSlotToPE((ItemStack) m.getValue())));
                                     break;
                                 //case ITEM_FRAME: //Slot : Item
                                 case ITEM: //Slot : Item
-                                    peMeta.set(EntityMetaData.Constants.DATA_TYPE_SLOT, new SlotMeta(ItemBlockTranslator.translateSlotToPE((ItemStack) m.getValue())));
+                                    peMeta.set(EntityMetaData.Constants.DATA_TYPE_SLOT, new SlotMeta(BlockTranslator.translateSlotToPE((ItemStack) m.getValue())));
                                     break;
                                 default: // (all LIVING) Byte : Hand states, used to trigger blocking/eating/drinking animation.
                                     if (m.getValue() instanceof Byte)

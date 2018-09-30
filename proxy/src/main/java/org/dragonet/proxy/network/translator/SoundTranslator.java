@@ -52,11 +52,11 @@ public class SoundTranslator {
 		register(BuiltinSound.BLOCK_CHORUS_FLOWER_DEATH, "block.chorusflower.death");
 		register(BuiltinSound.BLOCK_CHORUS_FLOWER_GROW, "block.chorusflower.grow");
 		
-		register(BuiltinSound.BLOCK_CLOTH_BREAK, "dig.cloth");
+		/*register(BuiltinSound.BLOCK_CLOTH_BREAK, "dig.cloth");
 		register(BuiltinSound.BLOCK_CLOTH_FALL, BuiltinSound.BLOCK_CLOTH_STEP);
 		register(BuiltinSound.BLOCK_CLOTH_HIT, BuiltinSound.BLOCK_CLOTH_STEP);
 		register(BuiltinSound.BLOCK_CLOTH_PLACE, BuiltinSound.BLOCK_CLOTH_BREAK);
-		register(BuiltinSound.BLOCK_CLOTH_STEP, "step.cloth");
+		register(BuiltinSound.BLOCK_CLOTH_STEP, "step.cloth");*/
 		
 		register(BuiltinSound.BLOCK_COMPARATOR_CLICK, BuiltinSound.UI_BUTTON_CLICK);
 		
@@ -70,8 +70,8 @@ public class SoundTranslator {
 		register(BuiltinSound.BLOCK_END_PORTAL_SPAWN, null);
 		register(BuiltinSound.BLOCK_END_PORTAL_FRAME_FILL, null);
 		
-		register(BuiltinSound.BLOCK_ENDERCHEST_CLOSE, BuiltinSound.BLOCK_CHEST_CLOSE);
-		register(BuiltinSound.BLOCK_ENDERCHEST_OPEN, BuiltinSound.BLOCK_CHEST_OPEN);
+		/*register(BuiltinSound.BLOCK_ENDERCHEST_CLOSE, BuiltinSound.BLOCK_CHEST_CLOSE);
+		register(BuiltinSound.BLOCK_ENDERCHEST_OPEN, BuiltinSound.BLOCK_CHEST_OPEN);*/
 		
 		register(BuiltinSound.BLOCK_FENCE_GATE_CLOSE, BuiltinSound.BLOCK_WOODEN_DOOR_CLOSE);
 		register(BuiltinSound.BLOCK_FENCE_GATE_OPEN, BuiltinSound.BLOCK_WOODEN_DOOR_OPEN);
@@ -121,7 +121,7 @@ public class SoundTranslator {
 		register(BuiltinSound.BLOCK_METAL_PLACE, BuiltinSound.BLOCK_METAL_BREAK);
 		register(BuiltinSound.BLOCK_METAL_STEP, "step.stone");
 		
-		register(BuiltinSound.BLOCK_METAL_PRESSUREPLATE_CLICK_OFF, BuiltinSound.UI_BUTTON_CLICK);
+		/*register(BuiltinSound.BLOCK_METAL_PRESSUREPLATE_CLICK_OFF, BuiltinSound.UI_BUTTON_CLICK);
 		register(BuiltinSound.BLOCK_METAL_PRESSUREPLATE_CLICK_ON, BuiltinSound.UI_BUTTON_CLICK);
 		
 		register(BuiltinSound.BLOCK_NOTE_BASEDRUM, "note.bd");
@@ -134,7 +134,7 @@ public class SoundTranslator {
 		register(BuiltinSound.BLOCK_NOTE_HAT, "note.hat");
 		register(BuiltinSound.BLOCK_NOTE_PLING, "note.pling");
 		register(BuiltinSound.BLOCK_NOTE_SNARE, "note.snare");
-		register(BuiltinSound.BLOCK_NOTE_XYLOPHONE, null);
+		register(BuiltinSound.BLOCK_NOTE_XYLOPHONE, null);*/
 		
 		register(BuiltinSound.BLOCK_PISTON_CONTRACT, "tile.piston.in");
 		register(BuiltinSound.BLOCK_PISTON_EXTEND, "tile.piston.out");
@@ -154,11 +154,11 @@ public class SoundTranslator {
 		register(BuiltinSound.BLOCK_SHULKER_BOX_CLOSE, "random.shulkerboxclosed");
 		register(BuiltinSound.BLOCK_SHULKER_BOX_OPEN, "random.shulkerboxopen");
 		
-		register(BuiltinSound.BLOCK_SLIME_BREAK, BuiltinSound.ENTITY_SLIME_DEATH);
+		/*register(BuiltinSound.BLOCK_SLIME_BREAK, BuiltinSound.ENTITY_SLIME_DEATH);
 		register(BuiltinSound.BLOCK_SLIME_FALL, BuiltinSound.BLOCK_SLIME_STEP);
 		register(BuiltinSound.BLOCK_SLIME_HIT, BuiltinSound.BLOCK_SLIME_STEP);
 		register(BuiltinSound.BLOCK_SLIME_PLACE, BuiltinSound.ENTITY_SLIME_JUMP);
-		register(BuiltinSound.BLOCK_SLIME_STEP, "step.slime");
+		register(BuiltinSound.BLOCK_SLIME_STEP, "step.slime");*/
 		
 		register(BuiltinSound.BLOCK_SNOW_BREAK, "dig.snow");
 		register(BuiltinSound.BLOCK_SNOW_FALL, "step.snow");
@@ -175,8 +175,8 @@ public class SoundTranslator {
 		register(BuiltinSound.BLOCK_STONE_BUTTON_CLICK_OFF, BuiltinSound.UI_BUTTON_CLICK);
 		register(BuiltinSound.BLOCK_STONE_BUTTON_CLICK_ON, BuiltinSound.UI_BUTTON_CLICK);
 		
-		register(BuiltinSound.BLOCK_STONE_PRESSUREPLATE_CLICK_OFF, BuiltinSound.UI_BUTTON_CLICK);
-		register(BuiltinSound.BLOCK_STONE_PRESSUREPLATE_CLICK_ON, BuiltinSound.UI_BUTTON_CLICK);
+		/*register(BuiltinSound.BLOCK_STONE_PRESSUREPLATE_CLICK_OFF, BuiltinSound.UI_BUTTON_CLICK);
+		register(BuiltinSound.BLOCK_STONE_PRESSUREPLATE_CLICK_ON, BuiltinSound.UI_BUTTON_CLICK);*/
 		
 		register(BuiltinSound.BLOCK_TRIPWIRE_ATTACH, BuiltinSound.UI_BUTTON_CLICK);
 		register(BuiltinSound.BLOCK_TRIPWIRE_CLICK_OFF, BuiltinSound.UI_BUTTON_CLICK);
@@ -185,7 +185,7 @@ public class SoundTranslator {
 		
 		register(BuiltinSound.BLOCK_WATER_AMBIENT, "liquid.water");
 		
-		register(BuiltinSound.BLOCK_WATERLILY_PLACE, null);
+		/*register(BuiltinSound.BLOCK_WATERLILY_PLACE, null);*/
 		
 		register(BuiltinSound.BLOCK_WOOD_BREAK, "dig.wood");
 		register(BuiltinSound.BLOCK_WOOD_FALL, BuiltinSound.BLOCK_WOOD_STEP);
@@ -193,11 +193,11 @@ public class SoundTranslator {
 		register(BuiltinSound.BLOCK_WOOD_PLACE, BuiltinSound.BLOCK_WOOD_BREAK);
 		register(BuiltinSound.BLOCK_WOOD_STEP, "step.wood");
 		
-		register(BuiltinSound.BLOCK_WOOD_BUTTON_CLICK_OFF, BuiltinSound.UI_BUTTON_CLICK);
+		/*register(BuiltinSound.BLOCK_WOOD_BUTTON_CLICK_OFF, BuiltinSound.UI_BUTTON_CLICK);
 		register(BuiltinSound.BLOCK_WOOD_BUTTON_CLICK_ON, BuiltinSound.UI_BUTTON_CLICK);
 		
 		register(BuiltinSound.BLOCK_WOOD_PRESSUREPLATE_CLICK_OFF, BuiltinSound.UI_BUTTON_CLICK);
-		register(BuiltinSound.BLOCK_WOOD_PRESSUREPLATE_CLICK_ON, BuiltinSound.UI_BUTTON_CLICK);
+		register(BuiltinSound.BLOCK_WOOD_PRESSUREPLATE_CLICK_ON, BuiltinSound.UI_BUTTON_CLICK);*/
 		
 		register(BuiltinSound.BLOCK_WOODEN_DOOR_CLOSE, "random.door_close");
 		register(BuiltinSound.BLOCK_WOODEN_DOOR_OPEN, "random.door_open");
@@ -207,10 +207,10 @@ public class SoundTranslator {
 		
 		register(BuiltinSound.ENCHANT_THORNS_HIT, null);
 		
-		register(BuiltinSound.ENTITY_ARMORSTAND_BREAK, "mob.armor_stand.break");
+		/*register(BuiltinSound.ENTITY_ARMORSTAND_BREAK, "mob.armor_stand.break");
 		register(BuiltinSound.ENTITY_ARMORSTAND_FALL, "mob.armor_stand.land");
 		register(BuiltinSound.ENTITY_ARMORSTAND_HIT, "mob.armor_stand.hit");
-		register(BuiltinSound.ENTITY_ARMORSTAND_PLACE, "mob.armor_stand.place");
+		register(BuiltinSound.ENTITY_ARMORSTAND_PLACE, "mob.armor_stand.place");*/
 		
 		register(BuiltinSound.ENTITY_ARROW_HIT, "random.bowhit");
 		register(BuiltinSound.ENTITY_ARROW_HIT_PLAYER, BuiltinSound.ENTITY_ARROW_HIT);
@@ -231,9 +231,9 @@ public class SoundTranslator {
 		register(BuiltinSound.ENTITY_BOAT_PADDLE_LAND, null);
 		register(BuiltinSound.ENTITY_BOAT_PADDLE_WATER, null);
 		
-		register(BuiltinSound.ENTITY_BOBBER_RETRIEVE, null);
+		/*register(BuiltinSound.ENTITY_BOBBER_RETRIEVE, null);
 		register(BuiltinSound.ENTITY_BOBBER_SPLASH, BuiltinSound.ENTITY_GENERIC_SPLASH);
-		register(BuiltinSound.ENTITY_BOBBER_THROW, null);
+		register(BuiltinSound.ENTITY_BOBBER_THROW, null);*/
 		
 		register(BuiltinSound.ENTITY_CAT_AMBIENT, "mob.cat.meow");
 		register(BuiltinSound.ENTITY_CAT_DEATH, BuiltinSound.ENTITY_CAT_HURT);
@@ -275,7 +275,7 @@ public class SoundTranslator {
 		register(BuiltinSound.ENTITY_ELDER_GUARDIAN_HURT, "mob.elderguardian.hit");
 		register(BuiltinSound.ENTITY_ELDER_GUARDIAN_HURT_LAND, BuiltinSound.ENTITY_GUARDIAN_HURT_LAND);
 		
-		register(BuiltinSound.ENTITY_ENDERDRAGON_AMBIENT, BuiltinSound.ENTITY_ENDERDRAGON_GROWL);
+		/*register(BuiltinSound.ENTITY_ENDERDRAGON_AMBIENT, BuiltinSound.ENTITY_ENDERDRAGON_GROWL);
 		register(BuiltinSound.ENTITY_ENDERDRAGON_DEATH, "mob.enderdragon.death");
 		register(BuiltinSound.ENTITY_ENDERDRAGON_FLAP, "mob.enderdragon.flap");
 		register(BuiltinSound.ENTITY_ENDERDRAGON_GROWL, "mob.enderdragon.growl");
@@ -291,14 +291,14 @@ public class SoundTranslator {
 		register(BuiltinSound.ENTITY_ENDERMEN_HURT, "mob.endermen.hit");
 		register(BuiltinSound.ENTITY_ENDERMEN_SCREAM, "mob.endermen.scream");
 		register(BuiltinSound.ENTITY_ENDERMEN_STARE, "mob.endermen.stare");
-		register(BuiltinSound.ENTITY_ENDERMEN_TELEPORT, "mob.endermen.portal");
+		register(BuiltinSound.ENTITY_ENDERMEN_TELEPORT, "mob.endermen.portal");*/
 		
 		register(BuiltinSound.ENTITY_ENDERMITE_AMBIENT, "mob.endermite.say");
 		register(BuiltinSound.ENTITY_ENDERMITE_DEATH, "mob.endermite.kill");
 		register(BuiltinSound.ENTITY_ENDERMITE_HURT, "mob.endermite.hit");
 		register(BuiltinSound.ENTITY_ENDERMITE_STEP, "mob.endermite.step");
 		
-		register(BuiltinSound.ENTITY_ENDERPEARL_THROW, null);
+		/*register(BuiltinSound.ENTITY_ENDERPEARL_THROW, null);
 		
 		register(BuiltinSound.ENTITY_EVOCATION_FANGS_ATTACK, "mob.evocation_fangs.attack");
 		register(BuiltinSound.ENTITY_EVOCATION_ILLAGER_AMBIENT, "mob.evocation_illager.ambient");
@@ -307,19 +307,19 @@ public class SoundTranslator {
 		register(BuiltinSound.ENTITY_EVOCATION_ILLAGER_HURT, "mob.evocation_illager.hurt");
 		register(BuiltinSound.ENTITY_EVOCATION_ILLAGER_PREPARE_ATTACK, "mob.evocation_illager.prepare_attack");
 		register(BuiltinSound.ENTITY_EVOCATION_ILLAGER_PREPARE_SUMMON, "mob.evocation_illager.prepare_summon");
-		register(BuiltinSound.ENTITY_EVOCATION_ILLAGER_PREPARE_WOLOLO, "mob.evocation_illager.prepare_wololo");
+		register(BuiltinSound.ENTITY_EVOCATION_ILLAGER_PREPARE_WOLOLO, "mob.evocation_illager.prepare_wololo");*/
 		
 		register(BuiltinSound.ENTITY_EXPERIENCE_BOTTLE_THROW, BuiltinSound.ENTITY_ARROW_SHOOT);
 		register(BuiltinSound.ENTITY_EXPERIENCE_ORB_PICKUP, "random.orb");
 		
-		register(BuiltinSound.ENTITY_FIREWORK_BLAST, "firework.blast");
+		/*register(BuiltinSound.ENTITY_FIREWORK_BLAST, "firework.blast");
 		register(BuiltinSound.ENTITY_FIREWORK_BLAST_FAR, BuiltinSound.ENTITY_FIREWORK_BLAST);
 		register(BuiltinSound.ENTITY_FIREWORK_LARGE_BLAST, "firework.large_blast");
 		register(BuiltinSound.ENTITY_FIREWORK_LARGE_BLAST_FAR, BuiltinSound.ENTITY_FIREWORK_LARGE_BLAST);
 		register(BuiltinSound.ENTITY_FIREWORK_LAUNCH, "firework.launch");
 		register(BuiltinSound.ENTITY_FIREWORK_SHOOT, "firework.shoot");
 		register(BuiltinSound.ENTITY_FIREWORK_TWINKLE, "firework.twinkle");
-		register(BuiltinSound.ENTITY_FIREWORK_TWINKLE_FAR, BuiltinSound.ENTITY_FIREWORK_TWINKLE);
+		register(BuiltinSound.ENTITY_FIREWORK_TWINKLE_FAR, BuiltinSound.ENTITY_FIREWORK_TWINKLE);*/
 		
 		register(BuiltinSound.ENTITY_GENERIC_BIG_FALL, "damage.fallbig");
 		register(BuiltinSound.ENTITY_GENERIC_BURN, "random.fizz");
@@ -375,7 +375,7 @@ public class SoundTranslator {
 		register(BuiltinSound.ENTITY_HUSK_HURT, "mob.husk.hurt");
 		register(BuiltinSound.ENTITY_HUSK_STEP, "mob.husk.step");
 		
-		register(BuiltinSound.ENTITY_ILLUSION_ILLAGER_AMBIENT, BuiltinSound.ENTITY_EVOCATION_ILLAGER_AMBIENT);
+		/*register(BuiltinSound.ENTITY_ILLUSION_ILLAGER_AMBIENT, BuiltinSound.ENTITY_EVOCATION_ILLAGER_AMBIENT);
 		register(BuiltinSound.ENTITY_ILLUSION_ILLAGER_CAST_SPELL, "mob.evocation_illager.cast_spell");
 		register(BuiltinSound.ENTITY_ILLUSION_ILLAGER_DEATH, BuiltinSound.ENTITY_EVOCATION_ILLAGER_DEATH);
 		register(BuiltinSound.ENTITY_ILLUSION_ILLAGER_HURT, BuiltinSound.ENTITY_EVOCATION_ILLAGER_HURT);
@@ -386,12 +386,12 @@ public class SoundTranslator {
 		register(BuiltinSound.ENTITY_IRONGOLEM_ATTACK, "mob.irongolem.throw");
 		register(BuiltinSound.ENTITY_IRONGOLEM_DEATH, "mob.irongolem.death");
 		register(BuiltinSound.ENTITY_IRONGOLEM_HURT, "mob.irongolem.hit");
-		register(BuiltinSound.ENTITY_IRONGOLEM_STEP, "mob.irongolem.walk");
+		register(BuiltinSound.ENTITY_IRONGOLEM_STEP, "mob.irongolem.walk");*/
 		
 		register(BuiltinSound.ENTITY_ITEM_BREAK, "random.break");
 		register(BuiltinSound.ENTITY_ITEM_PICKUP, "random.pop");
 		
-		register(BuiltinSound.ENTITY_ITEMFRAME_ADD_ITEM, "block.itemframe.add_item");
+		/*register(BuiltinSound.ENTITY_ITEMFRAME_ADD_ITEM, "block.itemframe.add_item");
 		register(BuiltinSound.ENTITY_ITEMFRAME_BREAK, "block.itemframe.break");
 		register(BuiltinSound.ENTITY_ITEMFRAME_PLACE, "block.itemframe.place");
 		register(BuiltinSound.ENTITY_ITEMFRAME_REMOVE_ITEM, "block.itemframe.remove_item");
@@ -403,7 +403,7 @@ public class SoundTranslator {
 		register(BuiltinSound.ENTITY_LIGHTNING_IMPACT, "ambient.weather.lightning.impact");
 		register(BuiltinSound.ENTITY_LIGHTNING_THUNDER, "ambient.weather.thunder");
 		
-		register(BuiltinSound.ENTITY_LINGERINGPOTION_THROW, BuiltinSound.ENTITY_ARROW_SHOOT);
+		register(BuiltinSound.ENTITY_LINGERINGPOTION_THROW, BuiltinSound.ENTITY_ARROW_SHOOT);*/
 		
 		register(BuiltinSound.ENTITY_LLAMA_AMBIENT, "mob.llama.idle");
 		register(BuiltinSound.ENTITY_LLAMA_ANGRY, "mob.llama.angry");
@@ -415,10 +415,10 @@ public class SoundTranslator {
 		register(BuiltinSound.ENTITY_LLAMA_STEP, "mob.llama.step");
 		register(BuiltinSound.ENTITY_LLAMA_SWAG, "mob.llama.swag");
 		
-		register(BuiltinSound.ENTITY_MAGMACUBE_DEATH, "mob.slime.big");
+		/*register(BuiltinSound.ENTITY_MAGMACUBE_DEATH, "mob.slime.big");
 		register(BuiltinSound.ENTITY_MAGMACUBE_HURT, BuiltinSound.ENTITY_MAGMACUBE_DEATH);
 		register(BuiltinSound.ENTITY_MAGMACUBE_JUMP, "mob.magmacube.jump");
-		register(BuiltinSound.ENTITY_MAGMACUBE_SQUISH, "mob.magmacube.big");
+		register(BuiltinSound.ENTITY_MAGMACUBE_SQUISH, "mob.magmacube.big");*/
 		
 		register(BuiltinSound.ENTITY_MINECART_INSIDE, "minecart.inside");
 		register(BuiltinSound.ENTITY_MINECART_RIDING, "minecart.base");
@@ -441,14 +441,14 @@ public class SoundTranslator {
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_BLAZE, BuiltinSound.ENTITY_BLAZE_AMBIENT);
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_CREEPER, BuiltinSound.ENTITY_CREEPER_PRIMED);
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_ELDER_GUARDIAN, BuiltinSound.ENTITY_ELDER_GUARDIAN_AMBIENT);
-		register(BuiltinSound.ENTITY_PARROT_IMITATE_ENDERDRAGON, BuiltinSound.ENTITY_ENDERDRAGON_AMBIENT);
-		register(BuiltinSound.ENTITY_PARROT_IMITATE_ENDERMAN, BuiltinSound.ENTITY_ENDERMEN_AMBIENT);
+		/*register(BuiltinSound.ENTITY_PARROT_IMITATE_ENDERDRAGON, BuiltinSound.ENTITY_ENDERDRAGON_AMBIENT);
+		register(BuiltinSound.ENTITY_PARROT_IMITATE_ENDERMAN, BuiltinSound.ENTITY_ENDERMEN_AMBIENT);/*
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_ENDERMITE, BuiltinSound.ENTITY_ENDERMITE_AMBIENT);
-		register(BuiltinSound.ENTITY_PARROT_IMITATE_EVOCATION_ILLAGER, BuiltinSound.ENTITY_EVOCATION_ILLAGER_AMBIENT);
+		/*register(BuiltinSound.ENTITY_PARROT_IMITATE_EVOCATION_ILLAGER, BuiltinSound.ENTITY_EVOCATION_ILLAGER_AMBIENT);*/
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_GHAST, BuiltinSound.ENTITY_GHAST_AMBIENT);
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_HUSK, BuiltinSound.ENTITY_HUSK_AMBIENT);
-		register(BuiltinSound.ENTITY_PARROT_IMITATE_ILLUSION_ILLAGER, BuiltinSound.ENTITY_ILLUSION_ILLAGER_AMBIENT);
-		register(BuiltinSound.ENTITY_PARROT_IMITATE_MAGMACUBE, BuiltinSound.ENTITY_MAGMACUBE_SQUISH);
+		/*register(BuiltinSound.ENTITY_PARROT_IMITATE_ILLUSION_ILLAGER, BuiltinSound.ENTITY_ILLUSION_ILLAGER_AMBIENT);
+		register(BuiltinSound.ENTITY_PARROT_IMITATE_MAGMACUBE, BuiltinSound.ENTITY_MAGMACUBE_SQUISH);*/
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_POLAR_BEAR, BuiltinSound.ENTITY_POLAR_BEAR_AMBIENT);
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_SHULKER, BuiltinSound.ENTITY_SHULKER_AMBIENT);
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_SILVERFISH, BuiltinSound.ENTITY_SILVERFISH_AMBIENT);
@@ -457,13 +457,13 @@ public class SoundTranslator {
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_SPIDER, BuiltinSound.ENTITY_SPIDER_AMBIENT);
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_STRAY, BuiltinSound.ENTITY_STRAY_AMBIENT);
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_VEX, BuiltinSound.ENTITY_VEX_AMBIENT);
-		register(BuiltinSound.ENTITY_PARROT_IMITATE_VINDICATION_ILLAGER, BuiltinSound.ENTITY_VINDICATION_ILLAGER_AMBIENT);
+		/*register(BuiltinSound.ENTITY_PARROT_IMITATE_VINDICATION_ILLAGER, BuiltinSound.ENTITY_VINDICATION_ILLAGER_AMBIENT);*/
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_WITCH, BuiltinSound.ENTITY_WITCH_AMBIENT);
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_WITHER, BuiltinSound.ENTITY_WITHER_SKELETON_AMBIENT);
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_WITHER_SKELETON, BuiltinSound.ENTITY_WITHER_SKELETON_AMBIENT);
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_WOLF, BuiltinSound.ENTITY_WOLF_AMBIENT);
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_ZOMBIE, BuiltinSound.ENTITY_ZOMBIE_AMBIENT);
-		register(BuiltinSound.ENTITY_PARROT_IMITATE_ZOMBIE_PIGMAN, BuiltinSound.ENTITY_ZOMBIE_PIG_AMBIENT);
+		/*register(BuiltinSound.ENTITY_PARROT_IMITATE_ZOMBIE_PIGMAN, BuiltinSound.ENTITY_ZOMBIE_PIG_AMBIENT);*/
 		register(BuiltinSound.ENTITY_PARROT_IMITATE_ZOMBIE_VILLAGER, BuiltinSound.ENTITY_ZOMBIE_VILLAGER_AMBIENT);
 		register(BuiltinSound.ENTITY_PARROT_STEP, "mob.parrot.step");
 		
@@ -492,7 +492,7 @@ public class SoundTranslator {
 		register(BuiltinSound.ENTITY_PLAYER_SWIM, BuiltinSound.ENTITY_GENERIC_SWIM);
 		
 		register(BuiltinSound.ENTITY_POLAR_BEAR_AMBIENT, "mob.polarbear.idle");
-		register(BuiltinSound.ENTITY_POLAR_BEAR_BABY_AMBIENT, "mob.polarbear_baby.idle");
+		/*register(BuiltinSound.ENTITY_POLAR_BEAR_BABY_AMBIENT, "mob.polarbear_baby.idle");*/
 		register(BuiltinSound.ENTITY_POLAR_BEAR_DEATH, "mob.polarbear.death");
 		register(BuiltinSound.ENTITY_POLAR_BEAR_HURT, "mob.polarbear.hurt");
 		register(BuiltinSound.ENTITY_POLAR_BEAR_STEP, "mob.polarbear.step");
@@ -542,21 +542,21 @@ public class SoundTranslator {
 		register(BuiltinSound.ENTITY_SLIME_JUMP, "mob.slime.jump");
 		register(BuiltinSound.ENTITY_SLIME_SQUISH, "mob.slime.squish");
 		
-		register(BuiltinSound.ENTITY_SMALL_MAGMACUBE_DEATH, BuiltinSound.ENTITY_SMALL_SLIME_HURT);
+		/*register(BuiltinSound.ENTITY_SMALL_MAGMACUBE_DEATH, BuiltinSound.ENTITY_SMALL_SLIME_HURT);
 		register(BuiltinSound.ENTITY_SMALL_MAGMACUBE_HURT, BuiltinSound.ENTITY_SMALL_SLIME_HURT);
 		register(BuiltinSound.ENTITY_SMALL_MAGMACUBE_SQUISH, "mob.magmacube.small");
 		
 		register(BuiltinSound.ENTITY_SMALL_SLIME_DEATH, BuiltinSound.ENTITY_SMALL_SLIME_HURT);
 		register(BuiltinSound.ENTITY_SMALL_SLIME_HURT, "mob.slime.small");
 		register(BuiltinSound.ENTITY_SMALL_SLIME_JUMP, false);
-		register(BuiltinSound.ENTITY_SMALL_SLIME_SQUISH, false);
+		register(BuiltinSound.ENTITY_SMALL_SLIME_SQUISH, false);*/
 		
 		register(BuiltinSound.ENTITY_SNOWBALL_THROW, BuiltinSound.ENTITY_ARROW_SHOOT);
 		
-		register(BuiltinSound.ENTITY_SNOWMAN_AMBIENT, false);
+		/*register(BuiltinSound.ENTITY_SNOWMAN_AMBIENT, false);
 		register(BuiltinSound.ENTITY_SNOWMAN_DEATH, null);
 		register(BuiltinSound.ENTITY_SNOWMAN_HURT, null);
-		register(BuiltinSound.ENTITY_SNOWMAN_SHOOT, BuiltinSound.ENTITY_ARROW_SHOOT);
+		register(BuiltinSound.ENTITY_SNOWMAN_SHOOT, BuiltinSound.ENTITY_ARROW_SHOOT);*/
 		
 		register(BuiltinSound.ENTITY_SPIDER_AMBIENT, "mob.spider.say");
 		register(BuiltinSound.ENTITY_SPIDER_DEATH, "mob.spider.death");
@@ -586,12 +586,12 @@ public class SoundTranslator {
 		register(BuiltinSound.ENTITY_VILLAGER_DEATH, "mob.villager.death");
 		register(BuiltinSound.ENTITY_VILLAGER_HURT, "mob.villager.hit");
 		register(BuiltinSound.ENTITY_VILLAGER_NO, "mob.villager.no");
-		register(BuiltinSound.ENTITY_VILLAGER_TRADING, "mob.villager.haggle");
+		/*register(BuiltinSound.ENTITY_VILLAGER_TRADING, "mob.villager.haggle");*/
 		register(BuiltinSound.ENTITY_VILLAGER_YES, "mob.villager.yes");
 		
-		register(BuiltinSound.ENTITY_VINDICATION_ILLAGER_AMBIENT, "mob.vindicator.idle");
+		/*register(BuiltinSound.ENTITY_VINDICATION_ILLAGER_AMBIENT, "mob.vindicator.idle");
 		register(BuiltinSound.ENTITY_VINDICATION_ILLAGER_DEATH, "mob.vindicator.death");
-		register(BuiltinSound.ENTITY_VINDICATION_ILLAGER_HURT, "mob.vindicator.hurt");
+		register(BuiltinSound.ENTITY_VINDICATION_ILLAGER_HURT, "mob.vindicator.hurt");*/
 		
 		register(BuiltinSound.ENTITY_WITCH_AMBIENT, "mob.witch.ambient");
 		register(BuiltinSound.ENTITY_WITCH_DEATH, "mob.witch.death");
@@ -622,9 +622,9 @@ public class SoundTranslator {
 		register(BuiltinSound.ENTITY_WOLF_WHINE, "mob.wolf.whine");
 		
 		register(BuiltinSound.ENTITY_ZOMBIE_AMBIENT, "mob.zombie.say");
-		register(BuiltinSound.ENTITY_ZOMBIE_ATTACK_DOOR_WOOD, "mob.zombie.wood");
+		/*register(BuiltinSound.ENTITY_ZOMBIE_ATTACK_DOOR_WOOD, "mob.zombie.wood");
 		register(BuiltinSound.ENTITY_ZOMBIE_ATTACK_IRON_DOOR, BuiltinSound.ENTITY_ZOMBIE_ATTACK_DOOR_WOOD);
-		register(BuiltinSound.ENTITY_ZOMBIE_BREAK_DOOR_WOOD, "mob.zombie.woodbreak");
+		register(BuiltinSound.ENTITY_ZOMBIE_BREAK_DOOR_WOOD, "mob.zombie.woodbreak");*/
 		register(BuiltinSound.ENTITY_ZOMBIE_DEATH, "mob.zombie.death");
 		register(BuiltinSound.ENTITY_ZOMBIE_HURT, "mob.zombie.hurt");
 		register(BuiltinSound.ENTITY_ZOMBIE_INFECT, BuiltinSound.ENTITY_ZOMBIE_VILLAGER_CONVERTED);
@@ -633,10 +633,10 @@ public class SoundTranslator {
 		register(BuiltinSound.ENTITY_ZOMBIE_HORSE_DEATH, "mob.horse.zombie.death");
 		register(BuiltinSound.ENTITY_ZOMBIE_HORSE_HURT, "mob.horse.zombie.hit");
 		
-		register(BuiltinSound.ENTITY_ZOMBIE_PIG_AMBIENT, "mob.zombiepig.zpig");
+		/*register(BuiltinSound.ENTITY_ZOMBIE_PIG_AMBIENT, "mob.zombiepig.zpig");
 		register(BuiltinSound.ENTITY_ZOMBIE_PIG_ANGRY, "mob.zombiepig.zpigangry");
 		register(BuiltinSound.ENTITY_ZOMBIE_PIG_DEATH, "mob.zombiepig.zpigdeath");
-		register(BuiltinSound.ENTITY_ZOMBIE_PIG_HURT, "mob.zombiepig.zpighurt");
+		register(BuiltinSound.ENTITY_ZOMBIE_PIG_HURT, "mob.zombiepig.zpighurt");*/
 		
 		register(BuiltinSound.ENTITY_ZOMBIE_VILLAGER_AMBIENT, "mob.zombie_villager.say");
 		register(BuiltinSound.ENTITY_ZOMBIE_VILLAGER_CONVERTED, "mob.zombie.unfect");
@@ -662,7 +662,7 @@ public class SoundTranslator {
 		register(BuiltinSound.ITEM_BUCKET_FILL, "bucket.fill_water");
 		register(BuiltinSound.ITEM_BUCKET_FILL_LAVA, "bucket.fill_lava");
 		
-		register(BuiltinSound.ITEM_CHORUS_FRUIT_TELEPORT, BuiltinSound.ENTITY_ENDERMEN_TELEPORT);
+		/*register(BuiltinSound.ITEM_CHORUS_FRUIT_TELEPORT, BuiltinSound.ENTITY_ENDERMEN_TELEPORT);*/
 		
 		register(BuiltinSound.ITEM_ELYTRA_FLYING, "elytra.loop");
 		
@@ -688,7 +688,7 @@ public class SoundTranslator {
 		register(BuiltinSound.MUSIC_MENU, "music.menu");
 		register(BuiltinSound.MUSIC_NETHER, "music.game.nether");
 		
-		register(BuiltinSound.RECORD_11, "record.11");
+		/*register(BuiltinSound.RECORD_11, "record.11");
 		register(BuiltinSound.RECORD_13, "record.13");
 		register(BuiltinSound.RECORD_BLOCKS, "record.blocks");
 		register(BuiltinSound.RECORD_CAT, "record.cat");
@@ -699,7 +699,7 @@ public class SoundTranslator {
 		register(BuiltinSound.RECORD_STAL, "record.stal");
 		register(BuiltinSound.RECORD_STRAD, "record.strad");
 		register(BuiltinSound.RECORD_WAIT, "record.wait");
-		register(BuiltinSound.RECORD_WARD, "record.ward");
+		register(BuiltinSound.RECORD_WARD, "record.ward");*/
 		
 		register(BuiltinSound.UI_BUTTON_CLICK, "random.click");
 		register(BuiltinSound.UI_TOAST_IN, "random.toast");

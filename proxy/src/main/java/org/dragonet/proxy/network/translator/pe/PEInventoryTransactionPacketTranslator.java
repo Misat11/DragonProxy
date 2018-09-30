@@ -26,7 +26,7 @@ import org.dragonet.proxy.network.CacheKey;
 import org.dragonet.proxy.network.UpstreamSession;
 import org.dragonet.proxy.network.cache.CachedEntity;
 import org.dragonet.proxy.network.translator.IPEPacketTranslator;
-import org.dragonet.proxy.network.translator.ItemBlockTranslator;
+import org.dragonet.proxy.network.translator.BlockTranslator;
 import org.dragonet.proxy.utilities.DebugTools;
 
 import com.github.steveice10.mc.protocol.data.MagicValues;
@@ -142,7 +142,7 @@ public class PEInventoryTransactionPacketTranslator implements IPEPacketTranslat
                                 windowID, //window id
                                 session.getWindowCache().currentTransactionId.incrementAndGet(), //transaction id
                                 slot, //slot
-                                ItemBlockTranslator.translateToPC(cursor),
+                                BlockTranslator.translateToPC(cursor),
                                 WindowAction.CLICK_ITEM,
                                 ClickItemParam.LEFT_CLICK
                         );
@@ -154,7 +154,7 @@ public class PEInventoryTransactionPacketTranslator implements IPEPacketTranslat
                         // send action to server
                         ClientCreativeInventoryActionPacket creativeActionPacket = new ClientCreativeInventoryActionPacket(
                                 slot, //slot
-                                ItemBlockTranslator.translateToPC(cursor)
+                                BlockTranslator.translateToPC(cursor)
                         );
     //                    System.out.println("WINDOWACTIONPACKET \n" + DebugTools.getAllFields(windowActionPacket));
 
@@ -197,7 +197,7 @@ public class PEInventoryTransactionPacketTranslator implements IPEPacketTranslat
                     {
                         ClientPlayerPlaceBlockPacket placePacket = new ClientPlayerPlaceBlockPacket(
                                 new Position(useItemData.blockPos.x, useItemData.blockPos.y, useItemData.blockPos.z),
-                                ItemBlockTranslator.translateToPC(useItemData.face),
+                                BlockTranslator.translateToPC(useItemData.face),
                                 Hand.MAIN_HAND,
                                 useItemData.clickPos.x,
                                 useItemData.clickPos.y,

@@ -18,7 +18,7 @@ import com.github.steveice10.mc.protocol.data.game.world.sound.BuiltinSound;
 import com.github.steveice10.mc.protocol.packet.ingame.server.world.ServerBlockChangePacket;
 import org.dragonet.proxy.network.UpstreamSession;
 import org.dragonet.proxy.network.translator.IPCPacketTranslator;
-import org.dragonet.proxy.network.translator.ItemBlockTranslator;
+import org.dragonet.proxy.network.translator.BlockTranslator;
 
 import org.dragonet.common.data.blocks.GlobalBlockPalette;
 import org.dragonet.common.data.itemsblocks.ItemEntry;
@@ -36,7 +36,7 @@ public class PCBlockChangePacketTranslator implements IPCPacketTranslator<Server
     public PEPacket[] translate(UpstreamSession session, ServerBlockChangePacket packet) {
         Position pos = packet.getRecord().getPosition();
         BlockState block = packet.getRecord().getBlock();
-        if (session.getChunkCache().getBlock(pos) != null) {
+        /*if (session.getChunkCache().getBlock(pos) != null) {
             if (block.getId() == 0 && session.getChunkCache().getBlock(pos).getId() != 0) {
                 LevelEventPacket pk = new LevelEventPacket();
                 pk.eventId = LevelEventPacket.EVENT_PARTICLE_DESTROY;
@@ -109,7 +109,7 @@ public class PCBlockChangePacketTranslator implements IPCPacketTranslator<Server
             }
         } else {
             build(session, pos, block);
-        }
+        }*/
         // update cache
         try {
             session.getChunkCache().update(pos, block);
@@ -140,7 +140,7 @@ public class PCBlockChangePacketTranslator implements IPCPacketTranslator<Server
         LevelSoundEventPacket pk = new LevelSoundEventPacket();
         pk.sound = LevelSoundEventPacket.Sound.PLACE;
         pk.position = new Vector3F(pos.getX(), pos.getY(), pos.getZ());
-        ItemEntry entry = ItemBlockTranslator.translateToPE(block.getId(), block.getData());
+        ItemEntry entry = BlockTranslator.translateToPE(block.getId());
         pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(entry.getId(), entry.getPEDamage());
         pk.isGlobal = false;
         pk.pitch = 1;

@@ -75,18 +75,18 @@ public class PCSoundEventPacketTranslator implements IPCPacketTranslator<ServerP
             case ENTITY_HORSE_GALLOP:
                 pk.sound = LevelSoundEventPacket.Sound.GALLOP;
                 break;
-            case ENTITY_LIGHTNING_THUNDER:
+            /*case ENTITY_LIGHTNING_THUNDER:
                 pk.sound = LevelSoundEventPacket.Sound.THUNDER;
-                break;
+                break;*/
             case ENTITY_PLAYER_LEVELUP:
                 pk.sound = LevelSoundEventPacket.Sound.LEVEL_UP;
                 break;
-            case ENTITY_LEASHKNOT_PLACE:
+            /*case ENTITY_LEASHKNOT_PLACE:
                 pk.sound = LevelSoundEventPacket.Sound.LEASHKNOT_PLACE;
                 break;
             case ENTITY_LEASHKNOT_BREAK:
                 pk.sound = LevelSoundEventPacket.Sound.LEASHKNOT_BREAK;
-                break;
+                break;*/
             case ENTITY_SHULKER_OPEN:
                 pk.sound = LevelSoundEventPacket.Sound.SHULKER_OPEN;
                 break;
@@ -108,7 +108,7 @@ public class PCSoundEventPacketTranslator implements IPCPacketTranslator<ServerP
             case ITEM_BUCKET_EMPTY:
                 pk.sound = LevelSoundEventPacket.Sound.BUCKET_EMPTY_WATER;
                 break;
-            case RECORD_11:
+            /*case RECORD_11:
                 pk.sound = LevelSoundEventPacket.Sound.RECORD_11;
                 break;
             case RECORD_13:
@@ -143,7 +143,7 @@ public class PCSoundEventPacketTranslator implements IPCPacketTranslator<ServerP
                 break;
             case RECORD_WARD:
                 pk.sound = LevelSoundEventPacket.Sound.RECORD_WARD;
-                break;
+                break;*/
             case ENTITY_ZOMBIE_VILLAGER_CONVERTED:
                 pk.sound = LevelSoundEventPacket.Sound.UNFECT;
                 break;
@@ -169,10 +169,10 @@ public class PCSoundEventPacketTranslator implements IPCPacketTranslator<ServerP
                 pk.sound = LevelSoundEventPacket.Sound.BREAK_BLOCK;
                 pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(20);
                 break;
-            case BLOCK_CLOTH_BREAK:
+            /*case BLOCK_CLOTH_BREAK:
                 pk.sound = LevelSoundEventPacket.Sound.BREAK_BLOCK;
                 pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(35);
-                break;
+                break;*/
             case BLOCK_GRAVEL_BREAK:
                 pk.sound = LevelSoundEventPacket.Sound.BREAK_BLOCK;
                 pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(13);
@@ -189,10 +189,10 @@ public class PCSoundEventPacketTranslator implements IPCPacketTranslator<ServerP
                 pk.sound = LevelSoundEventPacket.Sound.BREAK_BLOCK;
                 pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(12);
                 break;
-            case BLOCK_SLIME_BREAK:
+            /*case BLOCK_SLIME_BREAK:
                 pk.sound = LevelSoundEventPacket.Sound.BREAK_BLOCK;
                 pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(165);
-                break;
+                break;*/
             case BLOCK_SNOW_BREAK:
                 pk.sound = LevelSoundEventPacket.Sound.BREAK_BLOCK;
                 pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(80);
@@ -214,10 +214,10 @@ public class PCSoundEventPacketTranslator implements IPCPacketTranslator<ServerP
                 pk.sound = LevelSoundEventPacket.Sound.PLACE;
                 pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(145);
                 break;
-            case BLOCK_CLOTH_PLACE:
+            /*case BLOCK_CLOTH_PLACE:
                 pk.sound = LevelSoundEventPacket.Sound.PLACE;
                 pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(35);
-                break;
+                break;*/
             case BLOCK_GLASS_PLACE:
                 pk.sound = LevelSoundEventPacket.Sound.PLACE;
                 pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(20);
@@ -238,10 +238,10 @@ public class PCSoundEventPacketTranslator implements IPCPacketTranslator<ServerP
                 pk.sound = LevelSoundEventPacket.Sound.PLACE;
                 pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(12);
                 break;
-            case BLOCK_SLIME_PLACE:
+            /*case BLOCK_SLIME_PLACE:
                 pk.sound = LevelSoundEventPacket.Sound.PLACE;
                 pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(165);
-                break;
+                break;*/
             case BLOCK_SNOW_PLACE:
                 pk.sound = LevelSoundEventPacket.Sound.PLACE;
                 pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(80);
@@ -250,10 +250,10 @@ public class PCSoundEventPacketTranslator implements IPCPacketTranslator<ServerP
                 pk.sound = LevelSoundEventPacket.Sound.PLACE;
                 pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(1);
                 break;
-            case BLOCK_WATERLILY_PLACE:
+            /*case BLOCK_WATERLILY_PLACE:
                 pk.sound = LevelSoundEventPacket.Sound.PLACE;
                 pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(2);
-                break;
+                break;*/
             case BLOCK_WOOD_PLACE:
                 pk.sound = LevelSoundEventPacket.Sound.PLACE;
                 pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(5);
@@ -273,16 +273,16 @@ public class PCSoundEventPacketTranslator implements IPCPacketTranslator<ServerP
             case BLOCK_STONE_BUTTON_CLICK_ON:
                 pk.sound = LevelSoundEventPacket.Sound.POWER_ON;
                 break;
-            case BLOCK_METAL_PRESSUREPLATE_CLICK_ON:
+            /*case BLOCK_METAL_PRESSUREPLATE_CLICK_ON:
                 pk.sound = LevelSoundEventPacket.Sound.POWER_ON;
                 break;
             case BLOCK_STONE_PRESSUREPLATE_CLICK_ON:
                 pk.sound = LevelSoundEventPacket.Sound.POWER_ON;
-                break;
+                break;*/
             case BLOCK_TRIPWIRE_CLICK_ON:
                 pk.sound = LevelSoundEventPacket.Sound.POWER_ON;
                 break;
-            case BLOCK_WOOD_BUTTON_CLICK_ON:
+            /*case BLOCK_WOOD_BUTTON_CLICK_ON:
                 pk.sound = LevelSoundEventPacket.Sound.POWER_ON;
                 break;
             case BLOCK_WOOD_PRESSUREPLATE_CLICK_ON:
@@ -296,11 +296,11 @@ public class PCSoundEventPacketTranslator implements IPCPacketTranslator<ServerP
                 break;
             case BLOCK_STONE_PRESSUREPLATE_CLICK_OFF:
                 pk.sound = LevelSoundEventPacket.Sound.POWER_OFF;
-                break;
+                break;*/
             case BLOCK_TRIPWIRE_CLICK_OFF:
                 pk.sound = LevelSoundEventPacket.Sound.POWER_OFF;
                 break;
-            case BLOCK_WOOD_BUTTON_CLICK_OFF:
+            /*case BLOCK_WOOD_BUTTON_CLICK_OFF:
                 pk.sound = LevelSoundEventPacket.Sound.POWER_OFF;
                 break;
             case BLOCK_WOOD_PRESSUREPLATE_CLICK_OFF:
@@ -339,29 +339,29 @@ public class PCSoundEventPacketTranslator implements IPCPacketTranslator<ServerP
                 break;
             case BLOCK_NOTE_XYLOPHONE:
                 pk.sound = LevelSoundEventPacket.Sound.NOTE;
-                break;
+                break;*/
             case BLOCK_PISTON_EXTEND:
                 pk.sound = LevelSoundEventPacket.Sound.PISTON_OUT;
                 break;
             case BLOCK_PISTON_CONTRACT:
                 pk.sound = LevelSoundEventPacket.Sound.PISTON_IN;
                 break;
-            case ENTITY_BOBBER_THROW:
+            /*case ENTITY_BOBBER_THROW:
             	pk.sound = LevelSoundEventPacket.Sound.SPLASH;
-            	break;
+            	break;*/
             case ENTITY_EGG_THROW:
             	pk.sound = LevelSoundEventPacket.Sound.THROW;
             	break;
         	// Throw need test or else translates
-            case ENTITY_ENDERPEARL_THROW:
+            /*case ENTITY_ENDERPEARL_THROW:
                 pk.sound = LevelSoundEventPacket.Sound.THROW;
-                break;
+                break;*/
             case ENTITY_EXPERIENCE_BOTTLE_THROW:
                 pk.sound = LevelSoundEventPacket.Sound.THROW;
                 break;
-            case ENTITY_LINGERINGPOTION_THROW:
+            /*case ENTITY_LINGERINGPOTION_THROW:
                 pk.sound = LevelSoundEventPacket.Sound.THROW;
-                break;
+                break;*/
             case ENTITY_SNOWBALL_THROW:
                 pk.sound = LevelSoundEventPacket.Sound.THROW;
                 break;

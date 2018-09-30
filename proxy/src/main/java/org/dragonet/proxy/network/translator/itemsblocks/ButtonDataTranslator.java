@@ -6,7 +6,7 @@
 package org.dragonet.proxy.network.translator.itemsblocks;
 
 import org.dragonet.common.data.itemsblocks.IItemDataTranslator;
-import org.dragonet.proxy.network.translator.ItemBlockTranslator;
+import org.dragonet.proxy.network.translator.BlockTranslator;
 
 /**
  * @author vincent
@@ -18,7 +18,7 @@ public class ButtonDataTranslator extends IItemDataTranslator {
         // Here is the magic
         int facing = damage > 5 ? damage - 0x08 : damage;
         boolean activated = (damage & 0x08) > 0;
-        facing = ItemBlockTranslator.translateFacing(facing);
+        facing = BlockTranslator.translateFacing(facing);
         return facing + (activated ? 0x08 : 0x00);
     }
 
