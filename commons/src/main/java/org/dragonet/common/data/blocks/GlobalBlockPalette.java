@@ -30,7 +30,7 @@ public class GlobalBlockPalette {
         Type collectionType = new TypeToken<Collection<TableEntry>>(){}.getType();
         Collection<TableEntry> entries = gson.fromJson(reader, collectionType);
         BinaryStream stream = new BinaryStream();
-
+      
         stream.putUnsignedVarInt(entries.size());
         for (TableEntry entry : entries) {
             registerMapping((entry.id << 4) | entry.data);
