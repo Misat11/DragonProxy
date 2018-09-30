@@ -26,6 +26,7 @@ import org.dragonet.proxy.network.CacheKey;
 import org.dragonet.proxy.network.UpstreamSession;
 import org.dragonet.proxy.network.cache.CachedEntity;
 import org.dragonet.proxy.network.translator.IPEPacketTranslator;
+import org.dragonet.proxy.network.translator.ItemTranslator;
 import org.dragonet.proxy.network.translator.BlockTranslator;
 import org.dragonet.proxy.utilities.DebugTools;
 
@@ -142,7 +143,7 @@ public class PEInventoryTransactionPacketTranslator implements IPEPacketTranslat
                                 windowID, //window id
                                 session.getWindowCache().currentTransactionId.incrementAndGet(), //transaction id
                                 slot, //slot
-                                BlockTranslator.translateToPC(cursor),
+                                ItemTranslator.translateToPC(cursor),
                                 WindowAction.CLICK_ITEM,
                                 ClickItemParam.LEFT_CLICK
                         );
@@ -154,7 +155,7 @@ public class PEInventoryTransactionPacketTranslator implements IPEPacketTranslat
                         // send action to server
                         ClientCreativeInventoryActionPacket creativeActionPacket = new ClientCreativeInventoryActionPacket(
                                 slot, //slot
-                                BlockTranslator.translateToPC(cursor)
+                                ItemTranslator.translateToPC(cursor)
                         );
     //                    System.out.println("WINDOWACTIONPACKET \n" + DebugTools.getAllFields(windowActionPacket));
 
