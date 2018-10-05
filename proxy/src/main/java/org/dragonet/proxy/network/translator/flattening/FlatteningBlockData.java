@@ -56,7 +56,8 @@ public class FlatteningBlockData {
 		return stringFlattedBlocks.get(name).defaultState;
 	}
 	
-	public static FlattedBlockState fromNameProperties(String name, Map<String, String> properties) {
+	public static List<FlattedBlockState> fromNameProperties(String name, Map<String, String> properties) {
+		List<FlattedBlockState> result = new ArrayList<FlattedBlockState>();
 		List<FlattedBlockState> list = stringFlattedBlocks.get(name).states;
 		for (FlattedBlockState state : list) {
 			if (state.properties != null) {
@@ -72,10 +73,10 @@ public class FlatteningBlockData {
 					}
 				}
 				if (success) {
-					return state;
+					result.add(state);
 				}
 			}
 		}
-		return null;
+		return result;
 	}
 }
