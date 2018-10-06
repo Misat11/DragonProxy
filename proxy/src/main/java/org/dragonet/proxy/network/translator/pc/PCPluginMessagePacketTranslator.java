@@ -26,13 +26,12 @@ import org.dragonet.common.utilities.BinaryStream;
 
 public class PCPluginMessagePacketTranslator implements IPCPacketTranslator<ServerPluginMessagePacket> {
 	
-	public static final String CHANNEL_DRAGONPROXY = "DragonProxy";
-	public static final String CHANNEL_MC_BOPEN = "MC|BOpen";
-	public static final String CHANNEL_MC_BRAND = "MC|Brand";
-	public static final String CHANNEL_MC_DEBUG_PATH = "MC|DebugPath";
-	public static final String CHANNEL_MC_DEBUG_NEIGHBORS_UPDATE = "MC|DebugNeighborsUpdate";
-	public static final String CHANNEL_MC_STOP_SOUND = "MC|StopSound";
-	public static final String CHANNEL_MC_TR_LIST = "MC|TrList";
+	public static final String CHANNEL_DRAGONPROXY = "dragonproxy";
+	public static final String CHANNEL_MC_BOPEN = "book_open";
+	public static final String CHANNEL_MC_BRAND = "brand";
+	public static final String CHANNEL_MC_DEBUG_PATH = "debug/paths";
+	public static final String CHANNEL_MC_DEBUG_NEIGHBORS_UPDATE = "debug/neighbors_update";
+	public static final String CHANNEL_MC_TR_LIST = "trader_list";
 	
 	@Override
 	public PEPacket[] translate(UpstreamSession session, ServerPluginMessagePacket packet) {
@@ -59,7 +58,7 @@ public class PCPluginMessagePacketTranslator implements IPCPacketTranslator<Serv
 			// TODO
 		} else if (channel.equals(CHANNEL_MC_DEBUG_NEIGHBORS_UPDATE)) {
 			// TODO
-		} else if (channel.equals(CHANNEL_MC_STOP_SOUND)) {
+		/*} else if (channel.equals(CHANNEL_MC_STOP_SOUND)) {
 			String category = bis.getString();
 			String s = bis.getString();
 			try {
@@ -72,7 +71,7 @@ public class PCPluginMessagePacketTranslator implements IPCPacketTranslator<Serv
 				}
 			} catch (IllegalArgumentException e) {
 
-			}
+			}*/
 		} else if (channel.equals(CHANNEL_MC_TR_LIST)) {
 			// TODO
 		}

@@ -35,7 +35,7 @@ public class BedrockPlayer {
         bis.putString("PacketSubscription");
         bis.putString(clazz.getSimpleName());
         bis.putBoolean(sub);
-        player.sendPluginMessage(DPAddonBukkit.getInstance(), "DragonProxy", bis.getBuffer());
+        player.sendPluginMessage(DPAddonBukkit.getInstance(), DPAddonBukkit.CHANNEL_NAME, bis.getBuffer());
     } */
 
     public void sendForm(int formId, ModalFormComponent form) {
@@ -48,7 +48,7 @@ public class BedrockPlayer {
         BinaryStream bis = new BinaryStream();
         bis.putString("SendPacket");
         bis.putByteArray(request.getBuffer());
-        player.sendPluginMessage(DPAddonBukkit.getInstance(), "DragonProxy", bis.getBuffer());
+        player.sendPluginMessage(DPAddonBukkit.getInstance(), DPAddonBukkit.CHANNEL_NAME, bis.getBuffer());
     }
 
 

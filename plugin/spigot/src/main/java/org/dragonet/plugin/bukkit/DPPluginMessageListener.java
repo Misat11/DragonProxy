@@ -16,7 +16,7 @@ public class DPPluginMessageListener implements PluginMessageListener {
 
     @Override
     public void onPluginMessageReceived(String channel, Player player, byte[] data) {
-        if(!channel.equals("DragonProxy")) return; // not likely to happen but...
+        if(!channel.equals(DPAddonBukkit.CHANNEL_NAME)) return; // not likely to happen but...
         BinaryStream bis = new BinaryStream(data);
         String command = bis.getString();
         if(command.equals("Notification")) {

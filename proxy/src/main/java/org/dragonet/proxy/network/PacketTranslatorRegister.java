@@ -148,6 +148,8 @@ public final class PacketTranslatorRegister {
 
         // Player
         PE_TO_PC_TRANSLATOR.put(AnimatePacket.class, new PEAnimatePacketTranslator());
+        
+        PE_TO_PC_TRANSLATOR.put(SetLocalPlayerAsInitializedPacket.class, new PESetLocalPlayerAsInitializedPacketTranslator());
     }
 
     public static PEPacket[] translateToPE(UpstreamSession session, Packet packet) {

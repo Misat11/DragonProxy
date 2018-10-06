@@ -49,209 +49,234 @@ import org.dragonet.common.maths.ChunkPos;
 import org.dragonet.proxy.DragonProxy;
 import org.dragonet.common.maths.NukkitMath;
 
-public class PCPlayerPositionRotationPacketTranslator implements IPCPacketTranslator<ServerPlayerPositionRotationPacket> {
+public class PCPlayerPositionRotationPacketTranslator
+		implements IPCPacketTranslator<ServerPlayerPositionRotationPacket> {
 
-    @Override
-    public PEPacket[] translate(UpstreamSession session, ServerPlayerPositionRotationPacket packet) {
+	@Override
+	public PEPacket[] translate(UpstreamSession session, ServerPlayerPositionRotationPacket packet) {
 
-        CachedEntity entityPlayer = session.getEntityCache().getClientEntity();
-        if (entityPlayer == null) {
-            //disconnect (important missing data)
-        }
+		CachedEntity entityPlayer = session.getEntityCache().getClientEntity();
+		if (entityPlayer == null) {
+			// disconnect (important missing data)
+		}
 
-        if (!session.isSpawned()) {
-            if (session.getDataCache().get(CacheKey.PACKET_JOIN_GAME_PACKET) == null) {
-                session.disconnect(session.getProxy().getLang().get(Lang.MESSAGE_REMOTE_ERROR));
-                return null;
-            }
+		if (!session.isSpawned()) {
+			if (session.getDataCache().get(CacheKey.PACKET_JOIN_GAME_PACKET) == null) {
+				session.disconnect(session.getProxy().getLang().get(Lang.MESSAGE_REMOTE_ERROR));
+				return null;
+			}
+			SetTimePacket stp = new SetTimePacket();
+			stp.time = 0;
+			session.sendPacket(stp);
+			ServerJoinGamePacket restored = (ServerJoinGamePacket) session.getDataCache()
+					.remove(CacheKey.PACKET_JOIN_GAME_PACKET);
 
-            ServerJoinGamePacket restored = (ServerJoinGamePacket) session.getDataCache().remove(CacheKey.PACKET_JOIN_GAME_PACKET);
-            if (!session.getProxy().getAuthMode().equalsIgnoreCase("online")) {
-                StartGamePacket ret = new StartGamePacket();
-                ret.rtid = entityPlayer.proxyEid;
-                ret.eid = entityPlayer.proxyEid;
-                ret.dimension = entityPlayer.dimention;
-                ret.seed = 0;
-                ret.generator = 1;
-                ret.gamemode = restored.getGameMode() == GameMode.CREATIVE ? 1 : 0;
-                ret.spawnPosition = new BlockPosition((int) packet.getX(), (int) packet.getY(), (int) packet.getZ());
-                ret.position = new Vector3F((float) packet.getX(), (float) packet.getY() + EntityType.PLAYER.getOffset() + 0.1f, (float) packet.getZ());
-                ret.yaw = packet.getYaw();
-                ret.pitch = packet.getPitch();
-                ret.levelId = "";
-                ret.worldName = "World";
-                ret.commandsEnabled = true;
-                ret.defaultPlayerPermission = 2;
-                ret.premiumWorldTemplateId = "";
-                ret.difficulty = restored.getDifficulty();
-                session.sendPacket(ret, true);
-            }
+			if (!session.getProxy().getAuthMode().equalsIgnoreCase("online")) {
+				StartGamePacket ret = new StartGamePacket();
+				ret.rtid = entityPlayer.proxyEid;
+				ret.eid = entityPlayer.proxyEid;
+				ret.dimension = entityPlayer.dimention;
+				ret.seed = 0;
+				ret.generator = 1;
+				ret.gamemode = restored.getGameMode() == GameMode.CREATIVE ? 1 : 0;
+				ret.spawnPosition = new BlockPosition((int) packet.getX(), (int) packet.getY(), (int) packet.getZ());
+				ret.position = new Vector3F((float) packet.getX(),
+						(float) packet.getY() + EntityType.PLAYER.getOffset() + 0.1f, (float) packet.getZ());
+				ret.yaw = packet.getYaw();
+				ret.pitch = packet.getPitch();
+				ret.levelId = "";
+				ret.worldName = "World";
+				ret.commandsEnabled = true;
+				ret.defaultPlayerPermission = 2;
+				ret.premiumWorldTemplateId = "";
+				ret.difficulty = restored.getDifficulty();
+				session.sendPacket(ret, true);
+			}
 
-            entityPlayer.absoluteMove(packet.getX(), packet.getY() + entityPlayer.peType.getOffset() + 0.1f, packet.getZ(), packet.getYaw(), packet.getPitch());
-            session.getChunkCache().sendOrderedChunks();
+			SetSpawnPositionPacket sspp = new SetSpawnPositionPacket();
+			sspp.position = new BlockPosition((int) packet.getX(), (int) packet.getY(), (int) packet.getZ());
+			sspp.forced = false;
+			sspp.type = 1;
+			session.sendPacket(sspp);
+			session.sendPacket(stp);
+			SetDifficultyPacket sdp = new SetDifficultyPacket();
+			sdp.difficulty = restored.getDifficulty();
+			session.sendPacket(sdp);
+			SetCommandsEnabledPacket scep = new SetCommandsEnabledPacket();
+			scep.enabled = true;
+			session.sendPacket(scep);
+			AdventureSettingsPacket adv = new AdventureSettingsPacket();
+			// flags
+			adv.setFlag(AdventureSettingsPacket.WORLD_IMMUTABLE, restored.getGameMode().equals(GameMode.ADVENTURE));
+			// adv.setFlag(AdventureSettingsPacket.NO_PVP, true);
+			// adv.setFlag(AdventureSettingsPacket.AUTO_JUMP, true);
+			adv.setFlag(AdventureSettingsPacket.ALLOW_FLIGHT, restored.getGameMode().equals(GameMode.CREATIVE)
+					|| restored.getGameMode().equals(GameMode.SPECTATOR));
+			adv.setFlag(AdventureSettingsPacket.NO_CLIP, restored.getGameMode().equals(GameMode.SPECTATOR));
+			adv.setFlag(AdventureSettingsPacket.WORLD_BUILDER, !restored.getGameMode().equals(GameMode.SPECTATOR)
+					|| !restored.getGameMode().equals(GameMode.ADVENTURE));
+			adv.setFlag(AdventureSettingsPacket.FLYING, restored.getGameMode().equals(GameMode.SPECTATOR));
+			adv.setFlag(AdventureSettingsPacket.MUTED, false);
+			// custom permission flags (not necessary for now when using LEVEL_PERMISSION
+			// setting)
+			// adv.setFlag(AdventureSettingsPacket.BUILD_AND_MINE,
+			// true);adv.setFlag(AdventureSettingsPacket.BUILD_AND_MINE, true);
+			// adv.setFlag(AdventureSettingsPacket.DOORS_AND_SWITCHES, true);
+			// adv.setFlag(AdventureSettingsPacket.OPEN_CONTAINERS, true);
+			// adv.setFlag(AdventureSettingsPacket.ATTACK_PLAYERS, true);
+			// adv.setFlag(AdventureSettingsPacket.ATTACK_MOBS, true);
+			// adv.setFlag(AdventureSettingsPacket.OPERATOR, true);
+			// adv.setFlag(AdventureSettingsPacket.TELEPORT, true);
+			adv.eid = entityPlayer.proxyEid;
+			adv.commandsPermission = AdventureSettingsPacket.PERMISSION_NORMAL; // TODO update this with server
+																				// configiration
+			adv.playerPermission = AdventureSettingsPacket.LEVEL_PERMISSION_MEMBER; // TODO update this with server
+																					// configiration
+			session.sendPacket(adv, true);
 
-            ByteArrayDataOutput out = ByteStreams.newDataOutput();
-            out.writeUTF("DragonProxy");
-            ClientPluginMessagePacket clientPluginMessagePacket = new ClientPluginMessagePacket("MC|Brand", out.toByteArray());
-            ((PCDownstreamSession) session.getDownstream()).send(clientPluginMessagePacket);
+			UpdateAttributesPacket attr = new UpdateAttributesPacket();
+			attr.rtid = entityPlayer.proxyEid;
+			if (entityPlayer.attributes.isEmpty()) {
+				attr.entries = new ArrayList();
+				attr.entries.addAll(PEEntityAttribute.getDefault());
+			} else
+				attr.entries = entityPlayer.attributes.values();
+			session.sendPacket(attr, true);
 
-            LoginPacket loginpacket = (LoginPacket) session.getDataCache().remove(CacheKey.PACKET_LOGIN_PACKET);
-            String clientLanguage = loginpacket.decoded.clientData.has("LanguageCode") ? loginpacket.decoded.clientData.get("LanguageCode").getAsString() : "en_US";
-            session.getDataCache().put(CacheKey.PLAYER_LANGUAGE, clientLanguage);
+			SetEntityDataPacket entityData = new SetEntityDataPacket();
+			entityData.rtid = entityPlayer.proxyEid;
+			entityData.meta = EntityMetaData.createDefault();
+			session.sendPacket(entityData, true);
 
-            ClientSettingsPacket clientSettingsPacket = new ClientSettingsPacket(
-                    clientLanguage,
-                    (int) session.getDataCache().getOrDefault(CacheKey.PLAYER_REQUESTED_CHUNK_RADIUS, 5),
-                    ChatVisibility.FULL,
-                    false,
-                    new SkinPart[]{},
-                    Hand.OFF_HAND);
-            ((PCDownstreamSession) session.getDownstream()).send(clientSettingsPacket);
+			PlayerListPacket playerListPacket = new PlayerListPacket();
+			Set<org.dragonet.protocol.type.PlayerListEntry> peEntries = new HashSet();
 
-            UpdateAttributesPacket attr = new UpdateAttributesPacket();
-            attr.rtid = entityPlayer.proxyEid;
-            if (entityPlayer.attributes.isEmpty()) {
-                attr.entries = new ArrayList();
-                attr.entries.addAll(PEEntityAttribute.getDefault());
-            } else
-                attr.entries = entityPlayer.attributes.values();
-            session.sendPacket(attr, true);
+			for (CachedEntity entity : session.getEntityCache().getEntities().values()) {
+				if (entity.peType == EntityType.PLAYER) {
+					PlayerListEntry playerListEntry = session.getPlayerInfoCache().get(entity.playerUniqueId);
 
-            AdventureSettingsPacket adv = new AdventureSettingsPacket();
-            //flags
-            adv.setFlag(AdventureSettingsPacket.WORLD_IMMUTABLE, restored.getGameMode().equals(GameMode.ADVENTURE));
-            //adv.setFlag(AdventureSettingsPacket.NO_PVP, true);
-            //adv.setFlag(AdventureSettingsPacket.AUTO_JUMP, true);
-            adv.setFlag(AdventureSettingsPacket.ALLOW_FLIGHT, restored.getGameMode().equals(GameMode.CREATIVE) || restored.getGameMode().equals(GameMode.SPECTATOR));
-            adv.setFlag(AdventureSettingsPacket.NO_CLIP, restored.getGameMode().equals(GameMode.SPECTATOR));
-            adv.setFlag(AdventureSettingsPacket.WORLD_BUILDER, !restored.getGameMode().equals(GameMode.SPECTATOR) || !restored.getGameMode().equals(GameMode.ADVENTURE));
-            adv.setFlag(AdventureSettingsPacket.FLYING, restored.getGameMode().equals(GameMode.SPECTATOR));
-            adv.setFlag(AdventureSettingsPacket.MUTED, false);
-            //custom permission flags (not necessary for now when using LEVEL_PERMISSION setting)
-            //adv.setFlag(AdventureSettingsPacket.BUILD_AND_MINE, true);adv.setFlag(AdventureSettingsPacket.BUILD_AND_MINE, true);
-            //adv.setFlag(AdventureSettingsPacket.DOORS_AND_SWITCHES, true);
-            //adv.setFlag(AdventureSettingsPacket.OPEN_CONTAINERS, true);
-            //adv.setFlag(AdventureSettingsPacket.ATTACK_PLAYERS, true);
-            //adv.setFlag(AdventureSettingsPacket.ATTACK_MOBS, true);
-            //adv.setFlag(AdventureSettingsPacket.OPERATOR, true);
-            //adv.setFlag(AdventureSettingsPacket.TELEPORT, true);
-            adv.eid = entityPlayer.proxyEid;
-            adv.commandsPermission = AdventureSettingsPacket.PERMISSION_NORMAL;     //TODO update this with server configiration
-            adv.playerPermission = AdventureSettingsPacket.LEVEL_PERMISSION_MEMBER; //TODO update this with server configiration
-            session.sendPacket(adv, true);
+					org.dragonet.protocol.type.PlayerListEntry peEntry = new org.dragonet.protocol.type.PlayerListEntry();
+					peEntry.uuid = entity.playerUniqueId;
+					peEntry.eid = entity.eid;
+					peEntry.username = playerListEntry.getProfile().getName();
+					peEntry.skin = Skin.DEFAULT_SKIN_STEVE;
+					peEntry.xboxUserId = "null";
+					peEntries.add(peEntry);
+				}
+				entity.spawn(session);
+			}
 
-            SetEntityDataPacket entityData = new SetEntityDataPacket();
-            entityData.rtid = entityPlayer.proxyEid;
-            entityData.meta = EntityMetaData.createDefault();
-            session.sendPacket(entityData, true);
+			playerListPacket.type = PlayerListPacket.TYPE_ADD;
+			playerListPacket.entries = peEntries
+					.toArray(new org.dragonet.protocol.type.PlayerListEntry[peEntries.size()]);
+			session.sendPacket(playerListPacket);
+			entityPlayer.spawned = true;
 
-            if (restored.getGameMode().equals(GameMode.CREATIVE))
-                session.sendCreativeInventory();
+			entityPlayer.absoluteMove(packet.getX(), packet.getY() + entityPlayer.peType.getOffset() + 0.1f,
+					packet.getZ(), packet.getYaw(), packet.getPitch());
 
-            if (session.getProxy().getAuthMode().equalsIgnoreCase("online")) {
+			ByteArrayDataOutput out = ByteStreams.newDataOutput();
+			out.writeUTF("DragonProxy");
+			ClientPluginMessagePacket clientPluginMessagePacket = new ClientPluginMessagePacket("brand",
+					out.toByteArray());
+			((PCDownstreamSession) session.getDownstream()).send(clientPluginMessagePacket);
 
-                MovePlayerPacket pk = new MovePlayerPacket();
-                pk.rtid = entityPlayer.proxyEid;
-                pk.mode = MovePlayerPacket.MODE_TELEPORT;
-                pk.position = new Vector3F((float) packet.getX(), (float) packet.getY() + EntityType.PLAYER.getOffset() + 0.1f, (float) packet.getZ());
-                pk.yaw = packet.getYaw();
-                pk.pitch = packet.getPitch();
-                pk.headYaw = packet.getYaw();
+			LoginPacket loginpacket = (LoginPacket) session.getDataCache().remove(CacheKey.PACKET_LOGIN_PACKET);
+			String clientLanguage = loginpacket.decoded.clientData.has("LanguageCode")
+					? loginpacket.decoded.clientData.get("LanguageCode").getAsString()
+					: "en_US";
+			session.getDataCache().put(CacheKey.PLAYER_LANGUAGE, clientLanguage);
 
-                if (entityPlayer.riding != 0) {
-                    CachedEntity vehicle = session.getEntityCache().getByLocalEID(entityPlayer.riding);
-                    if (vehicle != null)
-                        pk.ridingRuntimeId = vehicle.eid;
-                }
-                session.sendPacket(pk, true);
-            }
+			ClientSettingsPacket clientSettingsPacket = new ClientSettingsPacket(clientLanguage,
+					(int) session.getDataCache().getOrDefault(CacheKey.PLAYER_REQUESTED_CHUNK_RADIUS, 5),
+					ChatVisibility.FULL, false, new SkinPart[] {}, Hand.OFF_HAND);
+			((PCDownstreamSession) session.getDownstream()).send(clientSettingsPacket);
 
-            // Notify the server
-            BinaryStream bis = new BinaryStream();
-            bis.putString("Notification"); // command
-            ClientPluginMessagePacket pluginMessage = new ClientPluginMessagePacket("DragonProxy", bis.get());
-            session.getDownstream().send(pluginMessage);
+			if (restored.getGameMode().equals(GameMode.CREATIVE))
+				session.sendCreativeInventory();
 
-            session.setSpawned();
+			if (session.getProxy().getAuthMode().equalsIgnoreCase("online")) {
 
-            DragonProxy.getInstance().getLogger().info("Spawning " + session.getUsername() + " in world " + entityPlayer.dimention + " at " + entityPlayer.x + "/" + entityPlayer.y + "/" + entityPlayer.z);
+				MovePlayerPacket pk = new MovePlayerPacket();
+				pk.rtid = entityPlayer.proxyEid;
+				pk.mode = MovePlayerPacket.MODE_TELEPORT;
+				pk.position = new Vector3F((float) packet.getX(),
+						(float) packet.getY() + EntityType.PLAYER.getOffset() + 0.1f, (float) packet.getZ());
+				pk.yaw = packet.getYaw();
+				pk.pitch = packet.getPitch();
+				pk.headYaw = packet.getYaw();
 
-            // send the confirmation
-            ClientTeleportConfirmPacket confirm = new ClientTeleportConfirmPacket(packet.getTeleportId());
-            ((PCDownstreamSession) session.getDownstream()).send(confirm);
+				if (entityPlayer.riding != 0) {
+					CachedEntity vehicle = session.getEntityCache().getByLocalEID(entityPlayer.riding);
+					if (vehicle != null)
+						pk.ridingRuntimeId = vehicle.eid;
+				}
+				session.sendPacket(pk, true);
+			}
 
-            PlayerListPacket playerListPacket = new PlayerListPacket();
-            Set<org.dragonet.protocol.type.PlayerListEntry> peEntries = new HashSet();
+			// Notify the server
+			BinaryStream bis = new BinaryStream();
+			bis.putString("Notification"); // command
+			ClientPluginMessagePacket pluginMessage = new ClientPluginMessagePacket("dragonproxy", bis.get());
+			session.getDownstream().send(pluginMessage);
 
-            for (CachedEntity entity : session.getEntityCache().getEntities().values()) {
-                if (entity.peType == EntityType.PLAYER) {
-                    PlayerListEntry playerListEntry = session.getPlayerInfoCache().get(entity.playerUniqueId);
+			session.setSpawned();
 
-                    org.dragonet.protocol.type.PlayerListEntry peEntry = new org.dragonet.protocol.type.PlayerListEntry();
-                    peEntry.uuid = entity.playerUniqueId;
-                    peEntry.eid = entity.eid;
-                    peEntry.username = playerListEntry.getProfile().getName();
-                    peEntry.skin = Skin.DEFAULT_SKIN_STEVE;
-                    peEntry.xboxUserId = "null";
-                    peEntries.add(peEntry);
-                }
-                entity.spawn(session);
-            }
+			DragonProxy.getInstance().getLogger().info("Spawning " + session.getUsername() + " in world "
+					+ entityPlayer.dimention + " at " + entityPlayer.x + "/" + entityPlayer.y + "/" + entityPlayer.z);
 
-            playerListPacket.type = PlayerListPacket.TYPE_ADD;
-            playerListPacket.entries = peEntries.toArray(new org.dragonet.protocol.type.PlayerListEntry[peEntries.size()]);
-            session.sendPacket(playerListPacket);
-            entityPlayer.spawned = true;
-            return null;
-        }
+			// send the confirmation
+			ClientTeleportConfirmPacket confirm = new ClientTeleportConfirmPacket(packet.getTeleportId());
+			((PCDownstreamSession) session.getDownstream()).send(confirm);
+			session.getChunkCache().sendOrderedChunks();
+			return null;
+		}
 
-        entityPlayer.absoluteMove(packet.getX(), packet.getY() + entityPlayer.peType.getOffset() + 0.1f, packet.getZ(), packet.getYaw(), packet.getPitch());
-        session.getChunkCache().sendOrderedChunks();
+		entityPlayer.absoluteMove(packet.getX(), packet.getY() + entityPlayer.peType.getOffset() + 0.1f, packet.getZ(),
+				packet.getYaw(), packet.getPitch());
+		session.getChunkCache().sendOrderedChunks();
 
-        float offset = 0.01f;
-        byte mode = MovePlayerPacket.MODE_NORMAL;
-        ChunkPos chunk = new ChunkPos(NukkitMath.ceilDouble(packet.getX()) >> 4, NukkitMath.ceilDouble(packet.getZ()) >> 4);
-        // check if destination is out of range
-        boolean contains = session.getChunkCache().getLoadedChunks().contains(chunk);
-        if (!contains) {
-            mode = MovePlayerPacket.MODE_TELEPORT;
-            offset = 0.2f;
-//            System.out.println(packet.getX() + " " + packet.getZ());
-//            System.out.println("out of range !" + chunk.toString());
-            session.getChunkCache().sendOrderedChunks();
-//            session.getChunkCache().getDebugGrid();
-        }
+		float offset = 0.01f;
+		byte mode = MovePlayerPacket.MODE_NORMAL;
+		ChunkPos chunk = new ChunkPos(NukkitMath.ceilDouble(packet.getX()) >> 4,
+				NukkitMath.ceilDouble(packet.getZ()) >> 4);
+		// check if destination is out of range
+		boolean contains = session.getChunkCache().getLoadedChunks().contains(chunk);
+		if (!contains) {
+			mode = MovePlayerPacket.MODE_TELEPORT;
+			offset = 0.2f;
+			session.getChunkCache().sendOrderedChunks();
+		}
 
-        MovePlayerPacket pk = new MovePlayerPacket();
-        pk.rtid = entityPlayer.proxyEid;
-        pk.mode = mode;
-        pk.position = new Vector3F((float) packet.getX(), (float) packet.getY() + EntityType.PLAYER.getOffset() + offset, (float) packet.getZ());
-        pk.yaw = packet.getYaw();
-        pk.pitch = packet.getPitch();
-        pk.headYaw = packet.getYaw();
+		MovePlayerPacket pk = new MovePlayerPacket();
+		pk.rtid = entityPlayer.proxyEid;
+		pk.mode = mode;
+		pk.position = new Vector3F((float) packet.getX(),
+				(float) packet.getY() + EntityType.PLAYER.getOffset() + offset, (float) packet.getZ());
+		pk.yaw = packet.getYaw();
+		pk.pitch = packet.getPitch();
+		pk.headYaw = packet.getYaw();
 
-        if (entityPlayer.riding != 0) {
-            CachedEntity vehicle = session.getEntityCache().getByLocalEID(entityPlayer.riding);
-            if (vehicle != null)
-                pk.ridingRuntimeId = vehicle.eid;
-        }
-        
-//        System.out.println("From server " + packet.getX() + " " + packet.getY() + " " + packet.getZ() + " ");
-//        System.out.println("Entity position " + entityPlayer.x + " " + (entityPlayer.y - EntityType.PLAYER.getOffset()) + " " + entityPlayer.z + " ");
-        session.sendPacket(pk);
-        
-        if(!contains) { // Send empty chunk??
-            session.getChunkCache().sendEmptyChunk(chunk.chunkXPos, chunk.chunkZPos);
-        }
+		if (entityPlayer.riding != 0) {
+			CachedEntity vehicle = session.getEntityCache().getByLocalEID(entityPlayer.riding);
+			if (vehicle != null)
+				pk.ridingRuntimeId = vehicle.eid;
+		}
+		
+		session.sendPacket(pk);
 
-        // send the confirmation
-        ClientTeleportConfirmPacket confirm = new ClientTeleportConfirmPacket(packet.getTeleportId());
-        ((PCDownstreamSession) session.getDownstream()).send(confirm);
-        
-        if(!contains) {
-            session.getChunkCache().sendOrderedChunks();
-        }
+		if (!contains) { // Send empty chunk??
+			session.getChunkCache().sendEmptyChunk(chunk.chunkXPos, chunk.chunkZPos);
+		}
 
-        return null;
-    }
+		// send the confirmation
+		ClientTeleportConfirmPacket confirm = new ClientTeleportConfirmPacket(packet.getTeleportId());
+		((PCDownstreamSession) session.getDownstream()).send(confirm);
+
+		if (!contains) {
+			session.getChunkCache().sendOrderedChunks();
+		}
+
+		return null;
+	}
 }

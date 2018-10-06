@@ -7,6 +7,7 @@ import java.util.Map;
 import org.dragonet.common.data.inventory.Slot;
 import org.dragonet.common.data.itemsblocks.ItemEntry;
 import org.dragonet.common.data.nbt.tag.ListTag;
+import org.dragonet.proxy.DragonProxy;
 import org.dragonet.proxy.network.translator.BlockTranslator.FlowerPot;
 import org.dragonet.proxy.network.translator.flattening.FlattedItem;
 import org.dragonet.proxy.network.translator.flattening.FlatteningItemData;
@@ -24,7 +25,6 @@ public class ItemTranslator {
 	static {
 
 		override("air", 0);
-
 		override("stone", 1);
 		override("granite", 1, 1);
 		override("polished_granite", 1, 2);
@@ -32,109 +32,80 @@ public class ItemTranslator {
 		override("polished_diorite", 1, 4);
 		override("andesite", 1, 5);
 		override("polished_andesite", 1, 6);
-
 		override("grass_block", 2);
-
 		override("dirt", 3);
 		override("coarse_dirt", 3, 1);
-
 		override("podzol", 243);
-
 		override("cobblestone", 4);
-
 		override("oak_planks", 5);
 		override("spruce_planks", 5, 1);
 		override("birch_planks", 5, 2);
 		override("jungle_planks", 5, 3);
 		override("acacia_planks", 5, 4);
 		override("dark_oak_planks", 5, 5);
-
 		override("oak_sapling", 6);
 		override("spruce_sapling", 6, 1);
 		override("birch_sapling", 6, 2);
 		override("jungle_sapling", 6, 3);
 		override("acacia_sapling", 6, 4);
 		override("dark_oak_sapling", 6, 5);
-
 		override("bedrock", 7);
-
 		override("sand", 12);
 		override("red_sand", 12, 1);
-
 		override("gravel", 13);
-
 		override("gold_ore", 14);
 		override("iron_ore", 15);
 		override("coal_ore", 16);
-
 		override("oak_log", 17);
 		override("spruce_log", 17, 1);
 		override("birch_log", 17, 2);
 		override("jungle_log", 17, 3);
 		override("acacia_log", 162);
 		override("dark_oak_log", 162, 1);
-
 		override("stripped_oak_log", 255 - 265);
 		override("stripped_spruce_log", 255 - 260);
 		override("stripped_birch_log", 255 - 261);
 		override("stripped_jungle_log", 255 - 262);
 		override("stripped_acacia_log", 255 - 263);
 		override("stripped_dark_oak_log", 255 - 264);
-
-		override("stripped_oak_wood", 255 - 265);
-		override("stripped_spruce_wood", 255 - 260);
-		override("stripped_birch_wood", 255 - 261);
-		override("stripped_jungle_wood", 255 - 262);
-		override("stripped_acacia_wood", 255 - 263);
-		override("stripped_dark_oak_wood", 255 - 264); // TODO
-
-		override("oak_wood", 17);
-		override("spruce_wood", 17, 1);
-		override("birch_wood", 17, 2);
-		override("jungle_wood", 17, 3);
-		override("acacia_wood", 162);
-		override("dark_oak_wood", 162, 1); // TODO
-
+		override("stripped_oak_wood", 255 - 265, 3);
+		override("stripped_spruce_wood", 255 - 260, 3);
+		override("stripped_birch_wood", 255 - 261, 3);
+		override("stripped_jungle_wood", 255 - 262, 3);
+		override("stripped_acacia_wood", 255 - 263, 3);
+		override("stripped_dark_oak_wood", 255 - 264, 3);
+		override("oak_wood", 17, 0 | 0x0c);
+		override("spruce_wood", 17, 1 | 0x0c);
+		override("birch_wood", 17, 2 | 0x0c);
+		override("jungle_wood", 17, 3 | 0x0c);
+		override("acacia_wood", 162, 0 | 0x0c);
+		override("dark_oak_wood", 162, 1 | 0x0c);
 		override("oak_leaves", 18);
 		override("spruce_leaves", 18, 1);
 		override("birch_leaves", 18, 2);
 		override("jungle_leaves", 18, 3);
 		override("acacia_leaves", 161);
 		override("dark_oak_leaves", 161, 1);
-
 		override("sponge", 19);
 		override("wet_sponge", 19, 1);
-
 		override("glass", 20);
-
 		override("lapis_ore", 21);
 		override("lapis_block", 22);
-
 		override("dispenser", 23);
-
 		override("sandstone", 24);
 		override("chiseled_sandstone", 24, 1);
 		override("cut_sandstone", 24, 2);
-
 		override("note_block", 25);
-
 		override("powered_rail", 27);
 		override("detector_rail", 28);
-
 		override("sticky_piston", 29);
-
 		override("cobweb", 30);
-
 		override("grass", 31);
 		override("fern", 31, 1);
 		override("dead_bush", 32);
-
 		override("seagrass", 255 - 385);
-
 		override("sea_pickle", 411);
-
 		override("piston", 33);
-
 		override("white_wool", 35);
 		override("orange_wool", 35, 1);
 		override("magenta_wool", 35, 2);
@@ -151,7 +122,6 @@ public class ItemTranslator {
 		override("green_wool", 35, 13);
 		override("red_wool", 35, 14);
 		override("black_wool", 35, 15);
-
 		override("dandelion", 37);
 		override("poppy", 38);
 		override("blue_orchid", 38, 1);
@@ -162,13 +132,10 @@ public class ItemTranslator {
 		override("white_tulip", 38, 6);
 		override("pink_tulip", 38, 7);
 		override("oxeye_daisy", 38, 8);
-
 		override("brown_mushroom", 39);
 		override("red_mushroom", 40);
-
 		override("gold_block", 41);
 		override("iron_block", 42);
-
 		override("oak_slab", 158);
 		override("spruce_slab", 158, 1);
 		override("birch_slab", 158, 2);
@@ -188,35 +155,24 @@ public class ItemTranslator {
 		override("prismarine_slab", 182, 2);
 		override("prismarine_brick_slab", 182, 3);
 		override("dark_prismarine_slab", 182, 4);
-
 		override("smooth_quartz", 155); // ?
 		override("smooth_red_sandstone", 179); // ?
 		override("smooth_sandstone", 24); // ?
 		override("smooth_stone", 1); // ?
-
 		override("bricks", 45);
-
 		override("tnt", 46);
-
 		override("bookshelf", 47);
-
 		override("mossy_cobblestone", 48);
-
 		override("obsidian", 49);
-
 		override("torch", 50);
-
 		override("end_rod", 208);
 		override("chorus_plant", 240);
 		override("chorus_flower", 200);
 		override("purpur_block", 201);
 		override("purpur_pillar", 201, 1);
 		override("purpur_stairs", 203);
-
 		override("spawner", 52);
-
 		override("oak_stairs", 53);
-
 		override("chest", 54);
 		override("diamond_ore", 56);
 		override("diamond_block", 57);
@@ -236,7 +192,6 @@ public class ItemTranslator {
 		override("dark_oak_pressure_plate", 255 - 407);
 		override("redstone_ore", 73);
 		override("redstone_torch", 76);
-
 		override("stone_button", 77);
 		override("snow", 78);
 		override("ice", 79);
@@ -860,6 +815,10 @@ public class ItemTranslator {
 		override("phantom_membrane", 470);
 		override("nautilus_shell", 465);
 		override("heart_of_the_sea", 467);
+		
+
+		DragonProxy.getInstance().getLogger()
+				.info("Successfully registered item translates (" + PC_TO_PE_OVERRIDE.size() + ")");
 	}
 
 	private static void override(String pcName, int id) {
@@ -867,8 +826,13 @@ public class ItemTranslator {
 	}
 
 	private static void override(String pcName, int id, int peData) {
-		FlattedItem item = FlatteningItemData.fromName("minecraft:" + pcName);
-		override(item, new ItemEntry(id, peData));
+		try {
+			FlattedItem item = FlatteningItemData.fromName("minecraft:" + pcName);
+			override(item, new ItemEntry(id, peData));
+		} catch (Exception e) {
+			DragonProxy.getInstance().getLogger().severe("Overriding " + pcName + " failed: " + e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	private static void override(FlattedItem item, ItemEntry entry) {

@@ -28,6 +28,8 @@ import java.util.UUID;
 public class DPAddonBukkit extends JavaPlugin implements Listener {
 
     private static DPAddonBukkit instance;
+    
+    public static final String CHANNEL_NAME = "dragonproxy";
 
     public static DPAddonBukkit getInstance() {
         return instance;
@@ -49,8 +51,8 @@ public class DPAddonBukkit extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(this, this);
         getLogger().info("Registering channels... ");
         pluginMessageListener = new DPPluginMessageListener(this);
-        getServer().getMessenger().registerIncomingPluginChannel(this, "DragonProxy", pluginMessageListener);
-        getServer().getMessenger().registerOutgoingPluginChannel(this, "DragonProxy");
+        getServer().getMessenger().registerIncomingPluginChannel(this, CHANNEL_NAME, pluginMessageListener);
+        getServer().getMessenger().registerOutgoingPluginChannel(this, CHANNEL_NAME);
         this.getCommand("form").setExecutor(new DragonProxyFormCommand(this));
         
         if (isPluginLoaded("LuckPerms")) {
@@ -68,7 +70,7 @@ public class DPAddonBukkit extends JavaPlugin implements Listener {
         BinaryStream bis = new BinaryStream();
         bis.putString("PacketForward");
         bis.putBoolean(true);
-        player.sendPluginMessage(this, "DragonProxy", bis.getBuffer());
+        player.sendPluginMessage(this, CHANNEL_NAME, bis.getBuffer());
     }
 
     @EventHandler

@@ -183,7 +183,7 @@ public class PEPacketProcessor {
                 BinaryStream bis = new BinaryStream();
                 bis.putString("PacketForward");
                 bis.putByteArray(packet.getBuffer());
-                ClientPluginMessagePacket msg = new ClientPluginMessagePacket("DragonProxy", bis.getBuffer());
+                ClientPluginMessagePacket msg = new ClientPluginMessagePacket("dragonproxy", bis.getBuffer());
                 client.getDownstream().send(msg);
             } else
                 // IMPORTANT Do not send packet until client is connected !

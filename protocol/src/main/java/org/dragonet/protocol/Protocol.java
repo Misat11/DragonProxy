@@ -99,6 +99,8 @@ public final class Protocol {
         packets.put(SET_LOCAL_PLAYER_AS_INITIALIZED_PACKET, SetLocalPlayerAsInitializedPacket.class);
 
         packets.put(BATCH_PACKET, BatchPacket.class);
+        
+        packets.put(SET_COMMANDS_ENABLED_PACKET, SetCommandsEnabledPacket.class);
     }
 
     public static PEPacket[] decode(byte[] data) throws Exception {

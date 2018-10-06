@@ -51,6 +51,8 @@ public final class EntityMetaTranslator {
                 try {
                     if (m == null)
                         continue;
+                    if (m.getValue() == null)
+                    	continue;
 
                     switch (m.getId()) {
                         case 0:// Flags
@@ -263,7 +265,7 @@ public final class EntityMetaTranslator {
                                 case CREEPER: //VarInt	State (-1 = idle, 1 = fuse)
                                 case EVOCATION_ILLAGER: //Byte	Spell (0: none, 1: summon vex, 2: attack, 3: wololo)
                                 case VEX: //Byte : 0x01 = Is in attack mode
-                                case VINDICATOR: //Byte : 0x01 = Has target (aggressive state)
+                                case VINDICATION_ILLAGER: //Byte : 0x01 = Has target (aggressive state)
                                 case SKELETON: //Boolean : Is swinging arms
                                     break;
                                 case SPIDER: //Byte : 0x01 = Is climbing

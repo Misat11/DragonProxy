@@ -34,8 +34,11 @@ import org.dragonet.proxy.configuration.ServerConfig;
 import org.dragonet.proxy.events.EventManager;
 import org.dragonet.proxy.network.RaknetInterface;
 import org.dragonet.proxy.network.SessionRegister;
+import org.dragonet.proxy.network.translator.BlockTranslator;
+import org.dragonet.proxy.network.translator.ItemTranslator;
 import org.dragonet.proxy.network.translator.SoundTranslator;
 import org.dragonet.proxy.network.translator.flattening.FlatteningBlockData;
+import org.dragonet.proxy.network.translator.flattening.FlatteningItemData;
 import org.dragonet.proxy.utilities.MetricsManager;
 import org.dragonet.proxy.utilities.PluginManager;
 import org.dragonet.proxy.utilities.ProxyLogger;
@@ -250,7 +253,10 @@ public class DragonProxy {
         skinFetcher = new SkinFetcher();
 
         GlobalBlockPalette.getOrCreateRuntimeId(0, 0); // Force it to load
-        FlatteningBlockData.fromStateID(0);
+        FlatteningBlockData.fromStateID(0);// Force it to load
+        FlatteningItemData.fromID(1);// Force it to load
+        BlockTranslator.translateToPE(1);// Force it to load
+        ItemTranslator.translateToPE(1);// Force it to load
 
         // Init block handling
         Block.init();

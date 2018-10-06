@@ -37,6 +37,7 @@ import java.util.concurrent.TimeUnit;
 public class DPAddonBungee extends Plugin implements Listener {
 
     private static DPAddonBungee instance;
+    public static final String CHANNEL_NAME = "dragonproxy";
     private Config config;
 //    private List<InetAddress> whitelist = new ArrayList();
 
@@ -124,7 +125,7 @@ public class DPAddonBungee extends Plugin implements Listener {
         getProxy().getScheduler().schedule(this, () -> {
             BinaryStream bis = new BinaryStream();
             bis.putString("Notification");
-            event.getPlayer().sendData("DragonProxy", bis.getBuffer());
+            event.getPlayer().sendData(CHANNEL_NAME, bis.getBuffer());
         }, 2000L, TimeUnit.MILLISECONDS);
     }
 
@@ -136,7 +137,7 @@ public class DPAddonBungee extends Plugin implements Listener {
         BinaryStream bis = new BinaryStream();
         bis.putString("PacketFoward");
         bis.putBoolean(false);
-        event.getPlayer().sendData("DragonProxy", bis.getBuffer());
+        event.getPlayer().sendData(CHANNEL_NAME, bis.getBuffer());
     }
 
     @EventHandler

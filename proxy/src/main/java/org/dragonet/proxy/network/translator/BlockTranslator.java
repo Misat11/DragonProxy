@@ -26,6 +26,7 @@ import java.util.List;
 
 import org.dragonet.common.data.itemsblocks.ItemEntry;
 import org.dragonet.common.data.nbt.tag.ListTag;
+import org.dragonet.proxy.DragonProxy;
 import org.dragonet.proxy.network.translator.BlockTranslator.FlowerPot;
 import org.dragonet.proxy.network.translator.flattening.FlattedBlockState;
 import org.dragonet.proxy.network.translator.flattening.FlatteningBlockData;
@@ -226,7 +227,7 @@ public class BlockTranslator {
 		override("sticky_piston", properties("facing", "down", "extended", "true"), 0 | 0x08);
 
 		override("cobweb", "web");
-		override("tallgrass", "grass");
+		override("tall_grass", "grass");
 		override("fern", "grass", 1);
 
 		override("dead_bush", "deadbush");
@@ -445,14 +446,14 @@ public class BlockTranslator {
 				x -> 1 + 4 * (x - 1));
 		overrideAgeable("repeater", properties("powered", "true", "facing", "west"), "delay", 1, 4, "powered_repeater",
 				x -> 3 + 4 * (x - 1));
-		overrideAgeable("repeater", properties("powered", "false", "facing", "north"), "delay", 1, 4, "unpowered_repeater",
-				x -> 4 * (x - 1));
-		overrideAgeable("repeater", properties("powered", "false", "facing", "south"), "delay", 1, 4, "unpowered_repeater",
-				x -> 2 + 4 * (x - 1));
-		overrideAgeable("repeater", properties("powered", "false", "facing", "east"), "delay", 1, 4, "unpowered_repeater",
-				x -> 1 + 4 * (x - 1));
-		overrideAgeable("repeater", properties("powered", "false", "facing", "west"), "delay", 1, 4, "unpowered_repeater",
-				x -> 3 + 4 * (x - 1));
+		overrideAgeable("repeater", properties("powered", "false", "facing", "north"), "delay", 1, 4,
+				"unpowered_repeater", x -> 4 * (x - 1));
+		overrideAgeable("repeater", properties("powered", "false", "facing", "south"), "delay", 1, 4,
+				"unpowered_repeater", x -> 2 + 4 * (x - 1));
+		overrideAgeable("repeater", properties("powered", "false", "facing", "east"), "delay", 1, 4,
+				"unpowered_repeater", x -> 1 + 4 * (x - 1));
+		overrideAgeable("repeater", properties("powered", "false", "facing", "west"), "delay", 1, 4,
+				"unpowered_repeater", x -> 3 + 4 * (x - 1));
 
 		override("white_stained_glass", "stained_glass");
 		override("orange_stained_glass", "stained_glass", 1);
@@ -658,11 +659,11 @@ public class BlockTranslator {
 		override("skeleton_wall_skull", properties("facing", "west"), "skull", 5);
 		override("skeleton_skull", "skull", 1);
 
-		override("witcher_skeleton_wall_skull", properties("facing", "north"), "skull", 2);
-		override("witcher_skeleton_wall_skull", properties("facing", "south"), "skull", 3);
-		override("witcher_skeleton_wall_skull", properties("facing", "east"), "skull", 4);
-		override("witcher_skeleton_wall_skull", properties("facing", "west"), "skull", 5);
-		override("witcher_skeleton_skull", "skull", 1);
+		override("wither_skeleton_wall_skull", properties("facing", "north"), "skull", 2);
+		override("wither_skeleton_wall_skull", properties("facing", "south"), "skull", 3);
+		override("wither_skeleton_wall_skull", properties("facing", "east"), "skull", 4);
+		override("wither_skeleton_wall_skull", properties("facing", "west"), "skull", 5);
+		override("wither_skeleton_skull", "skull", 1);
 
 		override("zombie_wall_head", properties("facing", "north"), "skull", 2);
 		override("zombie_wall_head", properties("facing", "south"), "skull", 3);
@@ -1010,7 +1011,7 @@ public class BlockTranslator {
 
 		override("smooth_stone", "stone"); // ?
 		override("smooth_sandstone", "sandstone"); // ?
-		override("smooth_quart", "quartz_block"); // ?
+		override("smooth_quartz", "quartz_block"); // ?
 		override("smooth_red_sandstone", "red_sandstone"); // ?
 
 		overrideFenceGate("spruce_fence_gate");
@@ -1086,7 +1087,7 @@ public class BlockTranslator {
 		override("bone_block", properties("axis", "y"), 0);
 		override("bone_block", properties("axis", "z"), 8); // ?
 
-		override(FlatteningBlockData.fromNameDefault("structure_void"), new ItemEntry(217)); // ?
+		override("structure_void", "air"); // ?
 
 		override("observer", properties("facing", "north"), 2);
 		override("observer", properties("facing", "south"), 3);
@@ -1329,6 +1330,9 @@ public class BlockTranslator {
 		override("structure_block", properties("mode", "load"), 3);
 		override("structure_block", properties("mode", "corner"), 4);
 		override("structure_block", properties("mode", "data"), 1);
+
+		DragonProxy.getInstance().getLogger()
+				.info("Successfully registered block translates (" + PC_TO_PE_OVERRIDE.size() + ")");
 	}
 
 	public static ItemEntry translateToPE(int stateID) {
@@ -1360,9 +1364,14 @@ public class BlockTranslator {
 	}
 
 	private static void override(String pcName, String peName, int peData) {
-		FlattedBlockState blockState = FlatteningBlockData.fromNameDefault("minecraft:" + pcName);
-		int peId = GlobalBlockPalette.getIDFromName("minecraft:" + peName);
-		override(blockState, new ItemEntry(peId, peData));
+		try {
+			FlattedBlockState blockState = FlatteningBlockData.fromNameDefault("minecraft:" + pcName);
+			int peId = GlobalBlockPalette.getIDFromName("minecraft:" + peName);
+			override(blockState, new ItemEntry(peId, peData));
+		} catch (Exception e) {
+			DragonProxy.getInstance().getLogger().severe("Overriding " + pcName + " failed: " + e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	private static void override(String pcName, Map<String, String> properties, String peName) {
@@ -1370,10 +1379,16 @@ public class BlockTranslator {
 	}
 
 	private static void override(String pcName, Map<String, String> properties, String peName, int peData) {
-		List<FlattedBlockState> blockStates = FlatteningBlockData.fromNameProperties("minecraft:" + pcName, properties);
-		int peId = GlobalBlockPalette.getIDFromName("minecraft:" + peName);
-		for (FlattedBlockState blockState : blockStates) {
-			override(blockState, new ItemEntry(peId, peData));
+		try {
+			List<FlattedBlockState> blockStates = FlatteningBlockData.fromNameProperties("minecraft:" + pcName,
+					properties);
+			int peId = GlobalBlockPalette.getIDFromName("minecraft:" + peName);
+			for (FlattedBlockState blockState : blockStates) {
+				override(blockState, new ItemEntry(peId, peData));
+			}
+		} catch (Exception e) {
+			DragonProxy.getInstance().getLogger().severe("Overriding " + pcName + " failed: " + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
