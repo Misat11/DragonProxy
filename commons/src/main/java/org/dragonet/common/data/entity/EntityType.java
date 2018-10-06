@@ -41,7 +41,7 @@ public enum EntityType {
     POLAR_BEAR(28, 0),
     LLAMA(29, 0),
     PARROT(30, 0),
-    //UNKNOWN(31, 0),
+    DOLPHIN(31, 0),
     ZOMBIE(32, 0),
     GIANT_ZOMBIE(32, 0),
     CREEPER(33, 0),
@@ -68,8 +68,8 @@ public enum EntityType {
     SHULKER(54, 0),
     ENDERMITE(55, 0),
     LEARN_TO_CODE_MASCOTE(56, 0),
-    VINDICATOR(57, 0),
-    //UNKNOWN(58, 0),
+    VINDICATION_ILLAGER(57, 0),
+    PHANTOM(58, 0),
     //UNKNOWN(59, 0),
     //UNKNOWN(60, 0),
     ARMOR_STAND(61, 0),
@@ -84,8 +84,8 @@ public enum EntityType {
     ENDER_EYE(70, 0),
     ENDER_CRYSTAL(71, 0),
     FIREWORKS_ROCKET(72, 0),
-    //UNKNOWN(73, 0),
-    //UNKNOWN(74, 0),
+    TRIDENT(73, 0),
+    TURTLE(74, 0),
     //UNKNOWN(75, 0),
     SHULKER_BULLET(76, 0),
     FISHING_HOOK(77, 0),
@@ -115,7 +115,15 @@ public enum EntityType {
     LLAMA_SPIT(102, 0),
     EVOCATION_FANG(103, 0),
     EVOCATION_ILLAGER(104, 0),
-    VEX(105, 0);
+    ILLUSION_ILLAGER(104, 0),
+    VEX(105, 0),
+    ICE_BOMB(106, 0),
+    BALLOON(107, 0),
+    PUFFERFISH(108, 0.7f),
+    SALMON(109, 0.5f),
+    DROWNED(110, 0),
+    TROPICAL_FISH(111, 0.6f),
+    COD(112, 0.25f);
 
     private static final Map<Integer, EntityType> PC_TO_PE = new HashMap<>();
     private final int peType;

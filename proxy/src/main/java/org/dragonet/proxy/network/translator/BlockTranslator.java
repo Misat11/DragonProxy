@@ -437,8 +437,22 @@ public class BlockTranslator {
 
 		overrideAgeable("cake", "bites", 6);
 
-		override("repeater", properties("powered", "true"), "powered_repeater"); // ?
-		override("repeater", properties("powered", "false"), "unpowered_repeater"); // ?
+		overrideAgeable("repeater", properties("powered", "true", "facing", "north"), "delay", 1, 4, "powered_repeater",
+				x -> 4 * (x - 1));
+		overrideAgeable("repeater", properties("powered", "true", "facing", "south"), "delay", 1, 4, "powered_repeater",
+				x -> 2 + 4 * (x - 1));
+		overrideAgeable("repeater", properties("powered", "true", "facing", "east"), "delay", 1, 4, "powered_repeater",
+				x -> 1 + 4 * (x - 1));
+		overrideAgeable("repeater", properties("powered", "true", "facing", "west"), "delay", 1, 4, "powered_repeater",
+				x -> 3 + 4 * (x - 1));
+		overrideAgeable("repeater", properties("powered", "false", "facing", "north"), "delay", 1, 4, "unpowered_repeater",
+				x -> 4 * (x - 1));
+		overrideAgeable("repeater", properties("powered", "false", "facing", "south"), "delay", 1, 4, "unpowered_repeater",
+				x -> 2 + 4 * (x - 1));
+		overrideAgeable("repeater", properties("powered", "false", "facing", "east"), "delay", 1, 4, "unpowered_repeater",
+				x -> 1 + 4 * (x - 1));
+		overrideAgeable("repeater", properties("powered", "false", "facing", "west"), "delay", 1, 4, "unpowered_repeater",
+				x -> 3 + 4 * (x - 1));
 
 		override("white_stained_glass", "stained_glass");
 		override("orange_stained_glass", "stained_glass", 1);
@@ -631,136 +645,154 @@ public class BlockTranslator {
 		overrideAgeable("carrots", "age", 7);
 		overrideAgeable("potatoes", "age", 7);
 
-		override("oak_button", properties("face", "floor", "powered", "false"), "wooden_button", 0);
-		override("oak_button", properties("face", "ceiling", "powered", "false"), "wooden_button", 5);
-		override("oak_button", properties("face", "wall", "facing", "north", "powered", "false"), "wooden_button", 4);
-		override("oak_button", properties("face", "wall", "facing", "west", "powered", "false"), "wooden_button", 2);
-		override("oak_button", properties("face", "wall", "facing", "south", "powered", "false"), "wooden_button", 3);
-		override("oak_button", properties("face", "wall", "facing", "east", "powered", "false"), "wooden_button", 1);
-		override("oak_button", properties("face", "floor", "powered", "true"), "wooden_button", 0 | 0x08);
-		override("oak_button", properties("face", "ceiling", "powered", "true"), "wooden_button", 5 | 0x08);
-		override("oak_button", properties("face", "wall", "facing", "north", "powered", "true"), "wooden_button", 4 | 0x08);
-		override("oak_button", properties("face", "wall", "facing", "west", "powered", "true"), "wooden_button", 2 | 0x08);
-		override("oak_button", properties("face", "wall", "facing", "south", "powered", "true"), "wooden_button", 3 | 0x08);
-		override("oak_button", properties("face", "wall", "facing", "east", "powered", "true"), "wooden_button", 1 | 0x08);
+		overrideButton("oak_button");
+		overrideButton("spruce_button");
+		overrideButton("birch_button");
+		overrideButton("jungle_button");
+		overrideButton("acacia_button");
+		overrideButton("dark_oak_button");
 
-		override("spruce_button", properties("face", "floor", "powered", "false"), 0);
-		override("spruce_button", properties("face", "ceiling", "powered", "false"), 5);
-		override("spruce_button", properties("face", "wall", "facing", "north", "powered", "false"), 4);
-		override("spruce_button", properties("face", "wall", "facing", "west", "powered", "false"), 2);
-		override("spruce_button", properties("face", "wall", "facing", "south", "powered", "false"), 3);
-		override("spruce_button", properties("face", "wall", "facing", "east", "powered", "false"), 1);
-		override("spruce_button", properties("face", "floor", "powered", "true"), 0 | 0x08);
-		override("spruce_button", properties("face", "ceiling", "powered", "true"), 5 | 0x08);
-		override("spruce_button", properties("face", "wall", "facing", "north", "powered", "true"), 4 | 0x08);
-		override("spruce_button", properties("face", "wall", "facing", "west", "powered", "true"), 2 | 0x08);
-		override("spruce_button", properties("face", "wall", "facing", "south", "powered", "true"), 3 | 0x08);
-		override("spruce_button", properties("face", "wall", "facing", "east", "powered", "true"), 1 | 0x08);
+		override("skeleton_wall_skull", properties("facing", "north"), "skull", 2);
+		override("skeleton_wall_skull", properties("facing", "south"), "skull", 3);
+		override("skeleton_wall_skull", properties("facing", "east"), "skull", 4);
+		override("skeleton_wall_skull", properties("facing", "west"), "skull", 5);
+		override("skeleton_skull", "skull", 1);
 
-		override("birch_button", properties("face", "floor", "powered", "false"), 0);
-		override("birch_button", properties("face", "ceiling", "powered", "false"), 5);
-		override("birch_button", properties("face", "wall", "facing", "north", "powered", "false"), 4);
-		override("birch_button", properties("face", "wall", "facing", "west", "powered", "false"), 2);
-		override("birch_button", properties("face", "wall", "facing", "south", "powered", "false"), 3);
-		override("birch_button", properties("face", "wall", "facing", "east", "powered", "false"), 1);
-		override("birch_button", properties("face", "floor", "powered", "true"), 0 | 0x08);
-		override("birch_button", properties("face", "ceiling", "powered", "true"), 5 | 0x08);
-		override("birch_button", properties("face", "wall", "facing", "north", "powered", "true"), 4 | 0x08);
-		override("birch_button", properties("face", "wall", "facing", "west", "powered", "true"), 2 | 0x08);
-		override("birch_button", properties("face", "wall", "facing", "south", "powered", "true"), 3 | 0x08);
-		override("birch_button", properties("face", "wall", "facing", "east", "powered", "true"), 1 | 0x08);
+		override("witcher_skeleton_wall_skull", properties("facing", "north"), "skull", 2);
+		override("witcher_skeleton_wall_skull", properties("facing", "south"), "skull", 3);
+		override("witcher_skeleton_wall_skull", properties("facing", "east"), "skull", 4);
+		override("witcher_skeleton_wall_skull", properties("facing", "west"), "skull", 5);
+		override("witcher_skeleton_skull", "skull", 1);
 
-		override("jungle_button", properties("face", "floor", "powered", "false"), 0);
-		override("jungle_button", properties("face", "ceiling", "powered", "false"), 5);
-		override("jungle_button", properties("face", "wall", "facing", "north", "powered", "false"), 4);
-		override("jungle_button", properties("face", "wall", "facing", "west", "powered", "false"), 2);
-		override("jungle_button", properties("face", "wall", "facing", "south", "powered", "false"), 3);
-		override("jungle_button", properties("face", "wall", "facing", "east", "powered", "false"), 1);
-		override("jungle_button", properties("face", "floor", "powered", "true"), 0 | 0x08);
-		override("jungle_button", properties("face", "ceiling", "powered", "true"), 5 | 0x08);
-		override("jungle_button", properties("face", "wall", "facing", "north", "powered", "true"), 4 | 0x08);
-		override("jungle_button", properties("face", "wall", "facing", "west", "powered", "true"), 2 | 0x08);
-		override("jungle_button", properties("face", "wall", "facing", "south", "powered", "true"), 3 | 0x08);
-		override("jungle_button", properties("face", "wall", "facing", "east", "powered", "true"), 1 | 0x08);
+		override("zombie_wall_head", properties("facing", "north"), "skull", 2);
+		override("zombie_wall_head", properties("facing", "south"), "skull", 3);
+		override("zombie_wall_head", properties("facing", "east"), "skull", 4);
+		override("zombie_wall_head", properties("facing", "west"), "skull", 5);
+		override("zombie_head", "skull", 1);
 
-		override("acacia_button", properties("face", "floor", "powered", "false"), 0);
-		override("acacia_button", properties("face", "ceiling", "powered", "false"), 5);
-		override("acacia_button", properties("face", "wall", "facing", "north", "powered", "false"), 4);
-		override("acacia_button", properties("face", "wall", "facing", "west", "powered", "false"), 2);
-		override("acacia_button", properties("face", "wall", "facing", "south", "powered", "false"), 3);
-		override("acacia_button", properties("face", "wall", "facing", "east", "powered", "false"), 1);
-		override("acacia_button", properties("face", "floor", "powered", "true"), 0 | 0x08);
-		override("acacia_button", properties("face", "ceiling", "powered", "true"), 5 | 0x08);
-		override("acacia_button", properties("face", "wall", "facing", "north", "powered", "true"), 4 | 0x08);
-		override("acacia_button", properties("face", "wall", "facing", "west", "powered", "true"), 2 | 0x08);
-		override("acacia_button", properties("face", "wall", "facing", "south", "powered", "true"), 3 | 0x08);
-		override("acacia_button", properties("face", "wall", "facing", "east", "powered", "true"), 1 | 0x08);
-		
-		override("dark_oak_button", properties("face", "floor", "powered", "false"), 0);
-		override("dark_oak_button", properties("face", "ceiling", "powered", "false"), 5);
-		override("dark_oak_button", properties("face", "wall", "facing", "north", "powered", "false"), 4);
-		override("dark_oak_button", properties("face", "wall", "facing", "west", "powered", "false"), 2);
-		override("dark_oak_button", properties("face", "wall", "facing", "south", "powered", "false"), 3);
-		override("dark_oak_button", properties("face", "wall", "facing", "east", "powered", "false"), 1);
-		override("dark_oak_button", properties("face", "floor", "powered", "true"), 0 | 0x08);
-		override("dark_oak_button", properties("face", "ceiling", "powered", "true"), 5 | 0x08);
-		override("dark_oak_button", properties("face", "wall", "facing", "north", "powered", "true"), 4 | 0x08);
-		override("dark_oak_button", properties("face", "wall", "facing", "west", "powered", "true"), 2 | 0x08);
-		override("dark_oak_button", properties("face", "wall", "facing", "south", "powered", "true"), 3 | 0x08);
-		override("dark_oak_button", properties("face", "wall", "facing", "east", "powered", "true"), 1 | 0x08);
-		
-		// TODO skeleton_wall_skull
+		override("player_wall_head", properties("facing", "north"), "skull", 2);
+		override("player_wall_head", properties("facing", "south"), "skull", 3);
+		override("player_wall_head", properties("facing", "east"), "skull", 4);
+		override("player_wall_head", properties("facing", "west"), "skull", 5);
+		override("player_head", "skull", 1);
 
-		// TODO skeleton_skull
+		override("creeper_wall_head", properties("facing", "north"), "skull", 2);
+		override("creeper_wall_head", properties("facing", "south"), "skull", 3);
+		override("creeper_wall_head", properties("facing", "east"), "skull", 4);
+		override("creeper_wall_head", properties("facing", "west"), "skull", 5);
+		override("creeper_head", "skull", 1);
 
-		// TODO witcher_skeleton_wall_skull
+		override("dragon_wall_head", properties("facing", "north"), "skull", 2);
+		override("dragon_wall_head", properties("facing", "south"), "skull", 3);
+		override("dragon_wall_head", properties("facing", "east"), "skull", 4);
+		override("dragon_wall_head", properties("facing", "west"), "skull", 5);
+		override("dragon_head", "skull", 1);
 
-		// TODO witcher_skeleton_skull
+		override("anvil", properties("facing", "north"), 0);
+		override("anvil", properties("facing", "south"), 2);
+		override("anvil", properties("facing", "west"), 1);
+		override("anvil", properties("facing", "east"), 3);
 
-		// TODO zombie_wall_head
+		override("chipped_anvil", properties("facing", "north"), "anvil", 4);
+		override("chipped_anvil", properties("facing", "south"), "anvil", 7);
+		override("chipped_anvil", properties("facing", "west"), "anvil", 6);
+		override("chipped_anvil", properties("facing", "east"), "anvil", 5);
 
-		// TODO zombie_head
+		override("damaged_anvil", properties("facing", "north"), "anvil", 8);
+		override("damaged_anvil", properties("facing", "south"), "anvil", 11);
+		override("damaged_anvil", properties("facing", "west"), "anvil", 10);
+		override("damaged_anvil", properties("facing", "east"), "anvil", 9);
 
-		// TODO player_wall_head
-
-		// TODO player_head
-
-		// TODO creeper_wall_head
-
-		// TODO creeper_head
-
-		// TODO dragon_wall_head
-
-		// TODO dragon_head
-
-		// TODO anvil
-
-		// TODO chipped_anvil
-
-		// TODO damaged_anvil
-
-		// TODO trapped_chest
+		override("trapped_chest", properties("facing", "north"), 2);
+		override("trapped_chest", properties("facing", "south"), 3);
+		override("trapped_chest", properties("facing", "east"), 5);
+		override("trapped_chest", properties("facing", "west"), 4);
 
 		overrideAgeable("light_weighted_pressure_plate", "power", 15);
 		overrideAgeable("heavy_weighted_pressure_plate", "power", 15);
 
-		// TODO comparator
+		override("comparator", properties("facing", "north", "mode", "compare", "powered", "false"),
+				"unpowered_comparator", 0);
+		override("comparator", properties("facing", "south", "mode", "compare", "powered", "false"),
+				"unpowered_comparator", 2);
+		override("comparator", properties("facing", "east", "mode", "compare", "powered", "false"),
+				"unpowered_comparator", 1);
+		override("comparator", properties("facing", "west", "mode", "compare", "powered", "false"),
+				"unpowered_comparator", 3);
+		override("comparator", properties("facing", "north", "mode", "subtract", "powered", "false"),
+				"unpowered_comparator", 0 | 0x04);
+		override("comparator", properties("facing", "south", "mode", "subtract", "powered", "false"),
+				"unpowered_comparator", 2 | 0x04);
+		override("comparator", properties("facing", "east", "mode", "subtract", "powered", "false"),
+				"unpowered_comparator", 1 | 0x04);
+		override("comparator", properties("facing", "west", "mode", "subtract", "powered", "false"),
+				"unpowered_comparator", 3 | 0x04);
+		override("comparator", properties("facing", "north", "mode", "compare", "powered", "true"),
+				"powered_comparator", 0 | 0x08);
+		override("comparator", properties("facing", "south", "mode", "compare", "powered", "true"),
+				"powered_comparator", 2 | 0x08);
+		override("comparator", properties("facing", "east", "mode", "compare", "powered", "true"), "powered_comparator",
+				1 | 0x08);
+		override("comparator", properties("facing", "west", "mode", "compare", "powered", "true"), "powered_comparator",
+				3 | 0x08);
+		override("comparator", properties("facing", "north", "mode", "subtract", "powered", "true"),
+				"powered_comparator", 0 | 0x04 | 0x08);
+		override("comparator", properties("facing", "south", "mode", "subtract", "powered", "true"),
+				"powered_comparator", 2 | 0x04 | 0x08);
+		override("comparator", properties("facing", "east", "mode", "subtract", "powered", "true"),
+				"powered_comparator", 1 | 0x04 | 0x08);
+		override("comparator", properties("facing", "west", "mode", "subtract", "powered", "true"),
+				"powered_comparator", 3 | 0x04 | 0x08);
 
-		// TODO daylight_detector
+		overrideAgeable("daylight_detector", properties("inverted", "false"), "power", 15, "daylight_detector");
+		overrideAgeable("daylight_detector", properties("inverted", "true"), "power", 15, "daylight_detector_inverted");
 
 		override("nether_quartz_ore", "quartz_ore");
 
-		// TODO hopper
+		override("hopper", properties("facing", "north", "enabled", "false"), 2);
+		override("hopper", properties("facing", "south", "enabled", "false"), 3);
+		override("hopper", properties("facing", "east", "enabled", "false"), 5);
+		override("hopper", properties("facing", "west", "enabled", "false"), 4);
+		override("hopper", properties("facing", "down", "enabled", "false"), 0);
+		override("hopper", properties("facing", "north", "enabled", "true"), 2 | 0x08);
+		override("hopper", properties("facing", "south", "enabled", "true"), 3 | 0x08);
+		override("hopper", properties("facing", "east", "enabled", "true"), 5 | 0x08);
+		override("hopper", properties("facing", "west", "enabled", "true"), 4 | 0x08);
+		override("hopper", properties("facing", "down", "enabled", "true"), 0 | 0x08);
 
 		override("chiseled_quartz_block", "quartz_block", 1);
 
-		override("quartz_pillar", "quartz_block", 2); // TODO axis
+		override("quartz_pillar", properties("axis", "x"), "quartz_block", 2 | AXIS_X);
+		override("quartz_pillar", properties("axis", "y"), "quartz_block", 2 | AXIS_Y);
+		override("quartz_pillar", properties("axis", "z"), "quartz_block", 2 | AXIS_Z);
 
 		overrideStairs("quartz_stairs");
 
-		// TODO activator_rail
+		override("activator_rail", properties("shape", "north_south", "powered", "false"), 0);
+		override("activator_rail", properties("shape", "east_west", "powered", "false"), 1);
+		override("activator_rail", properties("shape", "ascending_north", "powered", "false"), 4);
+		override("activator_rail", properties("shape", "ascending_south", "powered", "false"), 5);
+		override("activator_rail", properties("shape", "ascending_east", "powered", "false"), 2);
+		override("activator_rail", properties("shape", "ascending_west", "powered", "false"), 3);
+		override("activator_rail", properties("shape", "north_south", "powered", "true"), 0 | 0x08);
+		override("activator_rail", properties("shape", "east_west", "powered", "true"), 1 | 0x08);
+		override("activator_rail", properties("shape", "ascending_north", "powered", "true"), 4 | 0x08);
+		override("activator_rail", properties("shape", "ascending_south", "powered", "true"), 5 | 0x08);
+		override("activator_rail", properties("shape", "ascending_east", "powered", "true"), 2 | 0x08);
+		override("activator_rail", properties("shape", "ascending_west", "powered", "true"), 3 | 0x08);
 
-		// TODO dropper
+		override("dropper", properties("facing", "north", "triggered", "false"), 2);
+		override("dropper", properties("facing", "south", "triggered", "false"), 3);
+		override("dropper", properties("facing", "east", "triggered", "false"), 5);
+		override("dropper", properties("facing", "west", "triggered", "false"), 4);
+		override("dropper", properties("facing", "up", "triggered", "false"), 1);
+		override("dropper", properties("facing", "down", "triggered", "false"), 0);
+		override("dropper", properties("facing", "north", "triggered", "true"), 2 | 0x08);
+		override("dropper", properties("facing", "south", "triggered", "true"), 3 | 0x08);
+		override("dropper", properties("facing", "east", "triggered", "true"), 5 | 0x08);
+		override("dropper", properties("facing", "west", "triggered", "true"), 4 | 0x08);
+		override("dropper", properties("facing", "up", "triggered", "true"), 1 | 0x08);
+		override("dropper", properties("facing", "down", "triggered", "true"), 0 | 0x08);
 
 		override("white_terracotta", "stained_hardened_clay");
 		override("orange_terracotta", "stained_hardened_clay", 1);
@@ -779,7 +811,22 @@ public class BlockTranslator {
 		override("red_terracotta", "stained_hardened_clay", 14);
 		override("black_terracotta", "stained_hardened_clay", 15);
 
-		// TODO all types of stained_glass_pane
+		override("white_stained_glass_pane", "stained_glass_pane", 0);
+		override("orange_stained_glass_pane", "stained_glass_pane", 1);
+		override("magenta_stained_glass_pane", "stained_glass_pane", 2);
+		override("light_blue_stained_glass_pane", "stained_glass_pane", 3);
+		override("yellow_stained_glass_pane", "stained_glass_pane", 4);
+		override("lime_stained_glass_pane", "stained_glass_pane", 5);
+		override("pink_stained_glass_pane", "stained_glass_pane", 6);
+		override("gray_stained_glass_pane", "stained_glass_pane", 7);
+		override("light_gray_stained_glass_pane", "stained_glass_pane", 8);
+		override("cyan_stained_glass_pane", "stained_glass_pane", 9);
+		override("purple_stained_glass_pane", "stained_glass_pane", 10);
+		override("blue_stained_glass_pane", "stained_glass_pane", 11);
+		override("brown_stained_glass_pane", "stained_glass_pane", 12);
+		override("green_stained_glass_pane", "stained_glass_pane", 13);
+		override("red_stained_glass_pane", "stained_glass_pane", 14);
+		override("black_stained_glass_pane", "stained_glass_pane", 15);
 
 		overrideStairs("acacia_stairs");
 		overrideStairs("dark_oak_stairs");
@@ -793,17 +840,15 @@ public class BlockTranslator {
 		overrideStairs("prismarine_brick_stairs", "prismarine_bricks_stairs");
 		overrideStairs("dark_prismarine_stairs");
 
-		// TODO prismarine_slab
-
-		// TODO prismarine_brick_slab
-
-		// TODO dark_prismarine_slab
+		overrideSlab("prismarine_slab", "stone_slab2", 2, "double_stone_slab2");
+		overrideSlab("prismarine_brick_slab", "stone_slab2", 3, "double_stone_slab2");
+		overrideSlab("dark_prismarine_slab", "stone_slab2", 4, "double_stone_slab2");
 
 		override("sea_lantern", "sealantern");
 
-		override("hay_block", properties("axis", "x"), 4); // ?
+		override("hay_block", properties("axis", "x"), 4);
 		override("hay_block", properties("axis", "y"), 0);
-		override("hay_block", properties("axis", "z"), 8); // ?
+		override("hay_block", properties("axis", "z"), 8);
 
 		override("white_carpet", "carpet");
 		override("orange_carpet", "carpet", 1);
@@ -842,72 +887,143 @@ public class BlockTranslator {
 		override("large_fern", properties("half", "upper"), "double_plant", 3 | 0x08); // ?
 		override("large_fern", properties("half", "lower"), "double_plant", 3);
 
-		// TODO banners
+		overrideAgeable("white_banner", "rotation", 15, "standing_banner");
+		overrideAgeable("orange_banner", "rotation", 15, "standing_banner");
+		overrideAgeable("magenta_banner", "rotation", 15, "standing_banner");
+		overrideAgeable("light_blue_banner", "rotation", 15, "standing_banner");
+		overrideAgeable("yellow_banner", "rotation", 15, "standing_banner");
+		overrideAgeable("lime_banner", "rotation", 15, "standing_banner");
+		overrideAgeable("pink_banner", "rotation", 15, "standing_banner");
+		overrideAgeable("gray_banner", "rotation", 15, "standing_banner");
+		overrideAgeable("light_gray_banner", "rotation", 15, "standing_banner");
+		overrideAgeable("cyan_banner", "rotation", 15, "standing_banner");
+		overrideAgeable("purple_banner", "rotation", 15, "standing_banner");
+		overrideAgeable("blue_banner", "rotation", 15, "standing_banner");
+		overrideAgeable("brown_banner", "rotation", 15, "standing_banner");
+		overrideAgeable("green_banner", "rotation", 15, "standing_banner");
+		overrideAgeable("red_banner", "rotation", 15, "standing_banner");
+		overrideAgeable("black_banner", "rotation", 15, "standing_banner");
+
+		override("white_wall_banner", properties("facing", "north"), "wall_banner", 2);
+		override("white_wall_banner", properties("facing", "south"), "wall_banner", 3);
+		override("white_wall_banner", properties("facing", "east"), "wall_banner", 5);
+		override("white_wall_banner", properties("facing", "west"), "wall_banner", 4);
+
+		override("orange_wall_banner", properties("facing", "north"), "wall_banner", 2);
+		override("orange_wall_banner", properties("facing", "south"), "wall_banner", 3);
+		override("orange_wall_banner", properties("facing", "east"), "wall_banner", 5);
+		override("orange_wall_banner", properties("facing", "west"), "wall_banner", 4);
+
+		override("magenta_wall_banner", properties("facing", "north"), "wall_banner", 2);
+		override("magenta_wall_banner", properties("facing", "south"), "wall_banner", 3);
+		override("magenta_wall_banner", properties("facing", "east"), "wall_banner", 5);
+		override("magenta_wall_banner", properties("facing", "west"), "wall_banner", 4);
+
+		override("light_blue_wall_banner", properties("facing", "north"), "wall_banner", 2);
+		override("light_blue_wall_banner", properties("facing", "south"), "wall_banner", 3);
+		override("light_blue_wall_banner", properties("facing", "east"), "wall_banner", 5);
+		override("light_blue_wall_banner", properties("facing", "west"), "wall_banner", 4);
+
+		override("yellow_wall_banner", properties("facing", "north"), "wall_banner", 2);
+		override("yellow_wall_banner", properties("facing", "south"), "wall_banner", 3);
+		override("yellow_wall_banner", properties("facing", "east"), "wall_banner", 5);
+		override("yellow_wall_banner", properties("facing", "west"), "wall_banner", 4);
+
+		override("lime_wall_banner", properties("facing", "north"), "wall_banner", 2);
+		override("lime_wall_banner", properties("facing", "south"), "wall_banner", 3);
+		override("lime_wall_banner", properties("facing", "east"), "wall_banner", 5);
+		override("lime_wall_banner", properties("facing", "west"), "wall_banner", 4);
+
+		override("pink_wall_banner", properties("facing", "north"), "wall_banner", 2);
+		override("pink_wall_banner", properties("facing", "south"), "wall_banner", 3);
+		override("pink_wall_banner", properties("facing", "east"), "wall_banner", 5);
+		override("pink_wall_banner", properties("facing", "west"), "wall_banner", 4);
+
+		override("gray_wall_banner", properties("facing", "north"), "wall_banner", 2);
+		override("gray_wall_banner", properties("facing", "south"), "wall_banner", 3);
+		override("gray_wall_banner", properties("facing", "east"), "wall_banner", 5);
+		override("gray_wall_banner", properties("facing", "west"), "wall_banner", 4);
+
+		override("light_gray_wall_banner", properties("facing", "north"), "wall_banner", 2);
+		override("light_gray_wall_banner", properties("facing", "south"), "wall_banner", 3);
+		override("light_gray_wall_banner", properties("facing", "east"), "wall_banner", 5);
+		override("light_gray_wall_banner", properties("facing", "west"), "wall_banner", 4);
+
+		override("cyan_wall_banner", properties("facing", "north"), "wall_banner", 2);
+		override("cyan_wall_banner", properties("facing", "south"), "wall_banner", 3);
+		override("cyan_wall_banner", properties("facing", "east"), "wall_banner", 5);
+		override("cyan_wall_banner", properties("facing", "west"), "wall_banner", 4);
+
+		override("purple_wall_banner", properties("facing", "north"), "wall_banner", 2);
+		override("purple_wall_banner", properties("facing", "south"), "wall_banner", 3);
+		override("purple_wall_banner", properties("facing", "east"), "wall_banner", 5);
+		override("purple_wall_banner", properties("facing", "west"), "wall_banner", 4);
+
+		override("blue_wall_banner", properties("facing", "north"), "wall_banner", 2);
+		override("blue_wall_banner", properties("facing", "south"), "wall_banner", 3);
+		override("blue_wall_banner", properties("facing", "east"), "wall_banner", 5);
+		override("blue_wall_banner", properties("facing", "west"), "wall_banner", 4);
+
+		override("brown_wall_banner", properties("facing", "north"), "wall_banner", 2);
+		override("brown_wall_banner", properties("facing", "south"), "wall_banner", 3);
+		override("brown_wall_banner", properties("facing", "east"), "wall_banner", 5);
+		override("brown_wall_banner", properties("facing", "west"), "wall_banner", 4);
+
+		override("green_wall_banner", properties("facing", "north"), "wall_banner", 2);
+		override("green_wall_banner", properties("facing", "south"), "wall_banner", 3);
+		override("green_wall_banner", properties("facing", "east"), "wall_banner", 5);
+		override("green_wall_banner", properties("facing", "west"), "wall_banner", 4);
+
+		override("red_wall_banner", properties("facing", "north"), "wall_banner", 2);
+		override("red_wall_banner", properties("facing", "south"), "wall_banner", 3);
+		override("red_wall_banner", properties("facing", "east"), "wall_banner", 5);
+		override("red_wall_banner", properties("facing", "west"), "wall_banner", 4);
+
+		override("black_wall_banner", properties("facing", "north"), "wall_banner", 2);
+		override("black_wall_banner", properties("facing", "south"), "wall_banner", 3);
+		override("black_wall_banner", properties("facing", "east"), "wall_banner", 5);
+		override("black_wall_banner", properties("facing", "west"), "wall_banner", 4);
 
 		override("chiseled_red_sandstone", "red_sandstone", 1);
 		override("cut_red_sandstone", "red_sandstone", 2);
 
 		overrideStairs("red_sandstone_stairs");
 
-		// TODO oak_slab
+		overrideSlab("oak_slab", "wooden_slab", 0, "double_wooden_slab");
+		overrideSlab("spruce_slab", "wooden_slab", 1, "double_wooden_slab");
+		overrideSlab("birch_slab", "wooden_slab", 2, "double_wooden_slab");
+		overrideSlab("jungle_slab", "wooden_slab", 3, "double_wooden_slab");
+		overrideSlab("acacia_slab", "wooden_slab", 4, "double_wooden_slab");
+		overrideSlab("dark_oak_slab", "wooden_slab", 5, "double_wooden_slab");
 
-		// TODO spruce_slab
+		overrideSlab("stone_slab", "stone_slab", 0, "double_stone_slab");
+		overrideSlab("sandstone_slab", "stone_slab", 1, "double_stone_slab");
+		overrideSlab("petrified_oak_slab", "stone_slab", 2, "double_stone_slab");
+		overrideSlab("cobblestone_slab", "stone_slab", 3, "double_stone_slab");
+		overrideSlab("brick_slab", "stone_slab", 4, "double_stone_slab");
+		overrideSlab("stone_brick_slab", "stone_slab", 5, "double_stone_slab");
+		overrideSlab("nether_brick_slab", "stone_slab", 6, "double_stone_slab", 7);
+		overrideSlab("quartz_slab", "stone_slab", 7, "double_stone_slab", 6);
 
-		// TODO birch_slab
+		overrideSlab("red_sandstone_slab", "stone_slab2", 0, "double_stone_slab2");
+		overrideSlab("purpur_slab", "stone_slab2", 1, "double_stone_slab2");
 
-		// TODO jungle_slab
+		override("smooth_stone", "stone"); // ?
+		override("smooth_sandstone", "sandstone"); // ?
+		override("smooth_quart", "quartz_block"); // ?
+		override("smooth_red_sandstone", "red_sandstone"); // ?
 
-		// TODO acacia_slab
+		overrideFenceGate("spruce_fence_gate");
+		overrideFenceGate("birch_fence_gate");
+		overrideFenceGate("jungle_fence_gate");
+		overrideFenceGate("acacia_fence_gate");
+		overrideFenceGate("dark_oak_fence_gate");
 
-		// TODO dark_oak_slab
-
-		// TODO stone_slab
-
-		// TODO sandstone_slab
-
-		// TODO petrified_oak_slab
-
-		// TODO cobblestone_slab
-
-		// TODO brick_slab
-
-		// TODO stone_brick_slab
-
-		// TODO nether_brick_slab
-
-		// TODO quartz_slab
-
-		// TODO red_sandstone_slab
-
-		// TODO purpur_slab
-
-		// TODO smooth stone
-
-		// TODO smooth_sandstone
-
-		// TODO smooth_quartz
-
-		// TODO smooth_red_sandstone
-
-		// TODO spruce_fence_gate
-
-		// TODO birch_fence_gate
-
-		// TODO jungle_fence_gate
-
-		// TODO acacia_fence_gate
-
-		// TODO dark_oak_fence_gate
-
-		// TODO spruce_fence
-
-		// TODO birch_fence
-
-		// TODO jungle_fence
-
-		// TODO acacia_fence
-
-		// TODO dark_oak_fence
+		override("spruce_fence", "fence", 1);
+		override("birch_fence", "fence", 2);
+		override("jungle_fence", "fence", 3);
+		override("acacia_fence", "fence", 4);
+		override("dark_oak_fence", "fence", 5);
 
 		overrideDoor("spruce_door");
 		overrideDoor("birch_door");
@@ -915,15 +1031,18 @@ public class BlockTranslator {
 		overrideDoor("acacia_door");
 		overrideDoor("dark_oak_door");
 
-		// TODO end rod
-
-		// TODO chorus_plant
+		override("end_rod", properties("facing", "north"), 2);
+		override("end_rod", properties("facing", "south"), 3);
+		override("end_rod", properties("facing", "east"), 5);
+		override("end_rod", properties("facing", "west"), 4);
+		override("end_rod", properties("facing", "up"), 1);
+		override("end_rod", properties("facing", "down"), 0);
 
 		overrideAgeable("chorus_flower", "age", 5);
 
-		override("purpur_pillar", properties("axis", "x"), "purpur_block", 6); // ?
+		override("purpur_pillar", properties("axis", "x"), "purpur_block", 6);
 		override("purpur_pillar", properties("axis", "y"), "purpur_block", 2);
-		override("purpur_pillar", properties("axis", "z"), "purpur_block", 10); // ?
+		override("purpur_pillar", properties("axis", "z"), "purpur_block", 10);
 
 		overrideStairs("purpur_stairs");
 
@@ -931,9 +1050,31 @@ public class BlockTranslator {
 
 		overrideAgeable("beetroots", "age", 3, "beetroot");
 
-		// TODO repeating_command_block
+		override("repeating_command_block", properties("facing", "north", "confitional", "false"), 2);
+		override("repeating_command_block", properties("facing", "south", "confitional", "false"), 3);
+		override("repeating_command_block", properties("facing", "east", "confitional", "false"), 5);
+		override("repeating_command_block", properties("facing", "west", "confitional", "false"), 4);
+		override("repeating_command_block", properties("facing", "up", "confitional", "false"), 1);
+		override("repeating_command_block", properties("facing", "down", "confitional", "false"), 0);
+		override("repeating_command_block", properties("facing", "north", "confitional", "true"), 2 | 0x08);
+		override("repeating_command_block", properties("facing", "south", "confitional", "true"), 3 | 0x08);
+		override("repeating_command_block", properties("facing", "east", "confitional", "true"), 5 | 0x08);
+		override("repeating_command_block", properties("facing", "west", "confitional", "true"), 4 | 0x08);
+		override("repeating_command_block", properties("facing", "up", "confitional", "true"), 1 | 0x08);
+		override("repeating_command_block", properties("facing", "down", "confitional", "true"), 0 | 0x08);
 
-		// TODO chain_command_block
+		override("chain_command_block", properties("facing", "north", "confitional", "false"), 2);
+		override("chain_command_block", properties("facing", "south", "confitional", "false"), 3);
+		override("chain_command_block", properties("facing", "east", "confitional", "false"), 5);
+		override("chain_command_block", properties("facing", "west", "confitional", "false"), 4);
+		override("chain_command_block", properties("facing", "up", "confitional", "false"), 1);
+		override("chain_command_block", properties("facing", "down", "confitional", "false"), 0);
+		override("chain_command_block", properties("facing", "north", "confitional", "true"), 2 | 0x08);
+		override("chain_command_block", properties("facing", "south", "confitional", "true"), 3 | 0x08);
+		override("chain_command_block", properties("facing", "east", "confitional", "true"), 5 | 0x08);
+		override("chain_command_block", properties("facing", "west", "confitional", "true"), 4 | 0x08);
+		override("chain_command_block", properties("facing", "up", "confitional", "true"), 1 | 0x08);
+		override("chain_command_block", properties("facing", "down", "confitional", "true"), 0 | 0x08);
 
 		overrideAgeable("frosted_ice", "age", 3);
 
@@ -947,11 +1088,110 @@ public class BlockTranslator {
 
 		override(FlatteningBlockData.fromNameDefault("structure_void"), new ItemEntry(217)); // ?
 
-		// TODO observer
+		override("observer", properties("facing", "north"), 2);
+		override("observer", properties("facing", "south"), 3);
+		override("observer", properties("facing", "east"), 5);
+		override("observer", properties("facing", "west"), 4);
+		override("observer", properties("facing", "up"), 1);
+		override("observer", properties("facing", "down"), 0);
 
-		// TODO shulker_box and dyed shulker box
+		override("shulker_box", "undyed_shulker_box");
+		override("white_shulker_box", "shulker_box", 0);
+		override("orange_shulker_box", "shulker_box", 1);
+		override("magenta_shulker_box", "shulker_box", 2);
+		override("light_blue_shulker_box", "shulker_box", 3);
+		override("yellow_shulker_box", "shulker_box", 4);
+		override("lime_shulker_box", "shulker_box", 5);
+		override("pink_shulker_box", "shulker_box", 6);
+		override("gray_shulker_box", "shulker_box", 7);
+		override("light_gray_shulker_box", "shulker_box", 8);
+		override("cyan_shulker_box", "shulker_box", 9);
+		override("purple_shulker_box", "shulker_box", 10);
+		override("blue_shulker_box", "shulker_box", 11);
+		override("brown_shulker_box", "shulker_box", 12);
+		override("green_shulker_box", "shulker_box", 13);
+		override("red_shulker_box", "shulker_box", 14);
+		override("black_shulker_box", "shulker_box", 15);
 
-		// TODO Glazed Terracotas
+		override("white_glazed_terracotta", properties("facing", "north"), 2);
+		override("white_glazed_terracotta", properties("facing", "south"), 0);
+		override("white_glazed_terracotta", properties("facing", "east"), 3);
+		override("white_glazed_terracotta", properties("facing", "west"), 1);
+
+		override("orange_glazed_terracotta", properties("facing", "north"), 2);
+		override("orange_glazed_terracotta", properties("facing", "south"), 0);
+		override("orange_glazed_terracotta", properties("facing", "east"), 3);
+		override("orange_glazed_terracotta", properties("facing", "west"), 1);
+
+		override("magenta_glazed_terracotta", properties("facing", "north"), 2);
+		override("magenta_glazed_terracotta", properties("facing", "south"), 0);
+		override("magenta_glazed_terracotta", properties("facing", "east"), 3);
+		override("magenta_glazed_terracotta", properties("facing", "west"), 1);
+
+		override("light_blue_glazed_terracotta", properties("facing", "north"), 2);
+		override("light_blue_glazed_terracotta", properties("facing", "south"), 0);
+		override("light_blue_glazed_terracotta", properties("facing", "east"), 3);
+		override("light_blue_glazed_terracotta", properties("facing", "west"), 1);
+
+		override("yellow_glazed_terracotta", properties("facing", "north"), 2);
+		override("yellow_glazed_terracotta", properties("facing", "south"), 0);
+		override("yellow_glazed_terracotta", properties("facing", "east"), 3);
+		override("yellow_glazed_terracotta", properties("facing", "west"), 1);
+
+		override("lime_glazed_terracotta", properties("facing", "north"), 2);
+		override("lime_glazed_terracotta", properties("facing", "south"), 0);
+		override("lime_glazed_terracotta", properties("facing", "east"), 3);
+		override("lime_glazed_terracotta", properties("facing", "west"), 1);
+
+		override("pink_glazed_terracotta", properties("facing", "north"), 2);
+		override("pink_glazed_terracotta", properties("facing", "south"), 0);
+		override("pink_glazed_terracotta", properties("facing", "east"), 3);
+		override("pink_glazed_terracotta", properties("facing", "west"), 1);
+
+		override("gray_glazed_terracotta", properties("facing", "north"), 2);
+		override("gray_glazed_terracotta", properties("facing", "south"), 0);
+		override("gray_glazed_terracotta", properties("facing", "east"), 3);
+		override("gray_glazed_terracotta", properties("facing", "west"), 1);
+
+		override("light_gray_glazed_terracotta", properties("facing", "north"), 2);
+		override("light_gray_glazed_terracotta", properties("facing", "south"), 0);
+		override("light_gray_glazed_terracotta", properties("facing", "east"), 3);
+		override("light_gray_glazed_terracotta", properties("facing", "west"), 1);
+
+		override("cyan_glazed_terracotta", properties("facing", "north"), 2);
+		override("cyan_glazed_terracotta", properties("facing", "south"), 0);
+		override("cyan_glazed_terracotta", properties("facing", "east"), 3);
+		override("cyan_glazed_terracotta", properties("facing", "west"), 1);
+
+		override("purple_glazed_terracotta", properties("facing", "north"), 2);
+		override("purple_glazed_terracotta", properties("facing", "south"), 0);
+		override("purple_glazed_terracotta", properties("facing", "east"), 3);
+		override("purple_glazed_terracotta", properties("facing", "west"), 1);
+
+		override("blue_glazed_terracotta", properties("facing", "north"), 2);
+		override("blue_glazed_terracotta", properties("facing", "south"), 0);
+		override("blue_glazed_terracotta", properties("facing", "east"), 3);
+		override("blue_glazed_terracotta", properties("facing", "west"), 1);
+
+		override("brown_glazed_terracotta", properties("facing", "north"), 2);
+		override("brown_glazed_terracotta", properties("facing", "south"), 0);
+		override("brown_glazed_terracotta", properties("facing", "east"), 3);
+		override("brown_glazed_terracotta", properties("facing", "west"), 1);
+
+		override("green_glazed_terracotta", properties("facing", "north"), 2);
+		override("green_glazed_terracotta", properties("facing", "south"), 0);
+		override("green_glazed_terracotta", properties("facing", "east"), 3);
+		override("green_glazed_terracotta", properties("facing", "west"), 1);
+
+		override("red_glazed_terracotta", properties("facing", "north"), 2);
+		override("red_glazed_terracotta", properties("facing", "south"), 0);
+		override("red_glazed_terracotta", properties("facing", "east"), 3);
+		override("red_glazed_terracotta", properties("facing", "west"), 1);
+
+		override("black_glazed_terracotta", properties("facing", "north"), 2);
+		override("black_glazed_terracotta", properties("facing", "south"), 0);
+		override("black_glazed_terracotta", properties("facing", "east"), 3);
+		override("black_glazed_terracotta", properties("facing", "west"), 1);
 
 		override("white_concrete", "concrete");
 		override("orange_concrete", "concrete", 1);
@@ -1007,22 +1247,88 @@ public class BlockTranslator {
 		override("bubble_coral", "coral", 2);
 		override("fire_coral", "coral", 3);
 		override("horn_coral", "coral", 4);
-		// Missing dead variants in bedrock version
-		override("dead_tube_coral", "coral");
-		override("dead_brain_coral", "coral", 1);
-		override("dead_bubble_coral", "coral", 2);
-		override("dead_fire_coral", "coral", 3);
-		override("dead_horn_coral", "coral", 4);
 
-		// TODO coral fans
+		override("tube_coral_fan", "coral_fan");
+		override("brain_coral_fan", "coral_fan", 1);
+		override("bubble_coral_fan", "coral_fan", 2);
+		override("fire_coral_fan", "coral_fan", 3);
+		override("horn_coral_fan", "coral_fan", 4);
 
-		// TODO sea_pickles
+		override("dead_tube_coral_fan", "dead_coral_fan");
+		override("dead_brain_coral_fan", "dead_coral_fan", 1);
+		override("dead_bubble_coral_fan", "dead_coral_fan", 2);
+		override("dead_fire_coral_fan", "dead_coral_fan", 3);
+		override("dead_horn_coral_fan", "dead_coral_fan", 4);
+
+		override("tube_coral_wall_fan", properties("facing", "north"), "coral_fan_hang", 0);
+		override("tube_coral_wall_fan", properties("facing", "south"), "coral_fan_hang", 4);
+		override("tube_coral_wall_fan", properties("facing", "east"), "coral_fan_hang", 8);
+		override("tube_coral_wall_fan", properties("facing", "west"), "coral_fan_hang", 12);
+
+		override("brain_coral_wall_fan", properties("facing", "north"), "coral_fan_hang", 1);
+		override("brain_coral_wall_fan", properties("facing", "south"), "coral_fan_hang", 5);
+		override("brain_coral_wall_fan", properties("facing", "east"), "coral_fan_hang", 9);
+		override("brain_coral_wall_fan", properties("facing", "west"), "coral_fan_hang", 13);
+
+		override("bubble_coral_wall_fan", properties("facing", "north"), "coral_fan_hang2", 0);
+		override("bubble_coral_wall_fan", properties("facing", "south"), "coral_fan_hang2", 4);
+		override("bubble_coral_wall_fan", properties("facing", "east"), "coral_fan_hang2", 8);
+		override("bubble_coral_wall_fan", properties("facing", "west"), "coral_fan_hang2", 12);
+
+		override("fire_coral_wall_fan", properties("facing", "north"), "coral_fan_hang2", 1);
+		override("fire_coral_wall_fan", properties("facing", "south"), "coral_fan_hang2", 5);
+		override("fire_coral_wall_fan", properties("facing", "east"), "coral_fan_hang2", 9);
+		override("fire_coral_wall_fan", properties("facing", "west"), "coral_fan_hang2", 13);
+
+		override("horn_coral_wall_fan", properties("facing", "north"), "coral_fan_hang3", 0);
+		override("horn_coral_wall_fan", properties("facing", "south"), "coral_fan_hang3", 4);
+		override("horn_coral_wall_fan", properties("facing", "east"), "coral_fan_hang3", 8);
+		override("horn_coral_wall_fan", properties("facing", "west"), "coral_fan_hang3", 12);
+
+		override("dead_tube_coral_wall_fan", properties("facing", "north"), "coral_fan_hang", 2);
+		override("dead_tube_coral_wall_fan", properties("facing", "south"), "coral_fan_hang", 6);
+		override("dead_tube_coral_wall_fan", properties("facing", "east"), "coral_fan_hang", 10);
+		override("dead_tube_coral_wall_fan", properties("facing", "west"), "coral_fan_hang", 14);
+
+		override("dead_brain_coral_wall_fan", properties("facing", "north"), "coral_fan_hang", 3);
+		override("dead_brain_coral_wall_fan", properties("facing", "south"), "coral_fan_hang", 7);
+		override("dead_brain_coral_wall_fan", properties("facing", "east"), "coral_fan_hang", 11);
+		override("dead_brain_coral_wall_fan", properties("facing", "west"), "coral_fan_hang", 15);
+
+		override("dead_bubble_coral_wall_fan", properties("facing", "north"), "coral_fan_hang2", 2);
+		override("dead_bubble_coral_wall_fan", properties("facing", "south"), "coral_fan_hang2", 6);
+		override("dead_bubble_coral_wall_fan", properties("facing", "east"), "coral_fan_hang2", 10);
+		override("dead_bubble_coral_wall_fan", properties("facing", "west"), "coral_fan_hang2", 14);
+
+		override("dead_fire_coral_wall_fan", properties("facing", "north"), "coral_fan_hang2", 3);
+		override("dead_fire_coral_wall_fan", properties("facing", "south"), "coral_fan_hang2", 7);
+		override("dead_fire_coral_wall_fan", properties("facing", "east"), "coral_fan_hang2", 11);
+		override("dead_fire_coral_wall_fan", properties("facing", "west"), "coral_fan_hang2", 15);
+
+		override("dead_horn_coral_wall_fan", properties("facing", "north"), "coral_fan_hang3", 2);
+		override("dead_horn_coral_wall_fan", properties("facing", "south"), "coral_fan_hang3", 6);
+		override("dead_horn_coral_wall_fan", properties("facing", "east"), "coral_fan_hang3", 10);
+		override("dead_horn_coral_wall_fan", properties("facing", "west"), "coral_fan_hang3", 14);
+
+		// Replace missing death variants of coral with death variants of death fan
+		// coral
+		override("dead_tube_coral", "dead_coral_fan");
+		override("dead_brain_coral", "dead_coral_fan", 1);
+		override("dead_bubble_coral", "dead_coral_fan", 2);
+		override("dead_fire_coral", "dead_coral_fan", 3);
+		override("dead_horn_coral", "dead_coral_fan", 4);
+
+		overrideAgeable("sea_pickle", properties("waterlogged", "true"), "pickles", 1, 4, "sea_pickle", -1);
+		overrideAgeable("sea_pickle", properties("waterlogged", "false"), "pickles", 1, 4, "sea_pickle", 3);
 
 		override("air", "air");
 		override("void_air", "air");
 		override("cave_air", "air");
 
-		// TODO structure_block
+		override("structure_block", properties("mode", "save"), 2);
+		override("structure_block", properties("mode", "load"), 3);
+		override("structure_block", properties("mode", "corner"), 4);
+		override("structure_block", properties("mode", "data"), 1);
 	}
 
 	public static ItemEntry translateToPE(int stateID) {
@@ -1092,7 +1398,14 @@ public class BlockTranslator {
 	}
 
 	private static void overrideStairs(String pcName, String peName) {
-		// TODO
+		override(pcName, properties("facing", "north", "half", "bottom"), peName, 3);
+		override(pcName, properties("facing", "south", "half", "bottom"), peName, 2);
+		override(pcName, properties("facing", "east", "half", "bottom"), peName, 0);
+		override(pcName, properties("facing", "west", "half", "bottom"), peName, 1);
+		override(pcName, properties("facing", "north", "half", "top"), peName, 3 | 0x04);
+		override(pcName, properties("facing", "south", "half", "top"), peName, 2 | 0x04);
+		override(pcName, properties("facing", "east", "half", "top"), peName, 0 | 0x04);
+		override(pcName, properties("facing", "west", "half", "top"), peName, 1 | 0x04);
 	}
 
 	private static void overrideDoor(String pcName) {
@@ -1100,7 +1413,20 @@ public class BlockTranslator {
 	}
 
 	private static void overrideDoor(String pcName, String peName) {
-		// TODO
+		// Lower half
+		override(pcName, properties("facing", "north", "half", "lower", "open", "false"), peName, 3);
+		override(pcName, properties("facing", "south", "half", "lower", "open", "false"), peName, 1);
+		override(pcName, properties("facing", "east", "half", "lower", "open", "false"), peName, 0);
+		override(pcName, properties("facing", "west", "half", "lower", "open", "false"), peName, 2);
+		override(pcName, properties("facing", "north", "half", "lower", "open", "true"), peName, 3 | 0x04);
+		override(pcName, properties("facing", "south", "half", "lower", "open", "true"), peName, 1 | 0x04);
+		override(pcName, properties("facing", "east", "half", "lower", "open", "true"), peName, 0 | 0x04);
+		override(pcName, properties("facing", "west", "half", "lower", "open", "true"), peName, 2 | 0x04);
+		// Upper half
+		override(pcName, properties("half", "upper", "hinge", "left", "powered", "false"), peName, 0 | 0x08);
+		override(pcName, properties("half", "upper", "hinge", "right", "powered", "false"), peName, 1 | 0x08);
+		override(pcName, properties("half", "upper", "hinge", "left", "powered", "true"), peName, 0 | 0x02 | 0x08);
+		override(pcName, properties("half", "upper", "hinge", "right", "powered", "true"), peName, 1 | 0x02 | 0x08);
 	}
 
 	private static void overrideBed(String pcName) {
@@ -1108,7 +1434,22 @@ public class BlockTranslator {
 	}
 
 	private static void overrideBed(String pcName, String peName) {
-		// TODO
+		override(pcName, properties("facing", "north", "occupied", "false", "part", "foot"), peName, 2);
+		override(pcName, properties("facing", "south", "occupied", "false", "part", "foot"), peName, 0);
+		override(pcName, properties("facing", "east", "occupied", "false", "part", "foot"), peName, 3);
+		override(pcName, properties("facing", "west", "occupied", "false", "part", "foot"), peName, 1);
+		override(pcName, properties("facing", "north", "occupied", "false", "part", "head"), peName, 2 | 0x08);
+		override(pcName, properties("facing", "south", "occupied", "false", "part", "head"), peName, 0 | 0x08);
+		override(pcName, properties("facing", "east", "occupied", "false", "part", "head"), peName, 3 | 0x08);
+		override(pcName, properties("facing", "west", "occupied", "false", "part", "head"), peName, 1 | 0x08);
+		override(pcName, properties("facing", "north", "occupied", "true", "part", "foot"), peName, 2 | 0x04);
+		override(pcName, properties("facing", "south", "occupied", "true", "part", "foot"), peName, 0 | 0x04);
+		override(pcName, properties("facing", "east", "occupied", "true", "part", "foot"), peName, 3 | 0x04);
+		override(pcName, properties("facing", "west", "occupied", "true", "part", "foot"), peName, 1 | 0x04);
+		override(pcName, properties("facing", "north", "occupied", "true", "part", "head"), peName, 2 | 0x08 | 0x04);
+		override(pcName, properties("facing", "south", "occupied", "true", "part", "head"), peName, 0 | 0x08 | 0x04);
+		override(pcName, properties("facing", "east", "occupied", "true", "part", "head"), peName, 3 | 0x08 | 0x04);
+		override(pcName, properties("facing", "west", "occupied", "true", "part", "head"), peName, 1 | 0x08 | 0x04);
 	}
 
 	private static void overrideFenceGate(String pcName) {
@@ -1116,7 +1457,14 @@ public class BlockTranslator {
 	}
 
 	private static void overrideFenceGate(String pcName, String peName) {
-		// TODO
+		override(pcName, properties("facing", "north", "open", "false"), peName, 2);
+		override(pcName, properties("facing", "south", "open", "false"), peName, 0);
+		override(pcName, properties("facing", "east", "open", "false"), peName, 3);
+		override(pcName, properties("facing", "west", "open", "false"), peName, 1);
+		override(pcName, properties("facing", "north", "open", "true"), peName, 2 | 0x04);
+		override(pcName, properties("facing", "south", "open", "true"), peName, 0 | 0x04);
+		override(pcName, properties("facing", "east", "open", "true"), peName, 3 | 0x04);
+		override(pcName, properties("facing", "west", "open", "true"), peName, 1 | 0x04);
 	}
 
 	private static void overrideTrapdoor(String pcName) {
@@ -1124,7 +1472,22 @@ public class BlockTranslator {
 	}
 
 	private static void overrideTrapdoor(String pcName, String peName) {
-		// TODO
+		override(pcName, properties("facing", "north", "open", "false", "half", "bottom"), peName, 1);
+		override(pcName, properties("facing", "south", "open", "false", "half", "bottom"), peName, 0);
+		override(pcName, properties("facing", "east", "open", "false", "half", "bottom"), peName, 2);
+		override(pcName, properties("facing", "west", "open", "false", "half", "bottom"), peName, 3);
+		override(pcName, properties("facing", "north", "open", "false", "half", "top"), peName, 1 | 0x08);
+		override(pcName, properties("facing", "south", "open", "false", "half", "top"), peName, 0 | 0x08);
+		override(pcName, properties("facing", "east", "open", "false", "half", "top"), peName, 2 | 0x08);
+		override(pcName, properties("facing", "west", "open", "false", "half", "top"), peName, 3 | 0x08);
+		override(pcName, properties("facing", "north", "open", "true", "half", "bottom"), peName, 1 | 0x04);
+		override(pcName, properties("facing", "south", "open", "true", "half", "bottom"), peName, 0 | 0x04);
+		override(pcName, properties("facing", "east", "open", "true", "half", "bottom"), peName, 2 | 0x04);
+		override(pcName, properties("facing", "west", "open", "true", "half", "bottom"), peName, 3 | 0x04);
+		override(pcName, properties("facing", "north", "open", "true", "half", "top"), peName, 1 | 0x08 | 0x04);
+		override(pcName, properties("facing", "south", "open", "true", "half", "top"), peName, 0 | 0x08 | 0x04);
+		override(pcName, properties("facing", "east", "open", "true", "half", "top"), peName, 2 | 0x08 | 0x04);
+		override(pcName, properties("facing", "west", "open", "true", "half", "top"), peName, 3 | 0x08 | 0x04);
 	}
 
 	private static void overrideButton(String pcName) {
@@ -1132,7 +1495,28 @@ public class BlockTranslator {
 	}
 
 	private static void overrideButton(String pcName, String peName) {
-		// TODO
+		override(pcName, properties("face", "ceiling", "powered", "false"), peName, 5);
+		override(pcName, properties("face", "floor", "powered", "false"), peName, 0);
+		override(pcName, properties("face", "wall", "facing", "north", "powered", "false"), peName, 4);
+		override(pcName, properties("face", "wall", "facing", "west", "powered", "false"), peName, 2);
+		override(pcName, properties("face", "wall", "facing", "south", "powered", "false"), peName, 3);
+		override(pcName, properties("face", "wall", "facing", "east", "powered", "false"), peName, 1);
+		override(pcName, properties("face", "ceiling", "powered", "true"), peName, 5 | 0x08);
+		override(pcName, properties("face", "floor", "powered", "true"), peName, 0 | 0x08);
+		override(pcName, properties("face", "wall", "facing", "north", "powered", "true"), peName, 4 | 0x08);
+		override(pcName, properties("face", "wall", "facing", "west", "powered", "true"), peName, 2 | 0x08);
+		override(pcName, properties("face", "wall", "facing", "south", "powered", "true"), peName, 3 | 0x08);
+		override(pcName, properties("face", "wall", "facing", "east", "powered", "true"), peName, 1 | 0x08);
+	}
+
+	private static void overrideSlab(String pcName, String peName, int peData, String peDoubleName) {
+		overrideSlab(pcName, peName, peData, peDoubleName, peData);
+	}
+
+	private static void overrideSlab(String pcName, String peName, int peData, String peDoubleName, int peDoubleData) {
+		override(pcName, properties("type", "top"), peName, peData + 8);
+		override(pcName, properties("type", "bottom"), peName, peData);
+		override(pcName, properties("type", "double"), peDoubleName, peDoubleData);
 	}
 
 	private static void overrideAgeable(String pcName, String property, int end) {
@@ -1144,7 +1528,11 @@ public class BlockTranslator {
 	}
 
 	private static void overrideAgeable(String pcName, String property, int end, String peName, int peOffset) {
-		overrideAgeable(pcName, null, property, 0, end, peName, 0);
+		overrideAgeable(pcName, null, property, 0, end, peName, peOffset);
+	}
+
+	private static void overrideAgeable(String pcName, String property, int end, String peName, Counter func) {
+		overrideAgeable(pcName, null, property, 0, end, peName, func);
 	}
 
 	private static void overrideAgeable(String pcName, Map<String, String> properties, String property, int end,
@@ -1154,7 +1542,12 @@ public class BlockTranslator {
 
 	private static void overrideAgeable(String pcName, Map<String, String> properties, String property, int end,
 			String peName, int peOffset) {
-		overrideAgeable(pcName, properties, property, 0, end, peName, 0);
+		overrideAgeable(pcName, properties, property, 0, end, peName, peOffset);
+	}
+
+	private static void overrideAgeable(String pcName, Map<String, String> properties, String property, int end,
+			String peName, Counter func) {
+		overrideAgeable(pcName, properties, property, 0, end, peName, func);
 	}
 
 	private static void overrideAgeable(String pcName, String property, int start, int end, String peName) {
@@ -1168,18 +1561,28 @@ public class BlockTranslator {
 
 	private static void overrideAgeable(String pcName, String property, int start, int end, String peName,
 			int peOffset) {
-		overrideAgeable(pcName, null, property, start, end, peName, 0);
+		overrideAgeable(pcName, null, property, start, end, peName, peOffset);
+	}
+
+	private static void overrideAgeable(String pcName, String property, int start, int end, String peName,
+			Counter func) {
+		overrideAgeable(pcName, null, property, start, end, peName, func);
 	}
 
 	private static void overrideAgeable(String pcName, Map<String, String> properties, String property, int start,
 			int end, String peName, int peOffset) {
+		overrideAgeable(pcName, properties, property, start, end, peName, x -> peOffset + x);
+	}
+
+	private static void overrideAgeable(String pcName, Map<String, String> properties, String property, int start,
+			int end, String peName, Counter func) {
 		if (properties == null) {
 			properties = new HashMap<>();
 		}
 		for (int k = start; k <= end; k++) {
 			Map<String, String> itemProperties = new HashMap<>(properties);
 			itemProperties.put(property, Integer.toString(k));
-			override(pcName, itemProperties, peName, peOffset + k);
+			override(pcName, itemProperties, peName, func.count(k));
 		}
 	}
 
@@ -1195,6 +1598,10 @@ public class BlockTranslator {
 			}
 		}
 		return map;
+	}
+
+	public interface Counter {
+		public int count(int x);
 	}
 
 	public static BlockFace translateToPC(int face) {
