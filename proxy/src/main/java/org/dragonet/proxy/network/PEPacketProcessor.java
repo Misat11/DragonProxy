@@ -162,6 +162,7 @@ public class PEPacketProcessor {
                 return;
             }
         }
+		DragonProxy.getInstance().getLogger().info("receiving packet " + packet.toString());
 
         switch (packet.pid()) {
         case ProtocolInfo.BATCH_PACKET:

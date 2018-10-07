@@ -30,6 +30,7 @@ public class AddPlayerPacket extends PEPacket {
     public Slot item;
     public EntityMetaData meta;
     public PEEntityLink[] links;
+    public String deviceId;
 
     public AddPlayerPacket() {
 
@@ -75,6 +76,7 @@ public class AddPlayerPacket extends PEPacket {
         } else {
             putUnsignedVarInt(0);
         }
+        putString(deviceId);
     }
 
     @Override
@@ -107,5 +109,6 @@ public class AddPlayerPacket extends PEPacket {
 //                links[i] = getEntityLink();
 //            }
 //        }
+// 		  deviceId = getString();
     }
 }
