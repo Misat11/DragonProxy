@@ -19,9 +19,8 @@ import com.github.steveice10.mc.protocol.packet.ingame.server.world.ServerBlockC
 import org.dragonet.proxy.network.UpstreamSession;
 import org.dragonet.proxy.network.translator.IPCPacketTranslator;
 import org.dragonet.proxy.network.translator.BlockTranslator;
-
+import org.dragonet.common.data.blocks.BlockEntry;
 import org.dragonet.common.data.blocks.GlobalBlockPalette;
-import org.dragonet.common.data.itemsblocks.ItemEntry;
 import org.dragonet.protocol.PEPacket;
 import org.dragonet.protocol.packets.LevelEventPacket;
 import org.dragonet.protocol.packets.LevelSoundEventPacket;
@@ -36,17 +35,16 @@ public class PCBlockChangePacketTranslator implements IPCPacketTranslator<Server
     public PEPacket[] translate(UpstreamSession session, ServerBlockChangePacket packet) {
         Position pos = packet.getRecord().getPosition();
         BlockState block = packet.getRecord().getBlock();
-        /*if (session.getChunkCache().getBlock(pos) != null) {
-            if (block.getId() == 0 && session.getChunkCache().getBlock(pos).getId() != 0) {
+        if (session.getChunkCache().getBlock(pos) != null) {
+            BlockEntry soundentry = BlockTranslator.translateToPE(session.getChunkCache().getBlock(pos).getId());
+            if (soundentry.getId() == 0 && session.getChunkCache().translateBlock(pos).getId() != 0) {
                 LevelEventPacket pk = new LevelEventPacket();
                 pk.eventId = LevelEventPacket.EVENT_PARTICLE_DESTROY;
                 pk.position = new Vector3F(pos.getX(), pos.getY(), pos.getZ());
-                ItemEntry entry = ItemBlockTranslator.translateToPE(session.getChunkCache().getBlock(pos).getId(),
-                        session.getChunkCache().getBlock(pos).getData());
-                pk.data = GlobalBlockPalette.getOrCreateRuntimeId(entry.getId(), entry.getPEDamage());
+                pk.data = GlobalBlockPalette.getOrCreateRuntimeId(soundentry.getId(), soundentry.getData());
                 session.sendPacket(pk);
-            } else if (isDoor(block.getId())) {
-                if ((block.getData() & 0x4) == 0x4 && (session.getChunkCache().getBlock(pos).getData() & 0x4) != 0x4) {
+            } else if (isDoor(soundentry.getId())) {
+                if ((soundentry.getData() & 0x4) == 0x4 && (session.getChunkCache().translateBlock(pos).getData() & 0x4) != 0x4) {
                     PlaySoundPacket psp = new PlaySoundPacket();
                     psp.blockPosition = new BlockPosition(pos);
                     psp.name = session.getProxy().getSoundTranslator()
@@ -55,8 +53,8 @@ public class PCBlockChangePacketTranslator implements IPCPacketTranslator<Server
                     psp.volume = 1;
                     psp.pitch = 1;
                     session.sendPacket(psp);
-                } else if ((block.getData() & 0x4) != 0x4
-                        && (session.getChunkCache().getBlock(pos).getData() & 0x4) == 0x4) {
+                } else if ((soundentry.getData() & 0x4) != 0x4
+                        && (session.getChunkCache().translateBlock(pos).getData() & 0x4) == 0x4) {
                     PlaySoundPacket psp = new PlaySoundPacket();
                     psp.blockPosition = new BlockPosition(pos);
                     psp.name = session.getProxy().getSoundTranslator()
@@ -66,16 +64,16 @@ public class PCBlockChangePacketTranslator implements IPCPacketTranslator<Server
                     psp.pitch = 1;
                     session.sendPacket(psp);
                 }
-            } else if (isGate(block.getId())) {
-                if ((block.getData() & 0x4) == 0x4 && (session.getChunkCache().getBlock(pos).getData() & 0x4) != 0x4) {
+            } else if (isGate(soundentry.getId())) {
+                if ((soundentry.getData() & 0x4) == 0x4 && (session.getChunkCache().translateBlock(pos).getData() & 0x4) != 0x4) {
                     PlaySoundPacket psp = new PlaySoundPacket();
                     psp.blockPosition = new BlockPosition(pos);
                     psp.name = session.getProxy().getSoundTranslator().translate(BuiltinSound.BLOCK_FENCE_GATE_OPEN);
                     psp.volume = 1;
                     psp.pitch = 1;
                     session.sendPacket(psp);
-                } else if ((block.getData() & 0x4) != 0x4
-                        && (session.getChunkCache().getBlock(pos).getData() & 0x4) == 0x4) {
+                } else if ((soundentry.getData() & 0x4) != 0x4
+                        && (session.getChunkCache().translateBlock(pos).getData() & 0x4) == 0x4) {
                     PlaySoundPacket psp = new PlaySoundPacket();
                     psp.blockPosition = new BlockPosition(pos);
                     psp.name = session.getProxy().getSoundTranslator().translate(BuiltinSound.BLOCK_FENCE_GATE_CLOSE);
@@ -83,8 +81,8 @@ public class PCBlockChangePacketTranslator implements IPCPacketTranslator<Server
                     psp.pitch = 1;
                     session.sendPacket(psp);
                 }
-            } else if (isTrapdoor(block.getId())) {
-                if ((block.getData() & 0x4) == 0x4 && (session.getChunkCache().getBlock(pos).getData() & 0x4) != 0x4) {
+            } else if (isTrapdoor(soundentry.getId())) {
+                if ((soundentry.getData() & 0x4) == 0x4 && (session.getChunkCache().translateBlock(pos).getData() & 0x4) != 0x4) {
                     PlaySoundPacket psp = new PlaySoundPacket();
                     psp.blockPosition = new BlockPosition(pos);
                     psp.name = session.getProxy().getSoundTranslator()
@@ -93,8 +91,8 @@ public class PCBlockChangePacketTranslator implements IPCPacketTranslator<Server
                     psp.volume = 1;
                     psp.pitch = 1;
                     session.sendPacket(psp);
-                } else if ((block.getData() & 0x4) != 0x4
-                        && (session.getChunkCache().getBlock(pos).getData() & 0x4) == 0x4) {
+                } else if ((soundentry.getData() & 0x4) != 0x4
+                        && (session.getChunkCache().translateBlock(pos).getData() & 0x4) == 0x4) {
                     PlaySoundPacket psp = new PlaySoundPacket();
                     psp.blockPosition = new BlockPosition(pos);
                     psp.name = session.getProxy().getSoundTranslator()
@@ -109,7 +107,7 @@ public class PCBlockChangePacketTranslator implements IPCPacketTranslator<Server
             }
         } else {
             build(session, pos, block);
-        }*/
+        }
         // update cache
         try {
             session.getChunkCache().update(pos, block);
@@ -119,13 +117,14 @@ public class PCBlockChangePacketTranslator implements IPCPacketTranslator<Server
             // pk.blockPosition.z);
             // session.getBlockCache().checkBlock(entry.getId(), entry.getPEDamage(),
             // blockPosition);
-            ItemEntry entry = session.getChunkCache().translateBlock(pos);
+            BlockEntry entry = session.getChunkCache().translateBlock(pos);
             if (entry != null) {
                 UpdateBlockPacket pk = new UpdateBlockPacket();
                 pk.flags = UpdateBlockPacket.FLAG_NEIGHBORS;
-                pk.data = entry.getPEDamage();
+                pk.data = entry.getData();
                 pk.id = entry.getId();
                 pk.blockPosition = new BlockPosition(pos);
+                pk.dataLayer = entry.isWaterlogged() ? UpdateBlockPacket.LAYER_LIQUID : UpdateBlockPacket.LAYER_NORMAL;
                 session.putCachePacket(pk);
             }
         } catch (Exception ex) {
@@ -140,8 +139,8 @@ public class PCBlockChangePacketTranslator implements IPCPacketTranslator<Server
         LevelSoundEventPacket pk = new LevelSoundEventPacket();
         pk.sound = LevelSoundEventPacket.Sound.PLACE;
         pk.position = new Vector3F(pos.getX(), pos.getY(), pos.getZ());
-        ItemEntry entry = BlockTranslator.translateToPE(block.getId());
-        pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(entry.getId(), entry.getPEDamage());
+        BlockEntry entry = BlockTranslator.translateToPE(block.getId());
+        pk.extraData = GlobalBlockPalette.getOrCreateRuntimeId(entry.getId(), entry.getData());
         pk.isGlobal = false;
         pk.pitch = 1;
         session.sendPacket(pk);

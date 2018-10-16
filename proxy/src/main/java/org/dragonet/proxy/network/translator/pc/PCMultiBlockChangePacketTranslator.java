@@ -19,7 +19,7 @@ import com.github.steveice10.mc.protocol.packet.ingame.server.world.ServerMultiB
 import org.dragonet.proxy.network.UpstreamSession;
 import org.dragonet.proxy.network.translator.IPCPacketTranslator;
 import org.dragonet.proxy.network.translator.BlockTranslator;
-import org.dragonet.common.data.itemsblocks.ItemEntry;
+import org.dragonet.common.data.blocks.BlockEntry;
 import org.dragonet.protocol.PEPacket;
 import org.dragonet.protocol.packets.UpdateBlockPacket;
 import org.dragonet.common.maths.BlockPosition;
@@ -38,7 +38,7 @@ public class PCMultiBlockChangePacketTranslator implements IPCPacketTranslator<S
                 ChunkPos chunk = new ChunkPos(pos.getX() >> 4, pos.getZ() >> 4);
                 session.getChunkCache().update(pos, block);
 
-                ItemEntry entry = session.getChunkCache().translateBlock(pos);
+                BlockEntry entry = session.getChunkCache().translateBlock(pos);
 
                 if (entry == null) {
                     entry = BlockTranslator.translateToPE(block.getId());
@@ -47,7 +47,8 @@ public class PCMultiBlockChangePacketTranslator implements IPCPacketTranslator<S
                 packets[i].blockPosition = new BlockPosition(pos.getX(), pos.getY(), pos.getZ());
                 packets[i].id = entry.getId();
                 packets[i].flags = UpdateBlockPacket.FLAG_NEIGHBORS;
-                packets[i].data = entry.getPEDamage();
+                packets[i].data = entry.getData();
+                packets[i].dataLayer = entry.isWaterlogged() ? UpdateBlockPacket.LAYER_LIQUID : UpdateBlockPacket.LAYER_NORMAL;
             } catch (Exception ex) {
                 session.getProxy().getLogger().debug("Error when updating block [" + pos.getX() + "," + pos.getY() + ","
                         + pos.getZ() + "] " + block.toString());

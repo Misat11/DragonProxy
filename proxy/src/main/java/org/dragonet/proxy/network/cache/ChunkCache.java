@@ -18,7 +18,8 @@ import com.github.steveice10.mc.protocol.data.game.chunk.Column;
 import com.github.steveice10.mc.protocol.data.game.entity.metadata.ItemStack;
 import com.github.steveice10.mc.protocol.data.game.entity.metadata.Position;
 import com.github.steveice10.mc.protocol.data.game.world.block.BlockState;
-import org.dragonet.common.data.itemsblocks.ItemEntry;
+
+import org.dragonet.common.data.blocks.BlockEntry;
 import org.dragonet.common.data.nbt.NBTIO;
 import org.dragonet.common.data.nbt.tag.CompoundTag;
 import org.dragonet.common.maths.ChunkPos;
@@ -154,7 +155,7 @@ public class ChunkCache {
         // enqueue block update
     }
 
-    public final ItemEntry translateBlock(Position position) {
+    public final BlockEntry translateBlock(Position position) {
         if (position.getY() < 0) //never behind 0
             return null;
         ChunkPos columnPos = new ChunkPos(position.getX() >> 4, position.getZ() >> 4);
@@ -253,7 +254,7 @@ public class ChunkCache {
                 for (int x = 0; x < 16; x++)
                     for (int z = 0; z < 16; z++) {
                         BlockState block = blocks.get(x, y & 0xF, z);
-                        ItemEntry entry = BlockTranslator.translateToPE(block.getId());
+                        BlockEntry entry = BlockTranslator.translateToPE(block.getId());
 
                         Section section = chunk.sections[cy];
                         // Block id
@@ -262,7 +263,7 @@ public class ChunkCache {
                         // Data value
                         int i = dataIndex(x, y, z);
                         byte data = section.blockMetas[i];
-                        int newValue = entry.getPEDamage().byteValue();
+                        int newValue = entry.getData().byteValue();
 
                         if ((y & 1) == 0)
                             data = (byte) ((data & 0xf0) | (newValue & 0x0f));

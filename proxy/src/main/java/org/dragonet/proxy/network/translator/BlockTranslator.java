@@ -15,23 +15,18 @@ package org.dragonet.proxy.network.translator;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.steveice10.mc.protocol.data.game.entity.metadata.ItemStack;
 import com.github.steveice10.mc.protocol.data.game.world.block.BlockFace;
 import com.github.steveice10.opennbt.tag.builtin.CompoundTag;
-import com.github.steveice10.opennbt.tag.builtin.IntTag;
-import com.github.steveice10.opennbt.tag.builtin.StringTag;
 import com.github.steveice10.opennbt.tag.builtin.Tag;
 
 import java.util.List;
 
-import org.dragonet.common.data.itemsblocks.ItemEntry;
 import org.dragonet.common.data.nbt.tag.ListTag;
 import org.dragonet.proxy.DragonProxy;
-import org.dragonet.proxy.network.translator.BlockTranslator.FlowerPot;
 import org.dragonet.proxy.network.translator.flattening.FlattedBlockState;
 import org.dragonet.proxy.network.translator.flattening.FlatteningBlockData;
+import org.dragonet.common.data.blocks.BlockEntry;
 import org.dragonet.common.data.blocks.GlobalBlockPalette;
-import org.dragonet.common.data.inventory.Slot;
 
 public class BlockTranslator {
 
@@ -42,7 +37,7 @@ public class BlockTranslator {
 
 	public static final int UNSUPPORTED_BLOCK_ID = 248;
 	public static final String DRAGONET_COMPOUND = "DragonetNBT";
-	public static final Map<FlattedBlockState, ItemEntry> PC_TO_PE_OVERRIDE = new HashMap<>();
+	public static final Map<FlattedBlockState, BlockEntry> PC_TO_PE_OVERRIDE = new HashMap<>();
 	public static final Map<Integer, Map<Integer, FlattedBlockState>> PE_TO_PC_OVERRIDE = new HashMap<>();
 
 	static {
@@ -1335,12 +1330,12 @@ public class BlockTranslator {
 				.info("Successfully registered block translates (" + PC_TO_PE_OVERRIDE.size() + ")");
 	}
 
-	public static ItemEntry translateToPE(int stateID) {
+	public static BlockEntry translateToPE(int stateID) {
 		FlattedBlockState blockState = FlatteningBlockData.fromStateID(stateID);
 		if (!PC_TO_PE_OVERRIDE.containsKey(blockState)) {
 			FlattedBlockState defaultState = blockState.block.defaultState;
 			if (!PC_TO_PE_OVERRIDE.containsKey(defaultState)) {
-				return new ItemEntry(GlobalBlockPalette.getIDFromName(blockState.block.name), 0);
+				return new BlockEntry(GlobalBlockPalette.getIDFromName(blockState.block.name), 0);
 			}
 			return PC_TO_PE_OVERRIDE.get(defaultState);
 		}
@@ -1367,7 +1362,7 @@ public class BlockTranslator {
 		try {
 			FlattedBlockState blockState = FlatteningBlockData.fromNameDefault("minecraft:" + pcName);
 			int peId = GlobalBlockPalette.getIDFromName("minecraft:" + peName);
-			override(blockState, new ItemEntry(peId, peData));
+			override(blockState, new BlockEntry(peId, peData));
 		} catch (Exception e) {
 			DragonProxy.getInstance().getLogger().severe("Overriding " + pcName + " failed: " + e.getMessage());
 			e.printStackTrace();
@@ -1384,7 +1379,7 @@ public class BlockTranslator {
 					properties);
 			int peId = GlobalBlockPalette.getIDFromName("minecraft:" + peName);
 			for (FlattedBlockState blockState : blockStates) {
-				override(blockState, new ItemEntry(peId, peData));
+				override(blockState, new BlockEntry(peId, peData));
 			}
 		} catch (Exception e) {
 			DragonProxy.getInstance().getLogger().severe("Overriding " + pcName + " failed: " + e.getMessage());
@@ -1396,15 +1391,15 @@ public class BlockTranslator {
 		override(pcName, properties, pcName, peData);
 	}
 
-	private static void override(FlattedBlockState blockState, ItemEntry entry) {
+	private static void override(FlattedBlockState blockState, BlockEntry entry) {
 		if (!PC_TO_PE_OVERRIDE.containsKey(blockState)) {
 			PC_TO_PE_OVERRIDE.put(blockState, entry);
 		}
 		if (!PE_TO_PC_OVERRIDE.containsKey(entry.getId())) {
 			PE_TO_PC_OVERRIDE.put(entry.getId(), new HashMap<>());
 		}
-		if (!PE_TO_PC_OVERRIDE.get(entry.getId()).containsKey(entry.getPEDamage())) {
-			PE_TO_PC_OVERRIDE.get(entry.getId()).put(entry.getPEDamage(), blockState);
+		if (!PE_TO_PC_OVERRIDE.get(entry.getId()).containsKey(entry.getData())) {
+			PE_TO_PC_OVERRIDE.get(entry.getId()).put(entry.getData(), blockState);
 		}
 	}
 

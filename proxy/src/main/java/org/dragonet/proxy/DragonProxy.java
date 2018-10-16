@@ -23,7 +23,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.SystemUtils;
-import org.dragonet.common.data.blocks.Block;
 import org.dragonet.common.data.blocks.GlobalBlockPalette;
 import org.dragonet.common.utilities.SkinFetcher;
 import org.dragonet.protocol.ProtocolInfo;
@@ -257,9 +256,6 @@ public class DragonProxy {
         FlatteningItemData.fromID(1);// Force it to load
         BlockTranslator.translateToPE(1);// Force it to load
         ItemTranslator.translateToPE(1);// Force it to load
-
-        // Init block handling
-        Block.init();
 
         // MOTD
         motd = config.motd;

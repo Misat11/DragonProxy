@@ -25,40 +25,39 @@ public class StartGamePacket extends PEPacket {
     // world settings
     public int seed;
     public int dimension;
-    public int generator;
+    public int generator = 1;
     public int worldGamemode;
     public Difficulty difficulty;
     public BlockPosition spawnPosition;
-    public boolean achievementsDisabled;
-    public int time;
-    public boolean eduMode;
-    public boolean eduFeaturesEnabled;
+    public boolean achievementsDisabled = true;
+    public int time = -1;
+    public boolean eduMode = false;
+    public boolean eduFeaturesEnabled = false;
     public float rainLevel;
     public float lightningLevel;
     public boolean multiplayerGame = true;
     public boolean lanBroadcast = true;
-    public boolean xboxLiveBroadcast;
-    public boolean commandsEnabled;
-    public boolean texturePacksRequired;
+    public boolean xboxLiveBroadcast = true;
+    public boolean commandsEnabled = true;
+    public boolean texturePacksRequired = false;
     public Map<String, GameRule> gameRules;
-    public boolean bonusChestEnabled;
-    public boolean startWithMapEnabled;
-    public boolean trustPlayersEnabled;
-    public int defaultPlayerPermission;
-    public int gamePublishSetting;
+    public boolean bonusChestEnabled = false;
+    public boolean startWithMapEnabled = false;
+    public boolean trustPlayersEnabled = false;
+    public int defaultPlayerPermission = 1;
+    public int gamePublishSetting = 4;
     public int serverChunkTickRadius = 4; //TODO (leave as default for now)
-    public int serverChunkTickRange = 0;
     public boolean hasPlatformBroadcast = false;
-    public int platformBroadcastMode = 0;
-    public boolean xboxLiveBroadcastIntent = false;
-    public boolean hasLockedBehaviorPack;
-    public boolean hasLockedResourcePack;
-    public boolean isFromLockedWorldTemplate;
+    public int platformBroadcastMode = 4;
+    public boolean xboxLiveBroadcastIntent = true;
+    public boolean hasLockedBehaviorPack = false;
+    public boolean hasLockedResourcePack = false;
+    public boolean isFromLockedWorldTemplate = false;
 
     public String levelId;
     public String worldName;
     public String premiumWorldTemplateId;
-    public boolean unknownBool;
+    public boolean isTrial = false;
     public long currentTick;
 
     public int enchantmentSeed;
@@ -82,8 +81,8 @@ public class StartGamePacket extends PEPacket {
 
         putVector3F(position);
 
-        putLFloat(pitch);
         putLFloat(yaw);
+        putLFloat(pitch);
 
         // Level settings
         putVarInt(seed);
@@ -110,7 +109,6 @@ public class StartGamePacket extends PEPacket {
         putVarInt(defaultPlayerPermission);
         putVarInt(gamePublishSetting);
         putLInt(serverChunkTickRadius);
-        putInt(serverChunkTickRange);
         putBoolean(hasPlatformBroadcast);
         putVarInt(platformBroadcastMode);
         putBoolean(xboxLiveBroadcastIntent);
@@ -121,7 +119,7 @@ public class StartGamePacket extends PEPacket {
         putString(levelId);
         putString(worldName);
         putString(premiumWorldTemplateId);
-        putBoolean(unknownBool);
+        putBoolean(isTrial);
         putLLong(currentTick);
         putVarInt(enchantmentSeed);
 
@@ -139,8 +137,8 @@ public class StartGamePacket extends PEPacket {
 
         position = getVector3F();
 
-        pitch = getLFloat();
         yaw = getLFloat();
+        pitch = getLFloat();
 
         // Level settings
         seed = getVarInt();
@@ -166,7 +164,6 @@ public class StartGamePacket extends PEPacket {
         defaultPlayerPermission = getVarInt();
         gamePublishSetting = getVarInt();
         serverChunkTickRadius = getVarInt();
-        serverChunkTickRange = getInt();
         hasPlatformBroadcast = getBoolean();
         platformBroadcastMode = getVarInt();
         xboxLiveBroadcastIntent = getBoolean();
@@ -174,7 +171,7 @@ public class StartGamePacket extends PEPacket {
         levelId = getString();
         worldName = getString();
         premiumWorldTemplateId = getString();
-        unknownBool = getBoolean();
+        isTrial = getBoolean();
         currentTick = getLLong();
 
         enchantmentSeed = getVarInt();

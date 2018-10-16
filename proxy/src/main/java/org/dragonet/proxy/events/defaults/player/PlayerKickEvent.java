@@ -4,7 +4,7 @@ import org.dragonet.proxy.events.Cancellable;
 import org.dragonet.proxy.events.HandlerList;
 import org.dragonet.proxy.network.UpstreamSession;
 
-public class PlayerKickEvent extends PlayerEvent implements Cancellable{
+public class PlayerKickEvent extends PlayerEvent implements Cancellable {
 
     private static final HandlerList handlerList = new HandlerList();
     

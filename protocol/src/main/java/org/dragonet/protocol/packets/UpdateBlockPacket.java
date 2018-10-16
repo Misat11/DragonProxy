@@ -18,6 +18,9 @@ public class UpdateBlockPacket extends PEPacket {
 
     public static final int FLAG_ALL = FLAG_NEIGHBORS | FLAG_NETWORK;
     public static final int FLAG_ALL_PRIORITY = FLAG_ALL | FLAG_PRIORITY;
+    
+    public static final int LAYER_NORMAL = 0;
+    public static final int LAYER_LIQUID = 1;
 
     public BlockPosition blockPosition;
     public int id;
