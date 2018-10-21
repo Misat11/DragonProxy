@@ -124,8 +124,17 @@ public class PCBlockChangePacketTranslator implements IPCPacketTranslator<Server
                 pk.data = entry.getData();
                 pk.id = entry.getId();
                 pk.blockPosition = new BlockPosition(pos);
-                pk.dataLayer = entry.isWaterlogged() ? UpdateBlockPacket.LAYER_LIQUID : UpdateBlockPacket.LAYER_NORMAL;
+                pk.dataLayer = UpdateBlockPacket.LAYER_NORMAL;
                 session.putCachePacket(pk);
+                if (entry.isWaterlogged() || entry.getId() == 0) {
+                    UpdateBlockPacket water = new UpdateBlockPacket();
+                    water.flags = UpdateBlockPacket.FLAG_NEIGHBORS;
+                    water.data = 0;
+                    water.id = 9;
+                    water.blockPosition = new BlockPosition(pos);
+                    water.dataLayer = UpdateBlockPacket.LAYER_LIQUID;
+                    session.putCachePacket(water);
+                }
             }
         } catch (Exception ex) {
             session.getProxy().getLogger().debug("Error when updating block [" + pos.getX() + "," + pos.getY() + ","

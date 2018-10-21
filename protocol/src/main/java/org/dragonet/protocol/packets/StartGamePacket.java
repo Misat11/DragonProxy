@@ -53,6 +53,7 @@ public class StartGamePacket extends PEPacket {
     public boolean hasLockedBehaviorPack = false;
     public boolean hasLockedResourcePack = false;
     public boolean isFromLockedWorldTemplate = false;
+    public boolean useGamerTagsOnly = false;
 
     public String levelId;
     public String worldName;
@@ -115,6 +116,7 @@ public class StartGamePacket extends PEPacket {
         putBoolean(hasLockedBehaviorPack);
         putBoolean(hasLockedResourcePack);
         putBoolean(isFromLockedWorldTemplate);
+        putBoolean(useGamerTagsOnly);
 
         putString(levelId);
         putString(worldName);
@@ -167,6 +169,7 @@ public class StartGamePacket extends PEPacket {
         hasPlatformBroadcast = getBoolean();
         platformBroadcastMode = getVarInt();
         xboxLiveBroadcastIntent = getBoolean();
+        useGamerTagsOnly = getBoolean();
 
         levelId = getString();
         worldName = getString();

@@ -19,6 +19,10 @@ import com.github.steveice10.mc.protocol.packet.ingame.server.world.ServerMultiB
 import org.dragonet.proxy.network.UpstreamSession;
 import org.dragonet.proxy.network.translator.IPCPacketTranslator;
 import org.dragonet.proxy.network.translator.BlockTranslator;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.dragonet.common.data.blocks.BlockEntry;
 import org.dragonet.protocol.PEPacket;
 import org.dragonet.protocol.packets.UpdateBlockPacket;
@@ -28,10 +32,10 @@ import org.dragonet.common.maths.ChunkPos;
 public class PCMultiBlockChangePacketTranslator implements IPCPacketTranslator<ServerMultiBlockChangePacket> {
 
     public PEPacket[] translate(UpstreamSession session, ServerMultiBlockChangePacket packet) {
-        UpdateBlockPacket[] packets = new UpdateBlockPacket[packet.getRecords().length];
+        List<UpdateBlockPacket> packets = new ArrayList<UpdateBlockPacket>();
         // int generalFlag = packet.getRecords().length > 64 ?
         // UpdateBlockPacket.FLAG_ALL_PRIORITY : UpdateBlockPacket.FLAG_NEIGHBORS;
-        for (int i = 0; i < packets.length; i++) {
+        for (int i = 0; i < packet.getRecords().length; i++) {
             Position pos = packet.getRecords()[i].getPosition();
             BlockState block = packet.getRecords()[i].getBlock();
             try {
@@ -43,12 +47,22 @@ public class PCMultiBlockChangePacketTranslator implements IPCPacketTranslator<S
                 if (entry == null) {
                     entry = BlockTranslator.translateToPE(block.getId());
                 }
-                packets[i] = new UpdateBlockPacket();
-                packets[i].blockPosition = new BlockPosition(pos.getX(), pos.getY(), pos.getZ());
-                packets[i].id = entry.getId();
-                packets[i].flags = UpdateBlockPacket.FLAG_NEIGHBORS;
-                packets[i].data = entry.getData();
-                packets[i].dataLayer = entry.isWaterlogged() ? UpdateBlockPacket.LAYER_LIQUID : UpdateBlockPacket.LAYER_NORMAL;
+                UpdateBlockPacket updatePacket = new UpdateBlockPacket();
+                updatePacket.blockPosition = new BlockPosition(pos.getX(), pos.getY(), pos.getZ());
+                updatePacket.id = entry.getId();
+                updatePacket.flags = UpdateBlockPacket.FLAG_NEIGHBORS;
+                updatePacket.data = entry.getData();
+                updatePacket.dataLayer = UpdateBlockPacket.LAYER_NORMAL;
+                packets.add(updatePacket);
+                if (entry.isWaterlogged() || entry.getId() == 0) {
+                    UpdateBlockPacket water = new UpdateBlockPacket();
+                    water.flags = UpdateBlockPacket.FLAG_NEIGHBORS;
+                    water.data = 0;
+                    water.id = 9;
+                    water.blockPosition = new BlockPosition(pos);
+                    water.dataLayer = UpdateBlockPacket.LAYER_LIQUID;
+                    packets.add(water);
+                }
             } catch (Exception ex) {
                 session.getProxy().getLogger().debug("Error when updating block [" + pos.getX() + "," + pos.getY() + ","
                         + pos.getZ() + "] " + block.toString());
@@ -59,6 +73,6 @@ public class PCMultiBlockChangePacketTranslator implements IPCPacketTranslator<S
             // Position blockPosition = new Position(packets[i].blockPosition.x,
             // packets[i].blockPosition.y, packets[i].blockPosition.z);
         }
-        return packets;
+        return packets.toArray(new UpdateBlockPacket[packets.size()]);
     }
 }
